@@ -107,7 +107,12 @@
   var sysToasts = ['Producto agregado', 'Precio actualizado', 'Marcado como agotado', 'Cambios guardados', 'Nuevo pedido por WhatsApp'];
   function setInst(s, step) {
     var el = s.el;
-    el.querySelectorAll('.dev-scene').forEach(function (sc, i) { sc.classList.toggle('is-on', i <= step); });
+    // Solo una pantalla visible: la nueva entra encima y la anterior se apaga cuando ya quedó tapada
+    var prevStep = s.step;
+    el.querySelectorAll('.dev-scene').forEach(function (sc, i) {
+      sc.classList.toggle('is-on', i === step);
+      sc.classList.toggle('is-out', i === prevStep && i !== step);
+    });
     var cur = el.querySelectorAll('.dev-scene')[step];
     var dev = el.querySelector('[data-dev]');
     if (dev && cur) dev.setAttribute('data-shape', cur.classList.contains('is-web') ? 'web' : 'phone');
@@ -163,8 +168,10 @@
       var total = s.el.offsetHeight - vh;
       var p = clamp(-r.top / total, 0, 1);
       s.el.style.setProperty('--p', p.toFixed(4));
-      var step = s.sys ? Math.min(s.n - 1, Math.floor(p * (s.n + 0.8)) - 1) : Math.min(s.n - 1, Math.floor(p * s.n * 0.999));
-      if (step !== s.step) { s.step = step; if (s.sys) setSys(s, step); else setInst(s, step); }
+      var raw = s.sys ? p * (s.n + 0.8) - 1 : p * s.n * 0.999;
+      var step = Math.min(s.n - 1, Math.floor(raw));
+      // margen para que no salte de ida y vuelta en el borde entre dos pantallas
+      if (step !== s.step && (s.step === null || Math.abs(raw - (Math.max(step, s.step))) > 0.08)) { if (s.sys) setSys(s, step); else setInst(s, step); s.step = step; }
     });
     if (tl) {
       var tr = tl.getBoundingClientRect();
