@@ -10,11 +10,11 @@ export default {
 
   // Dominio final, sin barra al final. Se usa en canonical, sitemap y Open Graph.
   // CAMBIAR cuando tengas el dominio (ej. https://districtstudio.co)
-  siteUrl: 'https://districtstudio.example',
+  siteUrl: 'https://zerufyx.github.io',
 
   // "" si el sitio vive en la raíz del dominio (lo normal con dominio propio).
   // "/nombre-del-repo" si lo publicas en usuario.github.io/nombre-del-repo
-  basePath: '',
+  basePath: '/district-studio',
 
   lang: 'es',
   locale: 'es_US',
