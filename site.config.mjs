@@ -14,7 +14,7 @@ export default {
 
   // "" si el sitio vive en la raíz del dominio (lo normal con dominio propio).
   // "/nombre-del-repo" si lo publicas en usuario.github.io/nombre-del-repo
-  basePath: '/district-studio',
+  basePath: '/DISTRICT-STUDIO',
 
   lang: 'es',
   locale: 'es_US',
