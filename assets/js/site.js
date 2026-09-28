@@ -422,31 +422,51 @@
     new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) start(); else stop(); }); }, { threshold: 0.3 }).observe(live);
   });
 
-  /* ---------- "Tu negocio. En línea.": pasa sola, sin depender del scroll ---------- */
-  // Antes cambiaba según cuánto se scrolleaba y fallaba (rápido se saltaba pantallas,
-  // lento parecía trabado). Ahora la sección scrollea normal y las pantallas pasan
-  // solas mientras se ve; también se puede tocar la lista, los puntos o deslizar.
+  /* ---------- "Tu negocio. En línea.": cada negocio en video, uno tras otro ---------- */
+  // La sección scrollea normal. Cada negocio muestra su video (animación de inicio,
+  // página principal y todo el recorrido hacia abajo) y al terminar pasa al siguiente.
+  // Se puede elegir uno tocando la lista, los puntos o deslizando el teléfono.
   var car = d.querySelector('[data-carousel]');
   if (car) {
     var cs = { el: car, step: null };
     var scenesEl = car.querySelectorAll('.dev-scene');
     var total = scenesEl.length, playTimer = null, visible = false;
-    var bar = car.querySelector('.inst-bar i');
-    var durOf = function (i) { return scenesEl[i] && scenesEl[i].classList.contains('is-scroll') ? 7000 : 4200; };
+    var vidOf = function (i) { return scenesEl[i] && scenesEl[i].querySelector('video'); };
+    var setBar = function (ms) {
+      car.style.setProperty('--dur', ms + 'ms');
+      car.classList.remove('is-play'); void car.offsetWidth; car.classList.add('is-play');
+    };
+    var next = function () { go(cs.step + 1); };
+    var run = function (fresh) {
+      clearTimeout(playTimer);
+      var v = vidOf(cs.step);
+      [].forEach.call(car.querySelectorAll('video'), function (o) { if (o !== v) o.pause(); });
+      if (!visible || reduce || d.hidden) { if (v) v.pause(); car.classList.remove('is-play'); return; }
+      if (!v) { setBar(4200); playTimer = setTimeout(next, 4200); return; }
+      if (v.preload !== 'auto') { v.preload = 'auto'; v.load(); }
+      if (fresh) { try { v.currentTime = 0; } catch (e) {} }
+      var p = v.play();
+      var armed = function () {
+        var left = (isFinite(v.duration) && v.duration ? (v.duration - v.currentTime) : 16) * 1000;
+        setBar(left);
+        playTimer = setTimeout(next, left + 1500); // por si el video no avisa que terminó
+      };
+      if (p && p.then) p.then(armed, function () { setBar(5000); playTimer = setTimeout(next, 5000); });
+      else armed();
+      // deja listo el que sigue
+      var nv = vidOf((cs.step + 1) % total);
+      if (nv && nv.preload === 'none') nv.preload = 'metadata';
+    };
     var go = function (i) {
       i = (i + total) % total;
-      if (i !== cs.step) { setInst(cs, i); cs.step = i; }
-      schedule();
+      var fresh = i !== cs.step;
+      if (fresh) { setInst(cs, i); cs.step = i; }
+      run(true);
     };
-    var schedule = function () {
-      clearTimeout(playTimer);
-      if (!visible || reduce || d.hidden) { car.classList.remove('is-play'); return; }
-      var dur = durOf(cs.step);
-      car.style.setProperty('--dur', dur + 'ms');
-      car.classList.remove('is-play'); void car.offsetWidth; car.classList.add('is-play');
-      playTimer = setTimeout(function () { go(cs.step + 1); }, dur);
-    };
-    go(0);
+    [].forEach.call(car.querySelectorAll('video'), function (v, k) {
+      v.addEventListener('ended', function () { if (scenesEl[cs.step] && scenesEl[cs.step].contains(v)) next(); });
+    });
+    setInst(cs, 0); cs.step = 0;
     car.querySelectorAll('.inst-list li, .inst-dots button').forEach(function (b) {
       var pick = function () { go(+b.getAttribute('data-i')); };
       b.addEventListener('click', pick);
@@ -463,8 +483,10 @@
       }, { passive: true });
     }
     if ('IntersectionObserver' in w) {
-      new IntersectionObserver(function (es) { es.forEach(function (e) { visible = e.isIntersecting; schedule(); }); }, { threshold: 0.35 }).observe(car);
+      new IntersectionObserver(function (es) {
+        es.forEach(function (e) { var was = visible; visible = e.isIntersecting; if (visible !== was) run(false); });
+      }, { threshold: 0.35 }).observe(car);
     }
-    d.addEventListener('visibilitychange', schedule);
+    d.addEventListener('visibilitychange', function () { run(false); });
   }
 })();

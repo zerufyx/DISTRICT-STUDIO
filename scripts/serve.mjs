@@ -11,7 +11,7 @@ const PORT = Number(process.env.PORT) || 4321;
 const TYPES = {
   '.html': 'text/html; charset=utf-8', '.css': 'text/css', '.js': 'text/javascript', '.json': 'application/json',
   '.svg': 'image/svg+xml', '.png': 'image/png', '.jpg': 'image/jpeg', '.webp': 'image/webp', '.woff2': 'font/woff2',
-  '.xml': 'application/xml', '.txt': 'text/plain', '.webmanifest': 'application/manifest+json',
+  '.xml': 'application/xml', '.txt': 'text/plain', '.webmanifest': 'application/manifest+json', '.mp4': 'video/mp4', '.webm': 'video/webm',
 };
 
 http

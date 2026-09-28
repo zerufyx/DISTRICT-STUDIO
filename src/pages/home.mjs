@@ -31,10 +31,10 @@ const heroCards = [
 
 // La instalación: una misma pantalla que se transforma en cinco negocios
 const scenes = [
-  { k: 'Sitio web', who: 'Jircars', note: 'Concepto', src: 'jircars-desktop', w: 1440, h: 900, shape: 'web' },
-  { k: 'Catálogo digital', who: 'Aureon', note: 'Concepto', src: 'aureon-catalogo', w: 540, h: 1169, shape: 'phone' },
-  { k: 'Menú digital', who: 'S91 House Grill', note: 'En línea', src: 's91-menu-scroll', w: 540, h: 3600, shape: 'phone', scroll: true },
-  { k: 'Catálogo con carrito', who: 'Offsuite', note: 'Concepto', src: 'offsuite-scroll', w: 540, h: 3600, shape: 'phone', scroll: true },
+  { k: 'Sitio web', who: 'Jircars', note: 'Concepto', src: 'jircars-desktop', w: 1440, h: 900, shape: 'web', video: 'jircars' },
+  { k: 'Catálogo digital', who: 'Aureon', note: 'Concepto', src: 'aureon-catalogo', w: 540, h: 1169, shape: 'phone', video: 'aureon' },
+  { k: 'Menú digital', who: 'S91 House Grill', note: 'En línea', src: 's91-menu', w: 540, h: 1169, shape: 'phone', video: 's91' },
+  { k: 'Catálogo con carrito', who: 'Offsuite', note: 'Concepto', src: 'offsuite-intro', w: 540, h: 1169, shape: 'phone', video: 'offsuite' },
   { k: 'Reservas', who: 'Demostración', note: 'Ejemplo', src: 'booking-demo', w: 540, h: 1169, shape: 'phone' },
 ];
 
@@ -129,8 +129,12 @@ export default function home(ctx) {
           <div class="dev-screen">
             ${scenes
               .map(
-                (s, i) => `<figure class="dev-scene is-${s.shape}${s.scroll ? ' is-scroll' : ''}" data-i="${i}">
-              <img src="${ctx.asset(`/assets/img/work/${s.src}.webp`)}" alt="${esc(s.k)}: ${esc(s.who)}" width="${s.w}" height="${s.h}" loading="lazy" decoding="async">
+                (s, i) => `<figure class="dev-scene is-${s.shape}${s.scroll ? ' is-scroll' : ''}${s.video ? ' has-video' : ''}" data-i="${i}">
+              ${
+                s.video
+                  ? `<video muted playsinline preload="none" poster="${ctx.asset(`/assets/video/${s.video}-poster.webp`)}" aria-label="${esc(s.k)}: ${esc(s.who)}, recorrido por la página"><source src="${ctx.asset(`/assets/video/${s.video}.mp4`)}" type="video/mp4"><source src="${ctx.asset(`/assets/video/${s.video}.webm`)}" type="video/webm"></video>`
+                  : `<img src="${ctx.asset(`/assets/img/work/${s.src}.webp`)}" alt="${esc(s.k)}: ${esc(s.who)}" width="${s.w}" height="${s.h}" loading="lazy" decoding="async">`
+              }
             </figure>`
               )
               .join('')}
