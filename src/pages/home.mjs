@@ -31,12 +31,15 @@ const heroCards = [
 
 // La instalación: una misma pantalla que se transforma en cinco negocios
 const scenes = [
-  { k: 'Sitio web', who: 'Jircars', note: 'Concepto', src: 'jircars-desktop', w: 1440, h: 900, shape: 'web', video: 'jircars' },
-  { k: 'Catálogo digital', who: 'Aureon', note: 'Concepto', src: 'aureon-catalogo', w: 540, h: 1169, shape: 'phone', video: 'aureon' },
-  { k: 'Menú digital', who: 'S91 House Grill', note: 'En línea', src: 's91-menu', w: 540, h: 1169, shape: 'phone', video: 's91' },
-  { k: 'Catálogo con carrito', who: 'Offsuite', note: 'Concepto', src: 'offsuite-intro', w: 540, h: 1169, shape: 'phone', video: 'offsuite' },
-  { k: 'Reservas', who: 'Demostración', note: 'Ejemplo', src: 'booking-demo', w: 540, h: 1169, shape: 'phone' },
+  // tour: captura larga del negocio real que baja sola; splash: su pantalla de logo; fixed: encabezado fijo
+  { k: 'Sitio web', who: 'Jircars', note: 'Concepto', shape: 'web', tour: 'jircars', w: 1440, h: 2700, splash: true, fixed: true },
+  { k: 'Catálogo digital', who: 'Aureon', note: 'Concepto', shape: 'phone', tour: 'aureon', w: 900, h: 5843, splash: true, fixed: true },
+  { k: 'Menú digital', who: 'S91 House Grill', note: 'En línea', shape: 'phone', tour: 's91', w: 900, h: 5843, splash: true, fixed: false },
+  { k: 'Catálogo con carrito', who: 'Offsuite', note: 'Concepto', shape: 'phone', tour: 'offsuite', w: 900, h: 5843, splash: false, fixed: true },
+  { k: 'Reservas', who: 'Demostración', note: 'Ejemplo', shape: 'phone', src: 'booking-demo', w: 540, h: 1169 },
 ];
+// Tiempos del recorrido (ms): logo, bajada y pausa al final
+const tourTime = (s) => { const start = s.splash ? 2300 : 1100; const run = s.shape === 'web' ? 6500 : 7500; return { start, run, total: start + run + 1700 }; };
 
 const sysSteps = ['Agregar producto', 'Cambiar precio', 'Marcar agotado', 'Editar menú', 'Recibir pedido'];
 
@@ -129,13 +132,20 @@ export default function home(ctx) {
           <div class="dev-screen">
             ${scenes
               .map(
-                (s, i) => `<figure class="dev-scene is-${s.shape}${s.scroll ? ' is-scroll' : ''}${s.video ? ' has-video' : ''}" data-i="${i}">
-              ${
-                s.video
-                  ? `<video muted playsinline preload="none" poster="${ctx.asset(`/assets/video/${s.video}-poster.webp`)}" aria-label="${esc(s.k)}: ${esc(s.who)}, recorrido por la página"><source src="${ctx.asset(`/assets/video/${s.video}.mp4`)}" type="video/mp4"><source src="${ctx.asset(`/assets/video/${s.video}.webm`)}" type="video/webm"></video>`
-                  : `<img src="${ctx.asset(`/assets/img/work/${s.src}.webp`)}" alt="${esc(s.k)}: ${esc(s.who)}" width="${s.w}" height="${s.h}" loading="lazy" decoding="async">`
+                (s, i) => {
+                if (!s.tour) {
+                  return `<figure class="dev-scene is-${s.shape}" data-i="${i}" data-dur="4200">
+              <img src="${ctx.asset(`/assets/img/work/${s.src}.webp`)}" alt="${esc(s.k)}: ${esc(s.who)}" width="${s.w}" height="${s.h}" loading="lazy" decoding="async">
+            </figure>`;
+                }
+                const t = tourTime(s);
+                const src = (n) => ctx.asset(`/assets/img/tour/${s.tour}-${n}.webp`);
+                return `<figure class="dev-scene is-${s.shape} is-tour" data-i="${i}" data-dur="${t.total}" style="--t-start:${t.start}ms;--t-run:${t.run}ms">
+              <div class="tour-page"><img class="tour-img" src="${src('tall')}" alt="${esc(s.k)}: ${esc(s.who)}" width="${s.w}" height="${s.h}" loading="lazy" decoding="async"></div>
+              ${s.fixed ? `<img class="tour-fixed" src="${src('fixed')}" alt="" loading="lazy" decoding="async">` : ''}
+              ${s.splash ? `<img class="tour-splash" src="${src('splash')}" alt="" loading="lazy" decoding="async">` : ''}
+            </figure>`;
               }
-            </figure>`
               )
               .join('')}
           </div>

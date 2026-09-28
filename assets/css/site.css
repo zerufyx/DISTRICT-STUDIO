@@ -1307,11 +1307,28 @@ main { display: block; }
 .inst-foot { flex-wrap: wrap; align-items: center; }
 @media (min-width: 960px) { .inst-dots { display: none; } }
 
-.dev-scene video { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top; background: #0b0b0b; }
 
 /* Cambio de negocio fluido: solo opacidad y movimiento (lo que el celular mueve sin esfuerzo) */
 .inst[data-carousel] .dev-scene { clip-path: none; opacity: 0; transform: translateY(2.5%) scale(0.985); transition: opacity 550ms ease, transform 750ms var(--ease-out); will-change: opacity, transform; backface-visibility: hidden; }
 .inst[data-carousel] .dev-scene.is-on { opacity: 1; transform: none; transition: opacity 550ms ease 120ms, transform 750ms var(--ease-out) 120ms; }
 .inst[data-carousel] .dev-scene.is-out { opacity: 0; transform: none; transition: opacity 450ms ease; }
 .inst[data-carousel] .dev-scene:not(.is-on):not(.is-out) { transition: none; }
-.inst[data-carousel] .dev-scene video { transform: translateZ(0); }
+
+/* Recorrido de cada negocio: captura nítida que el navegador desliza (a la velocidad de la pantalla, sin saltos) */
+.dev { --sh: calc(var(--dh) - 26px); }
+.dev[data-shape='phone'] { --sh: calc(var(--dh) - var(--dw) * 0.06); }
+.dev-scene.is-tour { background: #0b0b0b; }
+.dev-scene.is-tour img { transform: none; transition: none; }
+.tour-page { position: absolute; inset: 0; overflow: hidden; z-index: 1; }
+.dev-scene .tour-img { display: block; width: 100%; height: auto; transform: translate3d(0, 0, 0); }
+.dev-scene .tour-fixed { position: absolute; left: 0; top: 0; z-index: 2; width: 100%; height: auto; pointer-events: none; }
+.dev-scene .tour-splash { position: absolute; inset: 0; z-index: 3; width: 100%; height: 100%; object-fit: cover; object-position: center; opacity: 1; background: #000; }
+@media (prefers-reduced-motion: no-preference) {
+  .dev-scene.is-tour.is-on .tour-img, .dev-scene.is-tour.is-out .tour-img { animation: tour-scroll var(--t-run) cubic-bezier(0.45, 0.05, 0.3, 1) var(--t-start) both; }
+  .dev-scene.is-tour.is-on .tour-splash, .dev-scene.is-tour.is-out .tour-splash { animation: tour-splash 650ms ease 1500ms both; }
+  .dev-scene.is-tour.is-on .tour-fixed, .dev-scene.is-tour.is-out .tour-fixed { animation: tour-fixed 500ms ease calc(var(--t-start) - 700ms) both; }
+}
+@media (prefers-reduced-motion: reduce) { .dev-scene .tour-splash { display: none; } }
+@keyframes tour-scroll { from { transform: translate3d(0, 0, 0); } to { transform: translate3d(0, calc(-100% + var(--sh)), 0); } }
+@keyframes tour-splash { from { opacity: 1; transform: scale(1); } to { opacity: 0; transform: scale(1.04); } }
+@keyframes tour-fixed { from { opacity: 0; } to { opacity: 1; } }

@@ -422,78 +422,56 @@
     new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) start(); else stop(); }); }, { threshold: 0.3 }).observe(live);
   });
 
-  /* ---------- "Tu negocio. En línea.": cada negocio en video, uno tras otro ---------- */
-  // La sección scrollea normal. Cada negocio muestra su video (animación de inicio,
-  // página principal y recorrido completo) y al terminar pasa al siguiente.
-  // Fluidez: el siguiente video se carga antes de tiempo, el cambio solo usa opacidad y
-  // movimiento (lo barato para el celular) y el video arranca cuando la transición terminó.
+  /* ---------- "Tu negocio. En línea.": cada negocio se recorre solo, uno tras otro ---------- */
+  // La sección scrollea normal. Cada negocio abre con su logo, pasa a su página y baja
+  // despacio (lo mueve el navegador, fluido a la velocidad de la pantalla). Al terminar
+  // pasa al siguiente. Antes de cambiar, las imágenes del siguiente ya están listas.
   var car = d.querySelector('[data-carousel]');
   if (car) {
     var cs = { el: car, step: null };
     var scenesEl = car.querySelectorAll('.dev-scene');
-    var devEl = car.querySelector('[data-dev]');
-    var total = scenesEl.length, playTimer = null, startTimer = null, visible = false, token = 0;
-    var vidOf = function (i) { return scenesEl[(i + total) % total] && scenesEl[(i + total) % total].querySelector('video'); };
-    var warm = function (v) {
-      if (!v) return;
-      if (v.preload !== 'auto') v.preload = 'auto';
-      if (v.readyState === 0 && v.networkState !== 2) v.load();
-    };
-    var ready = function (v, cb) {
-      if (!v || v.readyState >= 2) return cb();
-      warm(v);
-      var done = false, fin = function () { if (done) return; done = true; v.removeEventListener('loadeddata', fin); cb(); };
-      v.addEventListener('loadeddata', fin);
-      setTimeout(fin, 2500);
+    var total = scenesEl.length, playTimer = null, visible = false, token = 0;
+    var imgsOf = function (i) { return [].slice.call(scenesEl[(i + total) % total].querySelectorAll('img')); };
+    var ready = function (i, cb) {
+      var list = imgsOf(i).map(function (im) {
+        im.loading = 'eager';
+        return im.decode ? im.decode().catch(function () {}) : Promise.resolve();
+      });
+      var done = false, fin = function () { if (!done) { done = true; cb(); } };
+      Promise.all(list).then(fin); setTimeout(fin, 3000);
     };
     var setBar = function (ms) {
       car.style.setProperty('--dur', ms + 'ms');
       car.classList.remove('is-play'); void car.offsetWidth; car.classList.add('is-play');
     };
-    var next = function () { go(cs.step + 1); };
-    var stopAll = function () { clearTimeout(playTimer); clearTimeout(startTimer); };
-    var run = function (fresh, delay) {
-      stopAll();
-      var v = vidOf(cs.step);
-      [].forEach.call(car.querySelectorAll('video'), function (o) { if (o !== v && !o.paused) o.pause(); });
-      if (!visible || reduce || d.hidden) { if (v) v.pause(); car.classList.remove('is-play'); return; }
-      if (!v) { setBar(4200); playTimer = setTimeout(next, 4200); warm(vidOf(cs.step + 1)); return; }
-      if (fresh) { try { v.pause(); v.currentTime = 0; } catch (e) {} }
-      startTimer = setTimeout(function () {
-        var p = v.play();
-        var armed = function () {
-          var left = (isFinite(v.duration) && v.duration ? (v.duration - v.currentTime) : 16) * 1000;
-          setBar(left);
-          playTimer = setTimeout(next, left + 2000); // respaldo por si el video no avisa que terminó
-          warm(vidOf(cs.step + 1));
-        };
-        if (p && p.then) p.then(armed, function () { setBar(5000); playTimer = setTimeout(next, 5000); });
-        else armed();
-      }, delay || 0);
+    var durOf = function (i) { return +scenesEl[i].getAttribute('data-dur') || 4200; };
+    var restart = function (sc) { sc.classList.remove('is-on'); void sc.offsetWidth; sc.classList.add('is-on'); };
+    var schedule = function () {
+      clearTimeout(playTimer);
+      if (!visible || reduce || d.hidden) { car.classList.remove('is-play'); car.classList.add('is-paused'); return; }
+      car.classList.remove('is-paused');
+      var dur = durOf(cs.step);
+      setBar(dur);
+      playTimer = setTimeout(function () { go(cs.step + 1); }, dur);
+      ready(cs.step + 1, function () {}); // deja listo el siguiente
     };
     var go = function (i) {
       i = (i + total) % total;
-      if (i === cs.step) { run(true, 0); return; }
       var my = ++token;
-      stopAll();
-      ready(vidOf(i), function () {
+      clearTimeout(playTimer);
+      ready(i, function () {
         if (my !== token) return;
-        var wasShape = devEl && devEl.getAttribute('data-shape');
-        setInst(cs, i); cs.step = i;
-        var morph = devEl && devEl.getAttribute('data-shape') !== wasShape;
-        run(true, morph ? 950 : 650);
+        if (i === cs.step) restart(scenesEl[i]); else { setInst(cs, i); cs.step = i; }
+        schedule();
       });
     };
-    [].forEach.call(car.querySelectorAll('video'), function (v) {
-      v.addEventListener('ended', function () { if (scenesEl[cs.step] && scenesEl[cs.step].contains(v)) next(); });
-    });
     setInst(cs, 0); cs.step = 0;
     car.querySelectorAll('.inst-list li, .inst-dots button').forEach(function (b) {
       var pick = function () { go(+b.getAttribute('data-i')); };
       b.addEventListener('click', pick);
       if (b.tagName === 'LI') b.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pick(); } });
     });
-    var sx = null, sy = null;
+    var sx = null, sy = null, devEl = car.querySelector('[data-dev]');
     if (devEl) {
       devEl.addEventListener('touchstart', function (e) { sx = e.touches[0].clientX; sy = e.touches[0].clientY; }, { passive: true });
       devEl.addEventListener('touchend', function (e) {
@@ -504,12 +482,15 @@
       }, { passive: true });
     }
     if ('IntersectionObserver' in w) {
-      // antes de llegar a la sección ya se empieza a cargar el primer video
-      new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting && !reduce) warm(vidOf(cs.step)); }); }, { rootMargin: '900px 0px' }).observe(car);
+      new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) ready(0, function () {}); }); }, { rootMargin: '900px 0px' }).observe(car);
       new IntersectionObserver(function (es) {
-        es.forEach(function (e) { var was = visible; visible = e.isIntersecting; if (visible !== was) run(false, 0); });
+        es.forEach(function (e) {
+          var was = visible; visible = e.isIntersecting;
+          if (visible && !was) go(cs.step); // al volver a la sección, el negocio actual empieza de nuevo
+          else if (!visible) schedule();
+        });
       }, { threshold: 0.35 }).observe(car);
     }
-    d.addEventListener('visibilitychange', function () { run(false, 0); });
+    d.addEventListener('visibilitychange', function () { if (!d.hidden && visible) go(cs.step); else schedule(); });
   }
 })();

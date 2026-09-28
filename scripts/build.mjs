@@ -74,7 +74,6 @@ const copyDir = (from, to, filter = () => true) => {
   }
 };
 copyDir(path.join(ROOT, 'assets/js'), path.join(OUT, 'assets/js'));
-copyDir(path.join(ROOT, 'assets/video'), path.join(OUT, 'assets/video'));
 copyDir(path.join(ROOT, 'assets/img'), path.join(OUT, 'assets/img'), (f) => !f.endsWith('.png') || !/icon/.test(f));
 
 const css = fs.readFileSync(path.join(ROOT, 'assets/css/site.css'), 'utf8');
