@@ -119,6 +119,7 @@
     el.querySelectorAll('.inst-list li').forEach(function (li, i) { li.classList.toggle('is-on', i === step); });
     var li = el.querySelectorAll('.inst-list li')[step];
     var count = el.querySelector('[data-count]');
+    el.querySelectorAll('.inst-dots button').forEach(function (b, i) { b.classList.toggle('is-on', i === step); });
     if (count) { count.textContent = (step < 9 ? '0' : '') + (step + 1); count.classList.remove('tick'); void count.offsetWidth; count.classList.add('tick'); }
     if (li) {
       var k = el.querySelector('[data-mob-k]'), who = el.querySelector('[data-mob-who]');
@@ -420,4 +421,50 @@
     }
     new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) start(); else stop(); }); }, { threshold: 0.3 }).observe(live);
   });
+
+  /* ---------- "Tu negocio. En línea.": pasa sola, sin depender del scroll ---------- */
+  // Antes cambiaba según cuánto se scrolleaba y fallaba (rápido se saltaba pantallas,
+  // lento parecía trabado). Ahora la sección scrollea normal y las pantallas pasan
+  // solas mientras se ve; también se puede tocar la lista, los puntos o deslizar.
+  var car = d.querySelector('[data-carousel]');
+  if (car) {
+    var cs = { el: car, step: null };
+    var scenesEl = car.querySelectorAll('.dev-scene');
+    var total = scenesEl.length, playTimer = null, visible = false;
+    var bar = car.querySelector('.inst-bar i');
+    var durOf = function (i) { return scenesEl[i] && scenesEl[i].classList.contains('is-scroll') ? 7000 : 4200; };
+    var go = function (i) {
+      i = (i + total) % total;
+      if (i !== cs.step) { setInst(cs, i); cs.step = i; }
+      schedule();
+    };
+    var schedule = function () {
+      clearTimeout(playTimer);
+      if (!visible || reduce || d.hidden) { car.classList.remove('is-play'); return; }
+      var dur = durOf(cs.step);
+      car.style.setProperty('--dur', dur + 'ms');
+      car.classList.remove('is-play'); void car.offsetWidth; car.classList.add('is-play');
+      playTimer = setTimeout(function () { go(cs.step + 1); }, dur);
+    };
+    go(0);
+    car.querySelectorAll('.inst-list li, .inst-dots button').forEach(function (b) {
+      var pick = function () { go(+b.getAttribute('data-i')); };
+      b.addEventListener('click', pick);
+      if (b.tagName === 'LI') b.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pick(); } });
+    });
+    var sx = null, sy = null, dev = car.querySelector('[data-dev]');
+    if (dev) {
+      dev.addEventListener('touchstart', function (e) { sx = e.touches[0].clientX; sy = e.touches[0].clientY; }, { passive: true });
+      dev.addEventListener('touchend', function (e) {
+        if (sx === null) return;
+        var dx = e.changedTouches[0].clientX - sx, dy = e.changedTouches[0].clientY - sy;
+        if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy) * 1.3) go(cs.step + (dx < 0 ? 1 : -1));
+        sx = null;
+      }, { passive: true });
+    }
+    if ('IntersectionObserver' in w) {
+      new IntersectionObserver(function (es) { es.forEach(function (e) { visible = e.isIntersecting; schedule(); }); }, { threshold: 0.35 }).observe(car);
+    }
+    d.addEventListener('visibilitychange', schedule);
+  }
 })();

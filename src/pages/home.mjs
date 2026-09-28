@@ -109,7 +109,7 @@ export default function home(ctx) {
   </div>
 </section>
 
-<section class="inst" data-scrolly="${scenes.length}" aria-labelledby="inst-t">
+<section class="inst" data-carousel aria-labelledby="inst-t">
   <div class="inst-pin">
     <div class="wrap inst-grid">
       <div class="inst-copy">
@@ -118,7 +118,7 @@ export default function home(ctx) {
         <ol class="inst-list" role="list">
           ${scenes
             .map(
-              (s, i) => `<li data-i="${i}"><span class="inst-n">${pad(i + 1)}</span><span class="inst-k">${esc(s.k)}</span><span class="inst-who">${esc(s.who)}<small>${esc(s.note)}</small></span></li>`
+              (s, i) => `<li data-i="${i}" tabindex="0" role="button" aria-label="Ver ${esc(s.k)}: ${esc(s.who)}"><span class="inst-n">${pad(i + 1)}</span><span class="inst-k">${esc(s.k)}</span><span class="inst-who">${esc(s.who)}<small>${esc(s.note)}</small></span></li>`
             )
             .join('')}
         </ol>
@@ -136,8 +136,9 @@ export default function home(ctx) {
               .join('')}
           </div>
         </div>
-        <div class="inst-foot" aria-hidden="true">
+        <div class="inst-foot">
           <p class="inst-count"><span data-count>01</span> / ${pad(scenes.length)}</p>
+          <div class="inst-dots">${scenes.map((s, i) => `<button type="button" data-i="${i}" aria-label="Ver ${esc(s.k)}"></button>`).join('')}</div>
           <p class="inst-mob"><span data-mob-k>${esc(scenes[0].k)}</span><small data-mob-who>${esc(scenes[0].who)} · ${esc(scenes[0].note)}</small></p>
         </div>
       </div>
