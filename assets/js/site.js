@@ -424,46 +424,67 @@
 
   /* ---------- "Tu negocio. En línea.": cada negocio en video, uno tras otro ---------- */
   // La sección scrollea normal. Cada negocio muestra su video (animación de inicio,
-  // página principal y todo el recorrido hacia abajo) y al terminar pasa al siguiente.
-  // Se puede elegir uno tocando la lista, los puntos o deslizando el teléfono.
+  // página principal y recorrido completo) y al terminar pasa al siguiente.
+  // Fluidez: el siguiente video se carga antes de tiempo, el cambio solo usa opacidad y
+  // movimiento (lo barato para el celular) y el video arranca cuando la transición terminó.
   var car = d.querySelector('[data-carousel]');
   if (car) {
     var cs = { el: car, step: null };
     var scenesEl = car.querySelectorAll('.dev-scene');
-    var total = scenesEl.length, playTimer = null, visible = false;
-    var vidOf = function (i) { return scenesEl[i] && scenesEl[i].querySelector('video'); };
+    var devEl = car.querySelector('[data-dev]');
+    var total = scenesEl.length, playTimer = null, startTimer = null, visible = false, token = 0;
+    var vidOf = function (i) { return scenesEl[(i + total) % total] && scenesEl[(i + total) % total].querySelector('video'); };
+    var warm = function (v) {
+      if (!v) return;
+      if (v.preload !== 'auto') v.preload = 'auto';
+      if (v.readyState === 0 && v.networkState !== 2) v.load();
+    };
+    var ready = function (v, cb) {
+      if (!v || v.readyState >= 2) return cb();
+      warm(v);
+      var done = false, fin = function () { if (done) return; done = true; v.removeEventListener('loadeddata', fin); cb(); };
+      v.addEventListener('loadeddata', fin);
+      setTimeout(fin, 2500);
+    };
     var setBar = function (ms) {
       car.style.setProperty('--dur', ms + 'ms');
       car.classList.remove('is-play'); void car.offsetWidth; car.classList.add('is-play');
     };
     var next = function () { go(cs.step + 1); };
-    var run = function (fresh) {
-      clearTimeout(playTimer);
+    var stopAll = function () { clearTimeout(playTimer); clearTimeout(startTimer); };
+    var run = function (fresh, delay) {
+      stopAll();
       var v = vidOf(cs.step);
-      [].forEach.call(car.querySelectorAll('video'), function (o) { if (o !== v) o.pause(); });
+      [].forEach.call(car.querySelectorAll('video'), function (o) { if (o !== v && !o.paused) o.pause(); });
       if (!visible || reduce || d.hidden) { if (v) v.pause(); car.classList.remove('is-play'); return; }
-      if (!v) { setBar(4200); playTimer = setTimeout(next, 4200); return; }
-      if (v.preload !== 'auto') { v.preload = 'auto'; v.load(); }
-      if (fresh) { try { v.currentTime = 0; } catch (e) {} }
-      var p = v.play();
-      var armed = function () {
-        var left = (isFinite(v.duration) && v.duration ? (v.duration - v.currentTime) : 16) * 1000;
-        setBar(left);
-        playTimer = setTimeout(next, left + 1500); // por si el video no avisa que terminó
-      };
-      if (p && p.then) p.then(armed, function () { setBar(5000); playTimer = setTimeout(next, 5000); });
-      else armed();
-      // deja listo el que sigue
-      var nv = vidOf((cs.step + 1) % total);
-      if (nv && nv.preload === 'none') nv.preload = 'metadata';
+      if (!v) { setBar(4200); playTimer = setTimeout(next, 4200); warm(vidOf(cs.step + 1)); return; }
+      if (fresh) { try { v.pause(); v.currentTime = 0; } catch (e) {} }
+      startTimer = setTimeout(function () {
+        var p = v.play();
+        var armed = function () {
+          var left = (isFinite(v.duration) && v.duration ? (v.duration - v.currentTime) : 16) * 1000;
+          setBar(left);
+          playTimer = setTimeout(next, left + 2000); // respaldo por si el video no avisa que terminó
+          warm(vidOf(cs.step + 1));
+        };
+        if (p && p.then) p.then(armed, function () { setBar(5000); playTimer = setTimeout(next, 5000); });
+        else armed();
+      }, delay || 0);
     };
     var go = function (i) {
       i = (i + total) % total;
-      var fresh = i !== cs.step;
-      if (fresh) { setInst(cs, i); cs.step = i; }
-      run(true);
+      if (i === cs.step) { run(true, 0); return; }
+      var my = ++token;
+      stopAll();
+      ready(vidOf(i), function () {
+        if (my !== token) return;
+        var wasShape = devEl && devEl.getAttribute('data-shape');
+        setInst(cs, i); cs.step = i;
+        var morph = devEl && devEl.getAttribute('data-shape') !== wasShape;
+        run(true, morph ? 950 : 650);
+      });
     };
-    [].forEach.call(car.querySelectorAll('video'), function (v, k) {
+    [].forEach.call(car.querySelectorAll('video'), function (v) {
       v.addEventListener('ended', function () { if (scenesEl[cs.step] && scenesEl[cs.step].contains(v)) next(); });
     });
     setInst(cs, 0); cs.step = 0;
@@ -472,10 +493,10 @@
       b.addEventListener('click', pick);
       if (b.tagName === 'LI') b.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pick(); } });
     });
-    var sx = null, sy = null, dev = car.querySelector('[data-dev]');
-    if (dev) {
-      dev.addEventListener('touchstart', function (e) { sx = e.touches[0].clientX; sy = e.touches[0].clientY; }, { passive: true });
-      dev.addEventListener('touchend', function (e) {
+    var sx = null, sy = null;
+    if (devEl) {
+      devEl.addEventListener('touchstart', function (e) { sx = e.touches[0].clientX; sy = e.touches[0].clientY; }, { passive: true });
+      devEl.addEventListener('touchend', function (e) {
         if (sx === null) return;
         var dx = e.changedTouches[0].clientX - sx, dy = e.changedTouches[0].clientY - sy;
         if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy) * 1.3) go(cs.step + (dx < 0 ? 1 : -1));
@@ -483,10 +504,12 @@
       }, { passive: true });
     }
     if ('IntersectionObserver' in w) {
+      // antes de llegar a la sección ya se empieza a cargar el primer video
+      new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting && !reduce) warm(vidOf(cs.step)); }); }, { rootMargin: '900px 0px' }).observe(car);
       new IntersectionObserver(function (es) {
-        es.forEach(function (e) { var was = visible; visible = e.isIntersecting; if (visible !== was) run(false); });
+        es.forEach(function (e) { var was = visible; visible = e.isIntersecting; if (visible !== was) run(false, 0); });
       }, { threshold: 0.35 }).observe(car);
     }
-    d.addEventListener('visibilitychange', function () { run(false); });
+    d.addEventListener('visibilitychange', function () { run(false, 0); });
   }
 })();
