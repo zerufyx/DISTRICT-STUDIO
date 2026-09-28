@@ -1,13 +1,10 @@
 // Contenido compartido: proceso, ruta de crecimiento, antes/después, FAQ y principios.
 
 export const process = [
-  { t: 'Cuéntanos sobre tu negocio', d: 'Llenas el formulario o nos escribes por WhatsApp. Hablamos de qué vendes, a quién y cómo te llegan los clientes hoy.' },
-  { t: 'Definimos la idea', d: 'Te proponemos qué construir y qué incluye. Sabes cuánto cuesta y cuándo lo tienes antes de empezar.' },
-  { t: 'Diseñamos', d: 'Llevamos tu marca a la pantalla: colores, tipografía, fotos y el orden en que el cliente ve las cosas.' },
-  { t: 'Construimos', d: 'Programamos la página, el catálogo o el sistema, y conectamos WhatsApp, redes, mapas o pagos.' },
-  { t: 'Revisamos', d: 'Lo pruebas en tu celular antes de publicarlo y ajustamos textos, precios y detalles contigo.' },
-  { t: 'Lanzamos', d: 'Publicamos con tu dominio, te entregamos el código QR y te enseñamos a usar tu panel.' },
-  { t: 'Seguimos mejorando', d: 'Mantenemos todo en línea, hacemos cambios y agregamos funciones cuando tu negocio las pida.' },
+  { t: 'Descubrir', d: 'Entendemos tu negocio: qué vendes, a quién y cómo te compran hoy.' },
+  { t: 'Diseñar', d: 'Definimos cómo se ve y cómo se usa, empezando por el celular.' },
+  { t: 'Construir', d: 'Programamos la experiencia real, con tu panel para manejarla.' },
+  { t: 'Lanzar', d: 'Conectamos tu dominio, WhatsApp y herramientas, y lo publicamos.' },
 ];
 
 // La ruta de crecimiento. now: true = disponible hoy.
@@ -70,14 +67,15 @@ export const principles = [
 // Opciones del formulario de proyecto
 export const form = {
   needs: [
-    { key: 'websites', label: 'Página web' },
+    { key: 'websites', label: 'Sitio web' },
+    { key: 'catalogs', label: 'Catálogo digital' },
     { key: 'menus', label: 'Menú digital' },
-    { key: 'catalogs', label: 'Catálogo' },
     { key: 'ecommerce', label: 'Tienda online' },
-    { key: 'systems', label: 'Sistema personalizado' },
-    { key: 'apps', label: 'Aplicación' },
-    { key: 'other', label: 'Otro' },
+    { key: 'booking', label: 'Reservas' },
+    { key: 'systems', label: 'Sistema a medida' },
+    { key: 'unsure', label: 'Aún no sé' },
   ],
   businessTypes: ['Restaurante', 'Food truck', 'Tienda de ropa', 'Barbería', 'Salón de belleza', 'Concesionario', 'Joyería o accesorios', 'Profesional independiente', 'Marca personal', 'Otro'],
   budgets: ['Algo sencillo para empezar', 'Algo completo', 'Un sistema a medida', 'Aún no lo sé'],
+  timelines: ['Lo antes posible', 'En 1 a 2 meses', 'Sin prisa', 'Aún no lo sé'],
 };

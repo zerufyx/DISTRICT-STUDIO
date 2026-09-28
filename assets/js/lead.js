@@ -1,4 +1,4 @@
-/* District Studio — formulario "Crear mi proyecto".
+/* District Studio: formulario "Empezar un proyecto".
    Envía cada solicitud a los destinos configurados en site.config.mjs:
      1. Supabase (tabla leads)            → integrations.supabase
      2. Webhook (Make / Zapier / n8n)     → integrations.webhook  (Notion, Airtable, CRM, email…)
@@ -33,6 +33,7 @@
   function val(name) { var el = form.elements[name]; return el ? String(el.value || '').trim() : ''; }
   function needs() { return [].slice.call(form.querySelectorAll('input[name="needs"]:checked')).map(function (i) { return i.value; }); }
   function budget() { var b = form.querySelector('input[name="budget"]:checked'); return b ? b.value : ''; }
+  function timeline() { var b = form.querySelector('input[name="timeline"]:checked'); return b ? b.value : ''; }
   function showError(name, show) {
     var msg = form.querySelector('[data-error-for="' + name + '"]');
     var el = form.elements[name];
@@ -64,13 +65,14 @@
 
   /* ---------- Mensaje para WhatsApp ---------- */
   function waText(lead) {
-    var lines = ['Hola District Studio, quiero crear un proyecto.', ''];
+    var lines = ['Hola District Studio, quiero empezar un proyecto.', ''];
     lines.push('Nombre: ' + lead.name);
     lines.push('Negocio: ' + lead.business + (lead.business_type ? ' (' + lead.business_type + ')' : ''));
     lines.push('Necesito: ' + lead.needs.map(function (k) { return NEED_LABELS[k] || k; }).join(', '));
     if (lead.plan) lines.push('Plan: ' + lead.plan);
-    if (lead.budget) lines.push('Presupuesto: ' + lead.budget);
-    if (lead.instagram) lines.push('Instagram: @' + lead.instagram);
+    if (lead.budget) lines.push('Tamaño: ' + lead.budget);
+    if (lead.timeline) lines.push('Para cuándo: ' + lead.timeline);
+    if (lead.instagram) lines.push('Web o Instagram: ' + lead.instagram);
     lines.push('Teléfono: ' + lead.phone);
     if (lead.email) lines.push('Email: ' + lead.email);
     if (lead.message) { lines.push(''); lines.push(lead.message); }
@@ -129,7 +131,8 @@
       row('Negocio', lead.business) +
       row('Necesitas', lead.needs.map(function (k) { return NEED_LABELS[k] || k; }).join(', ')) +
       row('Plan', lead.plan) +
-      row('Presupuesto', lead.budget) +
+      row('Tamaño', lead.budget) +
+      row('Para cuándo', lead.timeline) +
       row('Teléfono', lead.phone) +
       row('Email', lead.email);
     form.hidden = true;
@@ -159,9 +162,10 @@
       business_type: val('btype') || null,
       email: val('email') || null,
       phone: val('phone'),
-      instagram: val('instagram').replace(/^@/, '') || null,
+      instagram: val('instagram') || null,
       needs: needs(),
       budget: budget() || null,
+      timeline: timeline() || null,
       message: val('message') || null,
       plan: val('plan') || null,
       source_page: location.pathname + location.hash,

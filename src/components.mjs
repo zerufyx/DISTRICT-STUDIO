@@ -4,10 +4,15 @@ import { categories } from '../content/projects.mjs';
 
 const catLabel = Object.fromEntries(categories.map((c) => [c.key, c.label]));
 
-export function btn(href, label, { variant = 'primary', ic, external, track, cls = '', size = '' } = {}) {
+export function btn(href, label, { variant = 'primary', ic, external, track, cls = '', size = '', arrow = false } = {}) {
   const ext = external ? ' target="_blank" rel="noopener"' : '';
   const tr = track ? ` data-track="${track}"` : '';
-  return `<a class="btn btn-${variant}${size ? ' btn-' + size : ''}${cls ? ' ' + cls : ''}" href="${href}"${ext}${tr}>${ic ? icon(ic) : ''}${esc(label)}</a>`;
+  return `<a class="btn btn-${variant}${size ? ' btn-' + size : ''}${cls ? ' ' + cls : ''}" href="${href}"${ext}${tr}>${ic ? icon(ic) : ''}<span>${esc(label)}</span>${arrow ? icon('arrow', 'ic ic-go') : ''}</a>`;
+}
+
+/** Titular en líneas que aparecen de abajo hacia arriba. Acepta HTML (em). */
+export function lines(list) {
+  return list.map((l, i) => `<span class="line"><span style="--i:${i}">${l}</span></span>`).join('');
 }
 
 /** Botón de WhatsApp. Siempre con el mismo texto en todo el sitio. */
@@ -32,7 +37,7 @@ export function stage(ctx, p, { eager = false } = {}) {
   const alt = (s) => s.alt || '';
   if (p.web) {
     return `<div class="stage is-web" style="--tint:${p.tint}">
-      <div class="browser"><div class="browser-bar" aria-hidden="true"><i></i><i></i><i></i><span>${esc(p.urlLabel || '')}</span></div>${img(ctx, p.web.src, { alt: p.web.alt, w: 1440, h: 540, eager })}</div>
+      <div class="browser"><div class="browser-bar" aria-hidden="true"><i></i><i></i><i></i><span>${esc(p.urlLabel || '')}</span></div>${img(ctx, p.web.src, { alt: p.web.alt, w: 1440, h: p.web.h || 900, eager })}</div>
       ${shots.map((s) => phone(ctx, { src: s.src, alt: alt(s), eager })).join('')}
     </div>`;
   }
@@ -77,24 +82,15 @@ export function workList(ctx, list) {
 
 export function workCard(ctx, p, { level = 3, eager = false, big = false } = {}) {
   return `<article class="work-card${big ? ' is-big' : ''}" data-cats="${p.categories.join(' ')}">
-  <a class="work-link" href="${ctx.url(`/projects/${p.slug}/`)}">
+  <a class="work-link" href="${ctx.url(`/projects/${p.slug}/`)}" data-cursor="Abrir">
     ${stage(ctx, p, { eager })}
     <div class="work-meta">
+      <p class="work-type">${esc(p.meta || p.type)}${p.kind === 'concept' ? ' <span class="tag">Concepto</span>' : ''}</p>
       <h${level} class="work-title">${esc(p.name)}</h${level}>
-      <p class="work-type">${esc(p.type)}</p>
       <p class="work-sum">${esc(p.summary)}</p>
-      <span class="work-go">Ver el caso ${icon('external', 'ic ic-sm')}</span>
+      <span class="work-go">Abrir proyecto ${icon('arrow', 'ic ic-go')}</span>
     </div>
   </a>
-</article>`;
-}
-
-export function proposalCard(ctx, p) {
-  return `<article class="prop">
-  ${stage(ctx, p)}
-  <h3 class="prop-name">${esc(p.name)} <span class="tag">Propuesta</span></h3>
-  <p class="prop-sector">${esc(p.sector)}${p.location ? `, ${esc(p.location)}` : ''}</p>
-  <p>${esc(p.summary)}</p>
 </article>`;
 }
 
@@ -124,17 +120,17 @@ export function faqList(list, { id = 'faq' } = {}) {
 </div>`;
 }
 
-export function ctaBand(ctx, { title = 'Hablemos de tu negocio.', text = 'Cuéntanos qué vendes y cómo te llegan los clientes. Te decimos qué construiríamos, cuánto cuesta y cuándo lo tienes.', need } = {}) {
+/** Cierre de cada página: fondo negro, tipografía enorme. */
+export function ctaBand(ctx, { q = '¿Tienes un negocio?', title = 'Construyamos su lado <em>digital.</em>', need } = {}) {
   const href = ctx.url('/contact/' + (need ? '#' + need : ''));
-  return `<section class="cta-band" aria-labelledby="cta-t">
-  <div class="wrap cta-inner">
-    <h2 class="h2" id="cta-t">${esc(title)}</h2>
-    <p class="lead">${esc(text)}</p>
-    <p class="cta-quote">Yo te doy la herramienta. Tú manejas tu negocio.</p>
-    <div class="cta-actions">
-      ${btn(href, 'Crear mi proyecto', { variant: 'ink', size: 'lg' })}
-      ${waBtn(ctx, { variant: 'line-ink', size: 'lg' })}
+  return `<section class="fin" aria-labelledby="fin-t">
+  <div class="wrap">
+    <h2 class="fin-t" id="fin-t"><span class="line"><span class="fin-q">${esc(q)}</span></span><span class="line"><span style="--i:1">${title}</span></span></h2>
+    <div class="fin-actions">
+      ${btn(href, 'Empezar un proyecto', { size: 'lg', arrow: true, cls: 'magnetic' })}
+      ${btn(ctx.url('/portfolio/'), 'Ver trabajos', { variant: 'ghost', size: 'lg', arrow: true, cls: 'magnetic' })}
     </div>
+    <p class="fin-wa">¿Prefieres escribir? <a class="link" href="${wa(ctx.config)}" target="_blank" rel="noopener" data-track="whatsapp_click">WhatsApp ${esc(ctx.config.contact.whatsappDisplay)}</a></p>
   </div>
 </section>`;
 }

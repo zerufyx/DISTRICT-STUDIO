@@ -11,7 +11,7 @@ export default function servicesPage(ctx) {
   const blocks = services
     .map((s) => {
       const ex = s.examples.map((k) => bySlug[k]).filter(Boolean);
-      const shot = ex[0] && ex[0].phones ? ex[0].phones[Math.min(1, ex[0].phones.length - 1)] : null;
+      const shot = ex[0] && ex[0].phones ? ex[0].phones[Math.min(1, ex[0].phones.length - 1)] : s.key === 'booking' ? { src: 'booking-demo', alt: 'Demostración de una página de reservas' } : null;
       return `<article class="svc-block${s.status === 'soon' ? ' is-soon' : ''}" id="${s.key}" aria-labelledby="t-${s.key}">
     <div class="svc-block-head">
       <h2 class="h2" id="t-${s.key}">${esc(s.name)}${s.status === 'soon' ? ' <span class="tag">Próximamente</span>' : ''}</h2>
@@ -22,9 +22,9 @@ export default function servicesPage(ctx) {
     <div class="svc-block-body">
       <ul class="benefits" role="list">${s.benefits.map((b) => `<li><strong>${esc(b.t)}.</strong> ${esc(b.d)}</li>`).join('')}</ul>
       <ul class="feat-inline" role="list" aria-label="Incluye">${s.features.slice(0, 5).map((f) => `<li>${esc(f.t)}</li>`).join('')}</ul>
-      ${ex.length ? `<p class="svc-ex">Ejemplo real: ${ex.map((p) => `<a class="link" href="${ctx.url(`/projects/${p.slug}/`)}">${esc(p.name)}</a>`).join(', ')}</p>` : ''}
+      ${ex.length ? `<p class="svc-ex">Ejemplos: ${ex.map((p) => `<a class="link" href="${ctx.url(`/projects/${p.slug}/`)}">${esc(p.name)}</a>${p.kind === 'concept' ? ' (concepto)' : ''}`).join(', ')}</p>` : ''}
       <div class="svc-foot">
-        ${btn(ctx.url('/contact/#' + s.key), s.status === 'soon' ? 'Contarte mi idea' : 'Crear mi proyecto')}
+        ${btn(ctx.url('/contact/#' + s.key), s.status === 'soon' ? 'Contarte mi idea' : 'Empezar un proyecto', { arrow: true })}
         <a class="link" href="${ctx.url(s.path)}">Ver detalles</a>
       </div>
     </div>

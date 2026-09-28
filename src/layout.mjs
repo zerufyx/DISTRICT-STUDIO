@@ -68,28 +68,31 @@ function header(ctx) {
   const links = NAV.map(
     (n) => `<li><a href="${ctx.url(n.href)}"${n.match !== '#' && ctx.isActive(n.match) ? ' aria-current="page"' : ''}>${n.label}</a></li>`
   ).join('');
+  const bigLinks = NAV.concat([{ href: '/contact/', label: 'Contacto', match: '/contact/' }])
+    .map((n, i) => `<li style="--i:${i}"><a href="${ctx.url(n.href)}"${n.match !== '#' && ctx.isActive(n.match) ? ' aria-current="page"' : ''}><span class="sheet-n">${String(i + 1).padStart(2, '0')}</span>${n.label}</a></li>`)
+    .join('');
   const sheetServices = services
-    .map((s) => `<li><a href="${ctx.url(s.path)}">${esc(s.name)}${s.status === 'soon' ? ' <span class="tag">Próximamente</span>' : ''}</a></li>`)
+    .map((s) => `<li><a href="${ctx.url(s.path)}">${esc(s.name)}</a></li>`)
     .join('');
   return `<a class="skip" href="#main">Saltar al contenido</a>
 <header class="site-head" data-head>
   <div class="wrap head-row">
     <a class="brand" href="${ctx.url('/')}" aria-label="District Studio, inicio">${wordmark()}</a>
     <nav class="nav" aria-label="Principal"><ul>${links}</ul></nav>
-    <a class="btn btn-primary btn-sm head-cta" href="${ctx.url('/contact/')}">Crear mi proyecto</a>
+    <a class="head-cta" href="${ctx.url('/contact/')}"><span>Empezar un proyecto</span>${icon('arrow', 'ic ic-go')}</a>
     <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu-sheet" data-menu-btn>
-      <span class="menu-ic menu-ic-open">${icon('burger')}</span><span class="menu-ic menu-ic-close">${icon('close')}</span>
+      <span class="menu-lines" aria-hidden="true"><i></i><i></i></span>
       <span class="sr">Menú</span>
     </button>
   </div>
   <div class="sheet" id="menu-sheet" data-sheet>
     <div class="wrap sheet-inner">
-      <ul class="sheet-main">${links}<li><a href="${ctx.url('/contact/')}">Contacto</a></li></ul>
+      <ul class="sheet-main">${bigLinks}</ul>
       <p class="sheet-label">Servicios</p>
       <ul class="sheet-services">${sheetServices}</ul>
       <div class="sheet-actions">
-        <a class="btn btn-primary btn-lg" href="${ctx.url('/contact/')}">Crear mi proyecto</a>
-        <a class="btn btn-ghost btn-lg" href="${wa(ctx.config)}" target="_blank" rel="noopener" data-track="whatsapp_click">${icon('whatsapp')}WhatsApp</a>
+        <a class="btn btn-primary btn-lg" href="${ctx.url('/contact/')}"><span>Empezar un proyecto</span>${icon('arrow', 'ic ic-go')}</a>
+        <a class="btn btn-ghost btn-lg" href="${wa(ctx.config)}" target="_blank" rel="noopener" data-track="whatsapp_click">${icon('whatsapp')}<span>WhatsApp</span></a>
       </div>
     </div>
   </div>
@@ -99,7 +102,7 @@ function header(ctx) {
 function footer(ctx) {
   const { contact } = ctx.config;
   const year = new Date().getFullYear();
-  const svc = services.map((s) => `<li><a href="${ctx.url(s.path)}">${esc(s.name)}</a></li>`).join('');
+  const svc = services.map((s) => `<li><a href="${ctx.url(s.path)}">${esc(s.name)}${s.status === 'soon' ? ' (pronto)' : ''}</a></li>`).join('');
   return `<footer class="site-foot">
   <div class="wrap">
     <div class="foot-grid">
@@ -112,7 +115,7 @@ function footer(ctx) {
         <li><a href="${ctx.url('/portfolio/')}">Trabajos</a></li>
         <li><a href="${ctx.url('/#proceso')}">Proceso</a></li>
         <li><a href="${ctx.url('/about/')}">Nosotros</a></li>
-        <li><a href="${ctx.url('/contact/')}">Crear mi proyecto</a></li>
+        <li><a href="${ctx.url('/contact/')}">Empezar un proyecto</a></li>
       </ul></nav>
       <div><h2 class="foot-h">Contacto</h2><ul>
         <li><a href="${wa(ctx.config)}" target="_blank" rel="noopener" data-track="whatsapp_click">WhatsApp <span class="nowrap">${esc(contact.whatsappDisplay)}</span></a></li>
@@ -130,7 +133,7 @@ function footer(ctx) {
 
 function dock(ctx) {
   return `<div class="dock" data-dock>
-  <a class="btn btn-primary" href="${ctx.url('/contact/')}">Crear mi proyecto</a>
+  <a class="btn btn-primary" href="${ctx.url('/contact/')}"><span>Empezar un proyecto</span></a>
   <a class="btn btn-ghost btn-icon" href="${wa(ctx.config)}" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp" data-track="whatsapp_click">${icon('whatsapp')}</a>
 </div>`;
 }

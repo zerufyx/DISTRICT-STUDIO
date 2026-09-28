@@ -26,7 +26,7 @@ export const services = [
       { t: 'Carga rápida', d: 'Funciona bien aunque el cliente tenga mala señal.' },
       { t: 'Analítica', d: 'Sabes cuánta gente entra y de dónde viene.' },
     ],
-    examples: ['s91-house-grill'],
+    examples: ['jircars', 's91-house-grill'],
     price: { label: 'Cotización según el proyecto' },
     seo: {
       title: 'Diseño de páginas web para negocios en Orlando | District Studio',
@@ -88,7 +88,7 @@ export const services = [
       { t: 'Link por producto', d: 'Comparte un producto exacto en historias o chats.' },
       { t: 'Panel de administración', d: 'Productos, precios, fotos y categorías en tus manos.' },
     ],
-    examples: ['zerufy', 'amh-store'],
+    examples: ['aureon', 'zerufy', 'amh-store'],
     price: { from: 250, monthly: 30 },
     seo: {
       title: 'Catálogo digital para tiendas: un link con todos tus productos | District Studio',
@@ -119,11 +119,40 @@ export const services = [
       { t: 'Envíos', d: 'Costo por zona, envío nacional o retiro en persona.' },
       { t: 'Redes sociales', d: 'Integración con Instagram, TikTok y Meta Pixel.' },
     ],
-    examples: ['zerufy', 'amh-store'],
+    examples: ['alta-pinta', 'zerufy', 'carpashop'],
     price: { label: 'Cotización según el proyecto' },
     seo: {
       title: 'Tiendas online (e-commerce) para pequeños negocios | District Studio',
       description: 'Tiendas online con carrito, pagos con tarjeta, inventario, cupones y pedidos organizados. E-commerce a medida para negocios que venden por redes.',
+    },
+  },
+  {
+    key: 'booking',
+    path: '/booking/',
+    name: 'Reservas',
+    icon: 'calendar',
+    status: 'available',
+    outcome: 'Tus clientes reservan solos, a cualquier hora.',
+    lead: 'Una página donde el cliente elige el servicio, el día y la hora, y la cita te llega lista por WhatsApp. Para barberías, salones, estudios y profesionales que hoy agendan por mensaje.',
+    forWho: ['Barberías', 'Salones de belleza', 'Uñas y pestañas', 'Tatuajes', 'Estudios de entrenamiento', 'Consultorios', 'Profesionales independientes'],
+    benefits: [
+      { t: 'Menos mensajes', d: 'El cliente ve tus servicios, duración y horarios sin tener que preguntarte.' },
+      { t: 'Agenda ordenada', d: 'Cada cita llega con el servicio, el día y la hora ya elegidos.' },
+      { t: 'Reservas de noche', d: 'Mientras duermes, tu página sigue agendando.' },
+    ],
+    features: [
+      { t: 'Servicios con duración', d: 'Corte, barba, color o consulta, cada uno con su tiempo.' },
+      { t: 'Días y horarios', d: 'El cliente elige entre los horarios que tú abres.' },
+      { t: 'Confirmación por WhatsApp', d: 'La cita te llega escrita y lista para confirmar.' },
+      { t: 'Panel', d: 'Cambias servicios, horarios y días libres desde el celular.' },
+      { t: 'Tu marca', d: 'Colores, logo y fotos de tu trabajo.' },
+      { t: 'Dominio propio', d: 'tunegocio.com o un link corto para tu bio.' },
+    ],
+    examples: [],
+    price: { label: 'Cotización según el proyecto' },
+    seo: {
+      title: 'Página de reservas y citas para barberías y salones | District Studio',
+      description: 'Páginas de reservas para barberías, salones y profesionales: el cliente elige servicio, día y hora, y la cita te llega por WhatsApp.',
     },
   },
   {
@@ -233,3 +262,7 @@ export const plans = [
     ],
   },
 ];
+
+// Orden en que se muestran en todo el sitio
+const ORDER = ['websites', 'catalogs', 'menus', 'ecommerce', 'booking', 'systems', 'apps'];
+services.sort((a, b) => ORDER.indexOf(a.key) - ORDER.indexOf(b.key));

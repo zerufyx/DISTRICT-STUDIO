@@ -63,7 +63,7 @@ export function caseStudy(ctx, p) {
     name: `${p.name}: ${p.type}`,
     description: p.summary,
     url: ctx.abs(`/projects/${p.slug}/`),
-    image: ctx.abs(`/assets/img/${p.og}`),
+    image: ctx.abs(`/assets/img/${p.og || 'og-default.jpg'}`),
     creator: { '@id': ctx.abs('/#organization') },
     ...(p.year ? { dateCreated: String(p.year) } : {}),
     inLanguage: 'es',

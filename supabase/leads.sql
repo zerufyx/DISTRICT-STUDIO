@@ -87,3 +87,11 @@ grant insert (name, business, business_type, email, phone, instagram, needs, bud
 --   categories text[], summary text, problem text[], solution text[], result text[],
 --   features text[], stack text[], url text, cover text, published boolean default false, sort int
 -- );
+
+-- ─────────────────────────────────────────────────────────────
+--  2.0 (ya aplicado): tiempo del proyecto y campo "Web o Instagram"
+-- ─────────────────────────────────────────────────────────────
+-- alter table public.leads add column if not exists timeline text check (char_length(timeline) <= 40);
+-- alter table public.leads drop constraint if exists leads_instagram_check;
+-- alter table public.leads add constraint leads_instagram_check check (char_length(instagram) <= 200);
+-- grant insert (timeline) on public.leads to anon;

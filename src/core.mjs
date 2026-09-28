@@ -61,6 +61,8 @@ const paths = {
   soldout: '<circle cx="12" cy="12" r="8.5"/><path d="M6 18 18 6"/>',
   photo: '<rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="9" cy="10" r="1.8"/><path d="m20.5 15.5-4.8-4.8L6 19.5"/>',
   order: '<path d="M8 4.5h8M7 3.5h10a1.5 1.5 0 0 1 1.5 1.5v15l-3-1.8-3.5 1.8-3.5-1.8-3 1.8V5A1.5 1.5 0 0 1 7 3.5z"/><path d="M9 9.5h6M9 13h4"/>',
+  calendar: '<rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 9.5h17M8 3v4M16 3v4"/><path d="M8 13.5h2M14 13.5h2M8 17h2"/>',
+  arrow: '<path d="M4 12h15M13 6l6 6-6 6"/>',
   copy: '<rect x="8" y="8" width="12" height="12" rx="2.5"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/>',
 };
 

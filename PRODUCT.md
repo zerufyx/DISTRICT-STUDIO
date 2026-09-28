@@ -43,7 +43,7 @@ Success for the site: a visitor opens a real example, trusts it, and writes on W
 
 - Name: District Studio. Wordmark style "District Studio." with red "District" and red period.
 - Existing pitch identity (binding): near-black backgrounds, a single red accent `#e8352a`, Bebas Neue for display, Montserrat for text, direct second-person voice, short punchy sentences, one emphasized red word per headline. Reference: the owner's "District Studio · Catálogo digital para tu lote" pitch file.
-- Direction chosen by the owner (2026-09-28): the category standard, a premium studio/agency site played straight at top craft, in the brand's own materials. No gimmick concept.
+- Direction (2026-09-28, owner brief "District Studio 2.0"): a premium, experimental creative digital studio site, not a generic agency. Positioning line: "Creamos experiencias digitales." All copy in Spanish.
 - Shape rule from the pitch: pill buttons, 16px cards, 12px inputs.
 - Voice: confident, friendly, a little confrontational ("¿Todavía vendes así?"), no corporate jargon.
 
@@ -51,7 +51,8 @@ Success for the site: a visitor opens a real example, trusts it, and writes on W
 
 - Live clients: S91 House Grill (food truck, digital menu + panel, s91housegrill.com), Zerufy (owner's own luxury resale store, catalog + cart + panel + cash/inventory tools, zerufy.store), AMH Store (catalog + cart + panel, amhstore.store).
 - Proposals that were nearly closed but did not sign (may be shown only as proposals/concepts, never as clients): Jircars (car lot, Valencia, Carabobo), Aureon (luxury fragrances), Alta Pinta (catalog), Liz Boutique (catalog), CarpaShop (phone accessories). Source: repos zerufyx/<name>.
-- Screenshots in `assets/img/work/`.
+- Screenshots in `assets/img/work/`, including desktop captures of the concepts. `booking-demo.webp` is a demonstration screen built by the studio (no booking client yet); always labeled as a demo.
+- Concepts are shown as work with the label "Concepto", strongest first (owner's call).
 - No testimonials, metrics, or client counts exist. Do not invent them.
 
 ## Product Principles

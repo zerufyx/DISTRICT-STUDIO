@@ -17,6 +17,16 @@ export const categories = [
 export const projects = [
   {
     slug: 's91-house-grill',
+    kind: 'client',
+    meta: 'Menú digital / Comida',
+    web: null,
+    chapters: [
+      { t: 'Marca', d: 'El logo con la llama, los colores del truck y la tipografía, llevados al menú. Además, una propuesta de aplicación de marca con 15 mockups de empaque y señalización.', shots: ['s91-intro'] },
+      { t: 'Menú digital', d: '14 categorías y más de 40 platos con fotos, descripciones, precios y etiquetas como “Favorito”.', shots: ['s91-platos', 's91-menu'] },
+      { t: 'Experiencia QR', d: 'Un código en la ventanilla del truck abre el menú al instante. El QR nunca cambia, aunque cambien los precios.', shots: [] },
+      { t: 'Pedidos por WhatsApp', d: 'El cliente elige y manda su pedido por WhatsApp con un mensaje ya escrito.', shots: ['s91-bebidas'] },
+      { t: 'Panel de administración', d: 'La dueña edita platos, cambia precios, sube fotos y marca lo agotado desde su celular.', shots: ['s91-panel', 's91-panel-edit'] },
+    ],
     tint: '#6a1d0e',
     phones: [{ src: 's91-bebidas', alt: 'Bebidas con fotos reales en el menú de S91 House Grill' }, { src: 's91-menu', alt: 'Inicio del menú de S91 House Grill con los favoritos de la casa' }, { src: 's91-platos', alt: 'Sección de hamburguesas del menú de S91 con precios' }],
     name: 'S91 House Grill',
@@ -35,7 +45,7 @@ export const projects = [
     ],
     solution: [
       'Un menú digital con dominio propio, pensado para abrirse desde un código QR en la ventanilla del truck: categorías con navegación rápida, fotos, descripciones, precios, etiquetas como “Favorito” y un botón para pedir por WhatsApp.',
-      'Detrás, un panel de administración donde la dueña edita platos, cambia precios, sube fotos y marca lo que se acabó. Y la marca aplicada fuera de la pantalla: empaques, papel de envolver, vasos, uniformes y señalización del truck.',
+      'Detrás, un panel de administración donde la dueña edita platos, cambia precios, sube fotos y marca lo que se acabó. Y una propuesta de marca fuera de la pantalla: mockups de empaques, papel de envolver, vasos, uniformes y señalización del truck.',
     ],
     result: [
       'El menú completo vive en un link, s91housegrill.com, y en un QR que no cambia nunca.',
@@ -51,7 +61,7 @@ export const projects = [
       'Intro animada con el logo',
       'Panel: editar, reordenar, agotar y subir fotos',
       'Dominio propio y código QR',
-      'Kit de marca: 15 piezas de empaque y señalización',
+      'Propuesta de marca: 15 mockups de empaque y señalización',
     ],
     stack: ['HTML, CSS y JavaScript', 'Supabase (datos, acceso y fotos)', 'GitHub Pages', 'Dominio .com'],
     gallery: [
@@ -65,6 +75,15 @@ export const projects = [
   },
   {
     slug: 'zerufy',
+    kind: 'client',
+    meta: 'Catálogo y sistema / Reventa',
+    chapters: [
+      { t: 'Catálogo digital', d: 'Categorías, marcas y variantes por talla y color, en español e inglés.', shots: ['zerufy-home'] },
+      { t: 'Carrito', d: 'El cliente junta varias piezas y cada pedido lleva su propio número.', shots: [] },
+      { t: 'Checkout por WhatsApp', d: 'El pedido llega por WhatsApp con los productos y las tallas ya elegidos.', shots: [] },
+      { t: 'Inventario', d: 'Cada modelo con sus colores, tallas y unidades. Avisa lo que queda y lo que se agotó.', shots: ['zerufy-inventario'], note: 'Datos de ejemplo' },
+      { t: 'Panel y caja', d: 'Subir y ordenar productos, y un control de caja con ventas, compras y retiros.', shots: ['zerufy-caja'], note: 'Datos de ejemplo' },
+    ],
     tint: '#4a0d09',
     phones: [{ src: 'zerufy-caja', alt: 'Control de caja de Zerufy con datos de ejemplo' }, { src: 'zerufy-home', alt: 'Entrada del catálogo de Zerufy' }, { src: 'zerufy-inventario', alt: 'Inventario por modelo de Zerufy con datos de ejemplo' }],
     name: 'Zerufy',
@@ -109,8 +128,17 @@ export const projects = [
   },
   {
     slug: 'amh-store',
+    kind: 'client',
+    meta: 'Catálogo con marca / Joyería',
+    chapters: [
+      { t: 'Catálogo con marca propia', d: 'Violeta, tipografía condensada y un fondo animado: una identidad hecha para relojes y joyería.', web: 'amh-desktop' },
+      { t: 'Páginas de producto', d: 'Cada pieza tiene su propio link para compartirla directo en historias o chats.', shots: [] },
+      { t: 'Carrito', d: 'El cliente arma su pedido con varias piezas antes de escribir.', shots: [] },
+      { t: 'Pedidos por WhatsApp', d: 'El pedido llega armado por WhatsApp, también en inglés.', shots: [] },
+      { t: 'Sistema de administración', d: 'Su propio panel y sus propios datos, sobre la misma plataforma que Zerufy.', shots: ['amh-home'] },
+    ],
     tint: '#2c1766',
-    web: { src: 'amh-desktop', alt: 'Portada del catálogo de AMH Store en computadora' },
+    web: { src: 'amh-desktop', alt: 'Portada del catálogo de AMH Store en computadora', h: 540 },
     phones: [{ src: 'amh-home', alt: 'Entrada del catálogo de AMH Store en el celular' }],
     name: 'AMH Store',
     sector: 'Relojes, joyería y accesorios',
@@ -150,6 +178,8 @@ export const projects = [
   },
   {
     slug: 'panel-district',
+    kind: 'system',
+    meta: 'Plataforma propia / Sistemas',
     tint: '#2a2a2a',
     phones: [{ src: 's91-panel', alt: 'Panel de administración con categorías y platos' }, { src: 's91-panel-edit', alt: 'Edición de un plato desde el celular' }, { src: 'zerufy-inventario', alt: 'Módulo de inventario con datos de ejemplo' }],
     name: 'Panel District',
@@ -193,48 +223,83 @@ export const projects = [
   },
 ];
 
-// Propuestas: prototipos funcionales que diseñamos para presentar a negocios.
-// No son clientes; en el sitio siempre se muestran como "Propuesta".
-export const proposals = [
+// Conceptos: prototipos funcionales que diseñamos para presentar a negocios.
+// No son clientes: en el sitio siempre dicen "Concepto".
+const concepts = [
   {
     slug: 'jircars',
+    kind: 'concept',
     name: 'Jircars',
+    meta: 'Concepto / Concesionario',
     sector: 'Venta de autos',
     location: 'Valencia, Carabobo',
+    type: 'Inventario de vehículos con contacto por WhatsApp',
+    categories: ['catalogs', 'websites'],
     summary: 'Inventario de vehículos con filtros por tipo, búsqueda, ficha de cada auto con año, millaje y caja, y contacto por WhatsApp.',
     tint: '#3a2c0c',
-    phones: [{ src: 'jircars-intro', alt: 'Portada del inventario de Jircars' }, { src: 'jircars-catalogo', alt: 'Lista de vehículos de Jircars con filtros y fichas' }],
+    web: { src: 'jircars-desktop', alt: 'Portada de Jircars en computadora: “Encuentra tu próximo auto”' },
+    phones: [{ src: 'jircars-intro', alt: 'Portada del inventario de Jircars en el celular' }, { src: 'jircars-catalogo', alt: 'Lista de vehículos de Jircars con año, millaje y caja' }],
+    features: ['Inventario por tipo: SUV, pickup, sedán', 'Búsqueda por marca o modelo', 'Ficha con año, millaje y caja', 'Estado: disponible o reservado', 'Contacto por WhatsApp en cada auto', 'Versión para computadora y celular'],
   },
   {
     slug: 'aureon',
+    kind: 'concept',
     name: 'Aureon',
+    meta: 'Concepto / Fragancias',
     sector: 'Fragancias de lujo',
+    type: 'Catálogo con carrito y pedido por WhatsApp',
+    categories: ['catalogs', 'ecommerce'],
     summary: 'Catálogo de perfumes por familia olfativa, con etiquetas de oferta y agotado, carrito y pedido confirmado por WhatsApp.',
     tint: '#33260a',
+    web: { src: 'aureon-desktop', alt: 'Portada de Aureon en computadora: “Fragancias que se recuerdan”' },
     phones: [{ src: 'aureon-intro', alt: 'Entrada del catálogo de Aureon con el logo dorado' }, { src: 'aureon-catalogo', alt: 'Catálogo de fragancias de Aureon' }],
+    features: ['Colección por familia olfativa', 'Etiquetas de oferta y agotado', 'Carrito', 'Pedido confirmado por WhatsApp', 'Intro con la marca'],
   },
   {
     slug: 'alta-pinta',
+    kind: 'concept',
     name: 'Alta Pinta',
+    meta: 'Concepto / Ropa urbana',
     sector: 'Ropa urbana',
+    type: 'Tienda con identidad de marca y pedido por WhatsApp',
+    categories: ['ecommerce', 'catalogs', 'branding'],
     summary: 'Catálogo con identidad de marca propia: intro animada, categorías, favoritos y pedido armado que se envía por WhatsApp.',
     tint: '#262626',
+    web: { src: 'altapinta-desktop', alt: 'Portada de Alta Pinta en computadora: “Viste con pinta”' },
     phones: [{ src: 'altapinta-intro', alt: 'Entrada del catálogo de Alta Pinta con el logo a pincel' }, { src: 'altapinta-catalogo', alt: 'Productos del catálogo de Alta Pinta' }],
+    features: ['Intro animada con el logo', 'Categorías: camisetas, hoodies, gorras, tenis', 'Favoritos', 'Carrito', 'Pedido armado por WhatsApp'],
   },
   {
     slug: 'liz-boutique',
+    kind: 'concept',
     name: 'Liz Boutique',
+    meta: 'Concepto / Moda',
     sector: 'Moda y accesorios',
+    type: 'Catálogo con ofertas y pedido por WhatsApp',
+    categories: ['catalogs', 'ecommerce'],
     summary: 'Vestidos, zapatos, bolsos y accesorios en un catálogo con ofertas, novedades y pedido por WhatsApp.',
     tint: '#4a2630',
+    web: { src: 'liz-desktop', alt: 'Portada de Liz Boutique en computadora con novedades' },
     phones: [{ src: 'liz-intro', alt: 'Entrada del catálogo de Liz Boutique' }, { src: 'liz-catalogo', alt: 'Catálogo de Liz Boutique con ofertas y novedades' }],
+    features: ['Categorías con íconos', 'Ofertas y novedades', 'Favoritos', 'Carrito', 'Pedido por WhatsApp'],
   },
   {
     slug: 'carpashop',
+    kind: 'concept',
     name: 'CarpaShop',
+    meta: 'Concepto / Accesorios',
     sector: 'Accesorios para celular',
+    type: 'Tienda con búsqueda y pedido por WhatsApp',
+    categories: ['ecommerce', 'catalogs'],
     summary: 'Cargadores, cables, audífonos y fundas con búsqueda, categorías, agotados y pedido por WhatsApp.',
     tint: '#0d2448',
-    phones: [{ src: 'carpashop-intro', alt: 'Entrada del catálogo de CarpaShop' }, { src: 'carpashop-catalogo', alt: 'Productos de CarpaShop con búsqueda y categorías' }],
+    web: { src: 'carpashop-desktop', alt: 'Portada de CarpaShop en computadora: “Accesorios para tu teléfono, con actitud”' },
+    phones: [{ src: 'carpashop-intro', alt: 'Entrada del catálogo de CarpaShop' }, { src: 'carpashop-catalogo', alt: 'Inicio de CarpaShop con botones de catálogo y WhatsApp' }],
+    features: ['Búsqueda de productos', 'Categorías con contador', 'Etiquetas: más vendido, oferta, nuevo', 'Carrito', 'Pago al recibir, pedido por WhatsApp'],
   },
 ];
+
+// Orden del portafolio: lo más fuerte primero.
+const ORDER = ['s91-house-grill', 'jircars', 'zerufy', 'aureon', 'amh-store', 'alta-pinta', 'liz-boutique', 'carpashop', 'panel-district'];
+projects.push(...concepts);
+projects.sort((a, b) => ORDER.indexOf(a.slug) - ORDER.indexOf(b.slug));

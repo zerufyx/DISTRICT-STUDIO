@@ -1,5 +1,5 @@
 import { esc } from '../core.mjs';
-import { sectionHead, ctaBand, crumbs, stage, growthLine } from '../components.mjs';
+import { sectionHead, ctaBand, crumbs, stage, growthLine, lines } from '../components.mjs';
 import { principles, growth } from '../../content/studio.mjs';
 import { projects } from '../../content/projects.mjs';
 import { breadcrumb, organization } from '../seo.mjs';
@@ -12,7 +12,7 @@ export default function about(ctx) {
 <section class="page-hero">
   <div class="wrap">
     ${crumbs(ctx, items)}
-    <h1 class="display-2">Un estudio para negocios que <em>venden.</em></h1>
+    <h1 class="display-2">${lines(['Un estudio', 'para negocios', 'que <em>venden.</em>'])}</h1>
     <p class="hero-lead">District Studio diseña y construye la parte digital de negocios locales: la página, el menú, el catálogo, la tienda y el sistema que los mantiene al día. Estamos en Orlando, Florida, y trabajamos con negocios de Estados Unidos y Latinoamérica, en español e inglés.</p>
   </div>
 </section>

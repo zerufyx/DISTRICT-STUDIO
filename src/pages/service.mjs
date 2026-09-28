@@ -32,8 +32,8 @@ export default function servicePage(ctx, s) {
     <p class="hero-lead">${esc(s.lead)}</p>
     ${s.statusNote ? `<p class="note">${esc(s.statusNote)}</p>` : ''}
     <div class="hero-actions">
-      ${btn(ctx.url('/contact/#' + s.key), s.status === 'soon' ? 'Contarte mi idea' : 'Crear mi proyecto', { size: 'lg' })}
-      ${ex.length ? btn(ctx.url(`/projects/${ex[0].slug}/`), 'Ver un ejemplo real', { variant: 'ghost', size: 'lg' }) : ''}
+      ${btn(ctx.url('/contact/#' + s.key), s.status === 'soon' ? 'Contarte mi idea' : 'Empezar un proyecto', { size: 'lg', arrow: true })}
+      ${ex.length ? btn(ctx.url(`/projects/${ex[0].slug}/`), 'Ver un ejemplo', { variant: 'ghost', size: 'lg', arrow: true }) : ''}
     </div>
     <dl class="facts">
       <div><dt>Para</dt><dd>${esc(s.forWho.slice(0, 4).join(', '))}${s.forWho.length > 4 ? ' y más' : ''}</dd></div>
@@ -63,7 +63,7 @@ ${
   ex.length
     ? `<section class="section work" aria-labelledby="ex-t">
   <div class="wrap">
-    ${sectionHead(ex.length > 1 ? 'Ejemplos reales' : 'Un ejemplo real', 'Proyectos en línea que puedes abrir desde tu celular.', { id: 'ex-t' })}
+    ${sectionHead(ex.length > 1 ? 'Ejemplos' : 'Un ejemplo', 'Proyectos que diseñamos y construimos. Los que dicen Concepto son prototipos preparados para un negocio.', { id: 'ex-t' })}
     ${workGrid(ctx, ex)}
   </div>
 </section>`
@@ -83,7 +83,7 @@ ${
   </div>
 </section>
 
-${ctaBand(ctx, { need: s.key, title: s.status === 'soon' ? '¿Tienes la idea de una app?' : 'Cuéntanos de tu negocio.', text: s.status === 'soon' ? 'Cuéntanos qué quieres que haga y la planificamos contigo.' : undefined })}
+${ctaBand(ctx, { need: s.key, ...(s.status === 'soon' ? { q: '¿Tienes la idea de una app?', title: 'Planifiquémosla <em>juntos.</em>' } : {}) })}
 `;
 
   return {

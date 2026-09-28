@@ -4,6 +4,7 @@ import http from 'node:http';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import config from '../site.config.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', process.argv[2] || 'dist');
 const PORT = Number(process.env.PORT) || 4321;
@@ -16,6 +17,8 @@ const TYPES = {
 http
   .createServer((req, res) => {
     let p = decodeURIComponent(new URL(req.url, 'http://x').pathname);
+    // Igual que GitHub Pages: el sitio vive bajo basePath
+    if (config.basePath && p.startsWith(config.basePath)) p = p.slice(config.basePath.length) || '/';
     let file = path.join(ROOT, p);
     if (!file.startsWith(ROOT)) { res.writeHead(403); return res.end(); }
     if (fs.existsSync(file) && fs.statSync(file).isDirectory()) file = path.join(file, 'index.html');
@@ -26,4 +29,4 @@ http
     res.writeHead(200, { 'Content-Type': TYPES[path.extname(file)] || 'application/octet-stream' });
     fs.createReadStream(file).pipe(res);
   })
-  .listen(PORT, () => console.log(`District Studio en http://localhost:${PORT}`));
+  .listen(PORT, () => console.log(`District Studio en http://localhost:${PORT}${config.basePath}/`));

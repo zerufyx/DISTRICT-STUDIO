@@ -1,18 +1,18 @@
 import { esc, icon, wa } from '../core.mjs';
-import { crumbs, btn } from '../components.mjs';
+import { crumbs, btn, lines } from '../components.mjs';
 import { form } from '../../content/studio.mjs';
 import { breadcrumb } from '../seo.mjs';
 
 export default function contact(ctx) {
-  const items = [{ href: '/', label: 'Inicio' }, { href: '/contact/', label: 'Crear mi proyecto' }];
+  const items = [{ href: '/', label: 'Inicio' }, { href: '/contact/', label: 'Empezar un proyecto' }];
   const { contact: c } = ctx.config;
 
   const main = `
 <section class="page-hero contact-hero">
   <div class="wrap">
     ${crumbs(ctx, items)}
-    <h1 class="display-2">Cuéntanos tu <em>proyecto.</em></h1>
-    <p class="hero-lead">Toma unos dos minutos. Con esto te respondemos con una propuesta clara: qué construimos, cuánto cuesta y cuándo lo tienes.</p>
+    <h1 class="display-2">${lines(['¿Qué estás', '<em>construyendo?</em>'])}</h1>
+    <p class="hero-lead">Dos minutos. Con esto te respondemos con una propuesta clara: qué construimos, cuánto cuesta y cuándo lo tienes.</p>
   </div>
 </section>
 
@@ -21,7 +21,7 @@ export default function contact(ctx) {
     <div class="form-shell">
       <form class="lead-form" id="lead-form" novalidate data-lead-form>
         <fieldset class="field-group">
-          <legend class="fg-legend">¿Qué necesitas? <span class="req-note">Elige una o varias</span></legend>
+          <legend class="fg-legend"><span class="fg-n">01</span>¿Qué necesitas? <span class="req-note">Elige una o varias</span></legend>
           <div class="chip-row choice" data-needs>
             ${form.needs.map((n) => `<label class="chip-check"><input type="checkbox" name="needs" value="${n.key}" id="need-${n.key}"><span>${esc(n.label)}</span></label>`).join('')}
           </div>
@@ -29,29 +29,7 @@ export default function contact(ctx) {
         </fieldset>
 
         <fieldset class="field-group">
-          <legend class="fg-legend">Tu negocio</legend>
-          <div class="fields two">
-            <div class="field">
-              <label for="business">Nombre del negocio</label>
-              <input id="business" name="business" type="text" autocomplete="organization" required maxlength="120">
-              <p class="field-error" data-error-for="business" hidden>Escribe el nombre de tu negocio.</p>
-            </div>
-            <div class="field">
-              <label for="btype">Tipo de negocio <span class="opt">opcional</span></label>
-              <select id="btype" name="btype">
-                <option value="">Selecciona uno</option>
-                ${form.businessTypes.map((t) => `<option>${esc(t)}</option>`).join('')}
-              </select>
-            </div>
-            <div class="field">
-              <label for="instagram">Instagram <span class="opt">opcional</span></label>
-              <div class="affix"><span aria-hidden="true">@</span><input id="instagram" name="instagram" type="text" autocomplete="off" autocapitalize="none" spellcheck="false" maxlength="60" placeholder="tunegocio"></div>
-            </div>
-          </div>
-        </fieldset>
-
-        <fieldset class="field-group">
-          <legend class="fg-legend">Tus datos</legend>
+          <legend class="fg-legend"><span class="fg-n">02</span>Tú y tu negocio</legend>
           <div class="fields two">
             <div class="field">
               <label for="name">Nombre</label>
@@ -59,7 +37,12 @@ export default function contact(ctx) {
               <p class="field-error" data-error-for="name" hidden>Escribe tu nombre.</p>
             </div>
             <div class="field">
-              <label for="phone">Teléfono o WhatsApp</label>
+              <label for="business">Negocio</label>
+              <input id="business" name="business" type="text" autocomplete="organization" required maxlength="120">
+              <p class="field-error" data-error-for="business" hidden>Escribe el nombre de tu negocio.</p>
+            </div>
+            <div class="field">
+              <label for="phone">WhatsApp</label>
               <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required maxlength="30" placeholder="(407) 000-0000">
               <p class="field-error" data-error-for="phone" hidden>Escribe un número con al menos 10 dígitos.</p>
             </div>
@@ -68,26 +51,40 @@ export default function contact(ctx) {
               <input id="email" name="email" type="email" autocomplete="email" maxlength="120" placeholder="tu@correo.com">
               <p class="field-error" data-error-for="email" hidden>Revisa el email: parece incompleto.</p>
             </div>
+            <div class="field field-wide">
+              <label for="instagram">Web o Instagram <span class="opt">opcional</span></label>
+              <input id="instagram" name="instagram" type="text" autocomplete="url" autocapitalize="none" spellcheck="false" maxlength="200" placeholder="@tunegocio o tunegocio.com">
+            </div>
           </div>
         </fieldset>
 
         <fieldset class="field-group">
-          <legend class="fg-legend">¿Qué tan grande lo imaginas? <span class="opt">opcional</span></legend>
+          <legend class="fg-legend"><span class="fg-n">03</span>¿Qué tan grande lo imaginas? <span class="opt">opcional</span></legend>
           <div class="chip-row choice">
             ${form.budgets.map((b, i) => `<label class="chip-check"><input type="radio" name="budget" value="${esc(b)}" id="budget-${i}"><span>${esc(b)}</span></label>`).join('')}
           </div>
         </fieldset>
 
-        <div class="field">
-          <label for="message">Cuéntanos del proyecto <span class="opt">opcional</span></label>
-          <textarea id="message" name="message" rows="5" maxlength="2000" placeholder="Qué vendes, cómo te llegan los clientes hoy y qué te gustaría que hiciera tu página."></textarea>
-        </div>
+        <fieldset class="field-group">
+          <legend class="fg-legend"><span class="fg-n">04</span>¿Para cuándo? <span class="opt">opcional</span></legend>
+          <div class="chip-row choice">
+            ${form.timelines.map((b, i) => `<label class="chip-check"><input type="radio" name="timeline" value="${esc(b)}" id="time-${i}"><span>${esc(b)}</span></label>`).join('')}
+          </div>
+        </fieldset>
+
+        <fieldset class="field-group">
+          <legend class="fg-legend"><span class="fg-n">05</span>Cuéntanos más <span class="opt">opcional</span></legend>
+          <div class="field">
+            <label class="sr" for="message">Mensaje</label>
+            <textarea id="message" name="message" rows="5" maxlength="2000" placeholder="Qué vendes, cómo te llegan los clientes hoy y qué te gustaría que hiciera tu página."></textarea>
+          </div>
+        </fieldset>
 
         <div class="hp" aria-hidden="true"><label for="website_url">No llenes este campo</label><input id="website_url" name="website_url" type="text" tabindex="-1" autocomplete="off"></div>
         <input type="hidden" name="plan" id="plan" value="">
 
         <div class="form-foot">
-          <button class="btn btn-primary btn-lg" type="submit" data-submit><span data-submit-label>Enviar mi proyecto</span></button>
+          <button class="btn btn-primary btn-lg" type="submit" data-submit><span data-submit-label>Enviar mi proyecto</span>${icon('arrow', 'ic ic-go')}</button>
           <p class="fine">Solo usamos tus datos para responderte sobre este proyecto.</p>
         </div>
         <p class="form-alert" data-form-alert role="alert" hidden></p>
@@ -128,7 +125,7 @@ export default function contact(ctx) {
 
   return {
     path: '/contact/',
-    title: 'Crear mi proyecto: cotiza tu página web, menú o catálogo | District Studio',
+    title: 'Empezar un proyecto: sitio web, catálogo, menú o tienda | District Studio',
     description: 'Cuéntanos sobre tu negocio y lo que necesitas: página web, menú digital, catálogo, tienda online, sistema o app. Te respondemos con una propuesta clara.',
     schema: [breadcrumb(ctx, items)],
     main,
