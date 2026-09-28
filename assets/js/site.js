@@ -160,16 +160,27 @@
   var mx = 0, my = 0, cx = 0, cy = 0, heroOn = false;
 
   var ticking = false;
+  // vh "estable" para las secciones fijadas: el más chico visto hasta ahora, que coincide con
+  // el 100svh que usa el CSS. Solo se agranda si el ancho también cambió (giro de pantalla o
+  // ventana redimensionada de verdad), nunca por el show/hide de la barra del navegador.
+  var stableVh = w.innerHeight, lastW = w.innerWidth;
   function frame() {
     ticking = false;
     var vh = w.innerHeight;
+    if (w.innerWidth !== lastW) { lastW = w.innerWidth; stableVh = vh; }
+    else if (vh < stableVh) { stableVh = vh; }
     scrollies.forEach(function (s) {
       var r = s.el.getBoundingClientRect();
-      var total = s.el.offsetHeight - vh;
+      // vh estable (no el innerHeight en vivo): en el celular, mostrar/ocultar la barra del
+      // navegador AL SCROLLEAR dispara "resize" y cambia innerHeight sin que la persona haya
+      // seguido scrolleando; si esa altura se usa aquí, la pantalla activa puede adelantarse
+      // sola. El alto de estas secciones se define en CSS con `svh` (estable), así que aquí
+      // se usa el mismo innerHeight "chico" ya visto, no el más grande que deja la barra al ocultarse.
+      var total = s.el.offsetHeight - stableVh;
       var p = clamp(-r.top / total, 0, 1);
       s.el.style.setProperty('--p', p.toFixed(4));
       var raw = s.sys ? p * (s.n + 0.8) - 1 : p * s.n * 0.999;
-      var step = Math.min(s.n - 1, Math.floor(raw));
+      var step = Math.min(s.n - 1, Math.max(0, Math.floor(raw)));
       // margen para que no salte de ida y vuelta en el borde entre dos pantallas
       if (step !== s.step && (s.step === null || Math.abs(raw - (Math.max(step, s.step))) > 0.08)) { if (s.sys) setSys(s, step); else setInst(s, step); s.step = step; }
     });
