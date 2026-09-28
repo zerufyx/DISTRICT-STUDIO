@@ -126,7 +126,7 @@ export default function contact(ctx) {
   return {
     path: '/contact/',
     title: 'Empezar un proyecto: sitio web, catálogo, menú o tienda | District Studio',
-    description: 'Cuéntanos sobre tu negocio y lo que necesitas: página web, menú digital, catálogo, tienda online, sistema o app. Te respondemos con una propuesta clara.',
+    description: 'Cuéntanos sobre tu negocio y lo que necesitas: página web, menú digital, catálogo, reservas, sistema o app. Te respondemos con una propuesta clara.',
     schema: [breadcrumb(ctx, items)],
     main,
     hideDock: true,

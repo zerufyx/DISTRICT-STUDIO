@@ -32,7 +32,7 @@ export default function projectPage(ctx, p) {
   const next = projects[(i + 1) % projects.length];
   const items = [{ href: '/', label: 'Inicio' }, { href: '/portfolio/', label: 'Trabajos' }, { href: `/projects/${p.slug}/`, label: p.name }];
   const paras = (arr) => arr.map((t) => `<p>${esc(t)}</p>`).join('');
-  const needKey = p.categories.find((c) => ['menus', 'catalogs', 'websites', 'ecommerce', 'systems'].includes(c));
+  const needKey = p.categories.find((c) => ['menus', 'catalogs', 'websites', 'booking', 'systems'].includes(c));
   const concept = p.kind === 'concept';
   const status = concept ? 'Concepto' : p.url ? 'En línea' : 'Plataforma propia';
 

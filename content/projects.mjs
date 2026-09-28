@@ -2,13 +2,12 @@
 // Para agregar uno nuevo: copia un bloque, cambia los datos y pon sus
 // imágenes en assets/img/work/. Luego: node scripts/build.mjs
 //
-// categories usa estas claves: websites, menus, catalogs, ecommerce, branding, systems, apps
+// categories usa estas claves: websites, menus, catalogs, branding, systems, apps
 
 export const categories = [
   { key: 'websites', label: 'Sitios web' },
   { key: 'menus', label: 'Menús' },
   { key: 'catalogs', label: 'Catálogos' },
-  { key: 'ecommerce', label: 'E-commerce' },
   { key: 'branding', label: 'Branding' },
   { key: 'systems', label: 'Sistemas' },
   { key: 'apps', label: 'Apps' },
@@ -91,7 +90,7 @@ export const projects = [
     location: 'Orlando, FL',
     year: null,
     type: 'Catálogo con carrito, panel, caja e inventario',
-    categories: ['catalogs', 'ecommerce', 'systems'],
+    categories: ['catalogs', 'systems'],
     url: 'https://zerufy.store',
     urlLabel: 'zerufy.store',
     summary: 'Catálogo con carrito y checkout por WhatsApp, panel de productos y control de caja e inventario para una tienda de reventa.',
@@ -145,7 +144,7 @@ export const projects = [
     location: null,
     year: null,
     type: 'Catálogo con carrito y panel',
-    categories: ['catalogs', 'ecommerce'],
+    categories: ['catalogs'],
     url: 'https://amhstore.store',
     urlLabel: 'amhstore.store',
     summary: 'Catálogo con identidad propia para una tienda de relojes y joyería, con carrito, pedidos por WhatsApp y links directos a cada pieza.',
@@ -227,6 +226,21 @@ export const projects = [
 // No son clientes: en el sitio siempre dicen "Concepto".
 const concepts = [
   {
+    slug: 'offsuite',
+    kind: 'concept',
+    name: 'Offsuite',
+    meta: 'Concepto / Streetwear',
+    sector: 'Streetwear premium',
+    location: 'Venezuela',
+    type: 'Catálogo con carrito y pedido por WhatsApp',
+    categories: ['catalogs', 'branding'],
+    summary: 'Catálogo de streetwear con la identidad de la marca: más vendidos, colección con filtros, ficha con galería y tallas, y carrito que arma el pedido para WhatsApp.',
+    tint: '#1c1c1c',
+    web: { src: 'offsuite-desktop', alt: 'Portada de Offsuite en computadora: “Define tus propias reglas”' },
+    phones: [{ src: 'offsuite-intro', alt: 'Portada de Offsuite en el celular con el isotipo de la marca' }, { src: 'offsuite-catalogo', alt: 'Colección de Offsuite con tallas y botón de agregar al carrito' }, { src: 'offsuite-producto', alt: 'Ficha de un hoodie de Offsuite con galería de fotos y tallas' }],
+    features: ['Sección de más vendidos', 'Colección con categorías, búsqueda y orden por precio', 'Ficha con galería de fotos y tallas', 'Carrito con cantidades y total', 'Pedido armado por WhatsApp', 'Identidad de la marca en todo el catálogo'],
+  },
+  {
     slug: 'jircars',
     kind: 'concept',
     name: 'Jircars',
@@ -248,7 +262,7 @@ const concepts = [
     meta: 'Concepto / Fragancias',
     sector: 'Fragancias de lujo',
     type: 'Catálogo con carrito y pedido por WhatsApp',
-    categories: ['catalogs', 'ecommerce'],
+    categories: ['catalogs'],
     summary: 'Catálogo de perfumes por familia olfativa, con etiquetas de oferta y agotado, carrito y pedido confirmado por WhatsApp.',
     tint: '#33260a',
     web: { src: 'aureon-desktop', alt: 'Portada de Aureon en computadora: “Fragancias que se recuerdan”' },
@@ -262,7 +276,7 @@ const concepts = [
     meta: 'Concepto / Ropa urbana',
     sector: 'Ropa urbana',
     type: 'Tienda con identidad de marca y pedido por WhatsApp',
-    categories: ['ecommerce', 'catalogs', 'branding'],
+    categories: ['catalogs', 'branding'],
     summary: 'Catálogo con identidad de marca propia: intro animada, categorías, favoritos y pedido armado que se envía por WhatsApp.',
     tint: '#262626',
     web: { src: 'altapinta-desktop', alt: 'Portada de Alta Pinta en computadora: “Viste con pinta”' },
@@ -276,7 +290,7 @@ const concepts = [
     meta: 'Concepto / Moda',
     sector: 'Moda y accesorios',
     type: 'Catálogo con ofertas y pedido por WhatsApp',
-    categories: ['catalogs', 'ecommerce'],
+    categories: ['catalogs'],
     summary: 'Vestidos, zapatos, bolsos y accesorios en un catálogo con ofertas, novedades y pedido por WhatsApp.',
     tint: '#4a2630',
     web: { src: 'liz-desktop', alt: 'Portada de Liz Boutique en computadora con novedades' },
@@ -290,7 +304,7 @@ const concepts = [
     meta: 'Concepto / Accesorios',
     sector: 'Accesorios para celular',
     type: 'Tienda con búsqueda y pedido por WhatsApp',
-    categories: ['ecommerce', 'catalogs'],
+    categories: ['catalogs'],
     summary: 'Cargadores, cables, audífonos y fundas con búsqueda, categorías, agotados y pedido por WhatsApp.',
     tint: '#0d2448',
     web: { src: 'carpashop-desktop', alt: 'Portada de CarpaShop en computadora: “Accesorios para tu teléfono, con actitud”' },
@@ -300,6 +314,6 @@ const concepts = [
 ];
 
 // Orden del portafolio: lo más fuerte primero.
-const ORDER = ['s91-house-grill', 'jircars', 'zerufy', 'aureon', 'amh-store', 'alta-pinta', 'liz-boutique', 'carpashop', 'panel-district'];
+const ORDER = ['s91-house-grill', 'offsuite', 'jircars', 'zerufy', 'aureon', 'amh-store', 'alta-pinta', 'liz-boutique', 'carpashop', 'panel-district'];
 projects.push(...concepts);
 projects.sort((a, b) => ORDER.indexOf(a.slug) - ORDER.indexOf(b.slug));

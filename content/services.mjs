@@ -96,37 +96,6 @@ export const services = [
     },
   },
   {
-    key: 'ecommerce',
-    path: '/ecommerce/',
-    name: 'Tiendas online',
-    icon: 'bag',
-    status: 'available',
-    outcome: 'Vende a cualquier hora sin contestar cada mensaje.',
-    lead: 'Una tienda completa: carrito, checkout, pagos con tarjeta, inventario y pedidos organizados. Para cuando tu negocio ya no cabe en el chat.',
-    forWho: ['Tiendas de ropa', 'Marcas propias', 'Joyería y accesorios', 'Productos de belleza', 'Negocios con envíos'],
-    benefits: [
-      { t: 'Cobras sin estar pendiente', d: 'El cliente paga en línea y a ti te llega el pedido listo para preparar.' },
-      { t: 'Inventario que no falla', d: 'El stock baja con cada venta, así no vendes lo que ya no tienes.' },
-      { t: 'Todo en un solo lugar', d: 'Pedidos, clientes, envíos y cupones en tu panel.' },
-    ],
-    features: [
-      { t: 'Carrito y checkout', d: 'Un proceso de compra corto, pensado para el celular.' },
-      { t: 'Pagos en línea', d: 'Tarjetas con Stripe o PayPal. También pedido por WhatsApp.' },
-      { t: 'Inventario', d: 'Existencias por producto y variante, en tiempo real.' },
-      { t: 'Variantes', d: 'Tallas, colores y modelos con su propio stock.' },
-      { t: 'Cupones', d: 'Descuentos por código, por fecha o por cliente.' },
-      { t: 'Pedidos', d: 'Nuevo, pagado, enviado: sabes en qué va cada uno.' },
-      { t: 'Envíos', d: 'Costo por zona, envío nacional o retiro en persona.' },
-      { t: 'Redes sociales', d: 'Integración con Instagram, TikTok y Meta Pixel.' },
-    ],
-    examples: ['alta-pinta', 'zerufy', 'carpashop'],
-    price: { label: 'Cotización según el proyecto' },
-    seo: {
-      title: 'Tiendas online (e-commerce) para pequeños negocios | District Studio',
-      description: 'Tiendas online con carrito, pagos con tarjeta, inventario, cupones y pedidos organizados. E-commerce a medida para negocios que venden por redes.',
-    },
-  },
-  {
     key: 'booking',
     path: '/booking/',
     name: 'Reservas',
@@ -253,7 +222,7 @@ export const plans = [
     name: 'A medida',
     setup: null,
     monthly: null,
-    for: 'Páginas web completas, tiendas con pagos en línea, sistemas y automatizaciones.',
+    for: 'Páginas web completas, sistemas y automatizaciones.',
     includes: [
       'Propuesta con alcance, precio y fecha de entrega',
       'Diseño y desarrollo según tu operación',
@@ -264,5 +233,5 @@ export const plans = [
 ];
 
 // Orden en que se muestran en todo el sitio
-const ORDER = ['websites', 'catalogs', 'menus', 'ecommerce', 'booking', 'systems', 'apps'];
+const ORDER = ['websites', 'catalogs', 'menus', 'booking', 'systems', 'apps'];
 services.sort((a, b) => ORDER.indexOf(a.key) - ORDER.indexOf(b.key));

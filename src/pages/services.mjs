@@ -58,8 +58,8 @@ ${ctaBand(ctx)}
 
   return {
     path: '/services/',
-    title: 'Servicios: páginas web, menús digitales, catálogos y tiendas online | District Studio',
-    description: 'Páginas web, menús digitales con QR, catálogos, tiendas online, sistemas a medida y apps. Con panel de administración para que cambies precios y productos tú mismo.',
+    title: 'Servicios: páginas web, menús digitales, catálogos y reservas | District Studio',
+    description: 'Páginas web, menús digitales con QR, catálogos, reservas, sistemas a medida y apps. Con panel de administración para que cambies precios y productos tú mismo.',
     schema: [breadcrumb(ctx, [{ href: '/', label: 'Inicio' }, { href: '/services/', label: 'Servicios' }]), faqPage(faq), ...services.map((s) => serviceSchema(ctx, s))],
     main,
     priority: '0.9',

@@ -13,7 +13,7 @@ export function organization(ctx) {
     url: ctx.abs('/'),
     logo: ctx.abs('/apple-touch-icon.png'),
     image: ctx.abs('/assets/img/og-default.jpg'),
-    description: 'Estudio digital que diseña y construye páginas web, menús digitales, catálogos, tiendas online y sistemas para negocios.',
+    description: 'Estudio digital que diseña y construye páginas web, menús digitales, catálogos, reservas y sistemas para negocios.',
     telephone: '+' + config.contact.whatsapp,
     ...(config.contact.email ? { email: config.contact.email } : {}),
     address: { '@type': 'PostalAddress', addressLocality: config.city, addressRegion: config.region, addressCountry: config.country },

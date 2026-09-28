@@ -13,7 +13,6 @@ const preview = {
   websites: { src: 'jircars-desktop-800', w: 800, h: 500, wide: true },
   catalogs: { src: 'aureon-catalogo', w: 540, h: 1169 },
   menus: { src: 's91-menu', w: 540, h: 1169 },
-  ecommerce: { src: 'altapinta-catalogo', w: 540, h: 1169 },
   booking: { src: 'booking-demo', w: 540, h: 1169 },
   systems: { src: 's91-panel-edit', w: 540, h: 1169 },
 };
@@ -34,7 +33,7 @@ const scenes = [
   { k: 'Sitio web', who: 'Jircars', note: 'Concepto', src: 'jircars-desktop', w: 1440, h: 900, shape: 'web' },
   { k: 'Catálogo digital', who: 'Aureon', note: 'Concepto', src: 'aureon-catalogo', w: 540, h: 1169, shape: 'phone' },
   { k: 'Menú digital', who: 'S91 House Grill', note: 'En línea', src: 's91-menu-scroll', w: 540, h: 3600, shape: 'phone', scroll: true },
-  { k: 'Tienda online', who: 'Alta Pinta', note: 'Concepto', src: 'altapinta-catalogo', w: 540, h: 1169, shape: 'phone' },
+  { k: 'Catálogo con carrito', who: 'Offsuite', note: 'Concepto', src: 'offsuite-catalogo', w: 540, h: 1169, shape: 'phone' },
   { k: 'Reservas', who: 'Demostración', note: 'Ejemplo', src: 'booking-demo', w: 540, h: 1169, shape: 'phone' },
 ];
 
@@ -288,7 +287,7 @@ ${ctaBand(ctx)}
     path: '/',
     title: 'District Studio | Experiencias digitales para negocios',
     ogTitle: 'District Studio: creamos experiencias digitales',
-    description: 'Estudio digital en Orlando: sitios web, catálogos, menús digitales, tiendas online, reservas y sistemas hechos a la medida de cómo funciona tu negocio.',
+    description: 'Estudio digital en Orlando: sitios web, catálogos, menús digitales, reservas y sistemas hechos a la medida de cómo funciona tu negocio.',
     schema: [organization(ctx), website(ctx)],
     mainClass: 'home',
     main,

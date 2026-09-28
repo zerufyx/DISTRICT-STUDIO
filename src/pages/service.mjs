@@ -12,7 +12,6 @@ const faqFor = {
   websites: [0, 3, 5, 6],
   menus: [1, 2, 3, 5],
   catalogs: [1, 2, 4, 5],
-  ecommerce: [4, 0, 2, 3],
   systems: [0, 1, 2, 6],
   apps: [0, 6],
 };

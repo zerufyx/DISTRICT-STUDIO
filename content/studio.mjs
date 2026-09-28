@@ -10,7 +10,7 @@ export const process = [
 // La ruta de crecimiento. now: true = disponible hoy.
 export const growth = [
   { t: 'Presencia', d: 'Página web, menú digital o catálogo con tu dominio.', now: true },
-  { t: 'Ventas', d: 'Carrito, pedidos, pagos en línea y cupones.', now: true },
+  { t: 'Ventas', d: 'Carrito y pedidos organizados que llegan por WhatsApp.', now: true },
   { t: 'Operación', d: 'Panel, inventario, caja y clientes.', now: true },
   { t: 'Automatización', d: 'Avisos, formularios e integraciones con tus herramientas.', now: false },
   { t: 'Apps móviles', d: 'Tu negocio en iPhone y Android.', now: false },
@@ -39,12 +39,12 @@ export const beforeAfter = {
 };
 
 export const faq = [
-  { q: '¿Cuánto cuesta?', a: 'Depende de lo que tu negocio necesite: no cuesta lo mismo un menú con QR que una tienda con pagos. Escríbenos por WhatsApp, cuéntanos qué vendes y te damos el precio exacto, sin compromiso.' },
+  { q: '¿Cuánto cuesta?', a: 'Depende de lo que tu negocio necesite: no cuesta lo mismo un menú con QR que un sistema a medida. Escríbenos por WhatsApp, cuéntanos qué vendes y te damos el precio exacto, sin compromiso.' },
   { q: '¿Cuánto tarda un proyecto?', a: 'Depende de lo que construyamos y de qué tan rápido tengamos tus fotos, textos y precios. Antes de empezar te decimos la fecha de entrega.' },
   { q: '¿Puedo cambiar precios y productos yo mismo?', a: 'Sí. Los menús y catálogos incluyen un panel donde cambias precios, fotos y descripciones, y marcas lo que se agotó, desde tu celular.' },
   { q: '¿Qué incluye la mensualidad?', a: 'El hosting, el soporte y el mantenimiento para que tu página, menú o catálogo siga en línea y funcionando.' },
   { q: '¿Necesito tener dominio?', a: 'No. Te ayudamos a elegir y comprar uno (tunegocio.com) y lo conectamos por ti.' },
-  { q: '¿Pueden cobrar con tarjeta en línea?', a: 'Sí. En tiendas online integramos pagos con Stripe o PayPal. Muchos negocios empiezan con pedidos por WhatsApp y agregan pagos después.' },
+  { q: '¿El cliente paga en la página?', a: 'Por ahora no. El pedido te llega completo por WhatsApp y el pago lo acuerdas directo con tu cliente: efectivo, Zelle, transferencia o tu propio link de pago.' },
   { q: '¿Qué necesito para empezar?', a: 'Tu logo si lo tienes, fotos de tus productos o platos, precios y tu WhatsApp. Si te falta algo, lo resolvemos juntos.' },
   { q: '¿Trabajan solo en Orlando?', a: 'Estamos en Orlando, Florida, pero trabajamos por WhatsApp y videollamada con negocios de cualquier lugar, en español o en inglés.' },
 ];
@@ -70,7 +70,6 @@ export const form = {
     { key: 'websites', label: 'Sitio web' },
     { key: 'catalogs', label: 'Catálogo digital' },
     { key: 'menus', label: 'Menú digital' },
-    { key: 'ecommerce', label: 'Tienda online' },
     { key: 'booking', label: 'Reservas' },
     { key: 'systems', label: 'Sistema a medida' },
     { key: 'unsure', label: 'Aún no sé' },
