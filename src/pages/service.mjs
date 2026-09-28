@@ -56,14 +56,14 @@ ${g.gives.length ? `<section class="section tight-top" aria-labelledby="give-t">
 
 ${g.control.length ? `<section class="section ctl" aria-labelledby="ctl-t">
   <div class="wrap">
-    ${sectionHead('Tú lo manejas, sin depender de <em>nadie.</em>', s.key === 'websites' ? 'Tu página dice lo que tú quieras. Los cambios nos los pides por WhatsApp.' : 'Desde tu panel, en el celular. No tienes que llamarnos para cada cambio.', { id: 'ctl-t' })}
+    ${sectionHead('Tú lo manejas, sin depender de <em>nadie.</em>', 'Todos los proyectos se entregan con tu panel de administración. Haces tus cambios desde el celular, sin llamarnos.', { id: 'ctl-t' })}
     <ul class="ctl-grid" role="list">${g.control.map((c) => `<li><span class="ctl-ic">${icon(c.i, 'ic')}</span><h3 class="h5">${esc(c.t)}</h3><p>${esc(c.d)}</p></li>`).join('')}</ul>
   </div>
 </section>` : ''}
 
 ${s.status !== 'soon' ? `<section class="section" aria-labelledby="we-t">
   <div class="wrap split">
-    <div class="split-aside">${sectionHead('De esto nos encargamos <em>nosotros.</em>', null, { id: 'we-t' })}</div>
+    <div class="split-aside">${sectionHead('De esto nos encargamos <em>nosotros.</em>', 'Tú tienes el control de tu negocio. Nosotros damos el soporte y el mantenimiento.', { id: 'we-t' })}</div>
     <ul class="feat-grid" role="list">${weHandle.map((f) => `<li><h3 class="h5">${esc(f.t)}</h3><p>${esc(f.d)}</p></li>`).join('')}</ul>
   </div>
 </section>` : ''}

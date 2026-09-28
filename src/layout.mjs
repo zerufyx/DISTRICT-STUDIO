@@ -3,9 +3,9 @@ import { esc, icon, wordmark, wa } from './core.mjs';
 import { services } from '../content/services.mjs';
 
 const NAV = [
+  { href: '/negocios/', label: 'Tu negocio', match: '/negocios/' },
   { href: '/portfolio/', label: 'Trabajos', match: '/portfolio/' },
   { href: '/services/', label: 'Servicios', match: '/services/' },
-  { href: '/#proceso', label: 'Proceso', match: '#' },
   { href: '/about/', label: 'Nosotros', match: '/about/' },
 ];
 
@@ -108,10 +108,11 @@ function footer(ctx) {
     <div class="foot-grid">
       <div class="foot-brand">
         <a class="brand" href="${ctx.url('/')}" aria-label="District Studio, inicio">${wordmark()}</a>
-        <p>Páginas web, menús digitales, catálogos, tiendas y sistemas para negocios que venden por Instagram, TikTok y WhatsApp.</p>
+        <p>Páginas web, menús digitales, catálogos, citas y sistemas, con tu panel para manejarlos tú mismo.</p>
       </div>
       <nav aria-label="Servicios"><h2 class="foot-h">Servicios</h2><ul>${svc}</ul></nav>
       <nav aria-label="Estudio"><h2 class="foot-h">Estudio</h2><ul>
+        <li><a href="${ctx.url('/negocios/')}">Tu negocio</a></li>
         <li><a href="${ctx.url('/portfolio/')}">Trabajos</a></li>
         <li><a href="${ctx.url('/#proceso')}">Proceso</a></li>
         <li><a href="${ctx.url('/about/')}">Nosotros</a></li>

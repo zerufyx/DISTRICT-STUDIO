@@ -1,3 +1,4 @@
+import { chooser } from './vertical.mjs';
 import { esc, icon } from '../core.mjs';
 import { btn, img, phone, stage, lines, ctaBand } from '../components.mjs';
 import { services } from '../../content/services.mjs';
@@ -142,6 +143,16 @@ export default function home(ctx) {
       </div>
     </div>
     <div class="inst-bar" aria-hidden="true"><i></i></div>
+  </div>
+</section>
+
+<section class="section ng-sec" aria-labelledby="ng-t">
+  <div class="wrap">
+    <header class="sec-head ng-head">
+      <h2 class="h2" id="ng-t">${lines(['¿Qué negocio', '<em>tienes?</em>'])}</h2>
+      <p class="lead">Elige el tuyo y mira en un minuto lo que te entregamos y cómo lo manejas tú.</p>
+    </header>
+    ${chooser(ctx)}
   </div>
 </section>
 

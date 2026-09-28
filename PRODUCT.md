@@ -34,6 +34,10 @@ Success for the site: a visitor opens a real example, trusts it, and writes on W
 
 ## Capabilities and Constraints
 
+- Every project is delivered with an admin panel: the owner makes their own changes; the studio provides support and maintenance (owner's rule, 2026-09-28). The site must say this clearly.
+- No online card payments are offered. Orders and bookings arrive by WhatsApp; the owner handles payment.
+- Pages per business type live at /negocios/ (restaurantes, tiendas, concesionarios, citas), in the pitch format: pains, what we give, live panel demo, how it sells, you vs. us.
+
 - Prices are NOT shown on the site. Pricing is discussed on WhatsApp.
 - Vertical-specific offers exist (reventa, comida, concesionarios, servicios); all verticals are targeted equally.
 - Spanish first. An English version is a later step.

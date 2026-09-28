@@ -9,7 +9,7 @@ export const services = [
     icon: 'web',
     status: 'available',
     outcome: 'Una presencia en internet a la altura de tu marca.',
-    lead: 'Tu sitio con lo que un cliente busca antes de visitarte o comprarte: qué haces, precios, horarios, ubicación y cómo escribirte. Diseñado para el celular y listo para aparecer en Google.',
+    lead: 'Tu sitio con lo que un cliente busca antes de visitarte o comprarte: qué haces, precios, horarios, ubicación y cómo escribirte. Diseñado para el celular, listo para aparecer en Google y con tu panel para cambiarlo tú mismo.',
     forWho: ['Restaurantes', 'Barberías', 'Salones de belleza', 'Tiendas', 'Profesionales', 'Marcas personales', 'Negocios locales'],
     benefits: [
       { t: 'Te toman en serio', d: 'Un sitio propio con tu dominio da más confianza que un perfil de redes o un link genérico.' },

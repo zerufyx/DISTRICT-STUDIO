@@ -41,7 +41,7 @@ export const beforeAfter = {
 export const faq = [
   { q: '¿Cuánto cuesta?', a: 'Depende de lo que tu negocio necesite: no cuesta lo mismo un menú con QR que un sistema a medida. Escríbenos por WhatsApp, cuéntanos qué vendes y te damos el precio exacto, sin compromiso.' },
   { q: '¿Cuánto tarda un proyecto?', a: 'Depende de lo que construyamos y de qué tan rápido tengamos tus fotos, textos y precios. Antes de empezar te decimos la fecha de entrega.' },
-  { q: '¿Puedo cambiar precios y productos yo mismo?', a: 'Sí. Los menús y catálogos incluyen un panel donde cambias precios, fotos y descripciones, y marcas lo que se agotó, desde tu celular.' },
+  { q: '¿Puedo hacer los cambios yo mismo?', a: 'Sí. Todos los proyectos se entregan con tu panel de administración: cambias precios, fotos, productos, horarios y lo que se agotó, desde tu celular. Nosotros quedamos de soporte y mantenimiento.' },
   { q: '¿Qué incluye la mensualidad?', a: 'El hosting, el soporte y el mantenimiento para que tu página, menú o catálogo siga en línea y funcionando.' },
   { q: '¿Necesito tener dominio?', a: 'No. Te ayudamos a elegir y comprar uno (tunegocio.com) y lo conectamos por ti.' },
   { q: '¿El cliente paga en la página?', a: 'Por ahora no. El pedido te llega completo por WhatsApp y el pago lo acuerdas directo con tu cliente: efectivo, Zelle, transferencia o tu propio link de pago.' },

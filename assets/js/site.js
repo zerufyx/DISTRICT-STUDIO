@@ -354,4 +354,70 @@
     var r = d.createRange(); r.selectNodeContents(src);
     var sel = w.getSelection(); sel.removeAllRanges(); sel.addRange(r);
   }
+
+  /* ---------- Negocios: apariciones y demostración del panel ---------- */
+  var ins = [].slice.call(d.querySelectorAll('[data-in]'));
+  if (ins.length) {
+    if ('IntersectionObserver' in w && !reduce) {
+      var inIO = new IntersectionObserver(function (es) {
+        es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); inIO.unobserve(e.target); } });
+      }, { rootMargin: '0px 0px -10% 0px' });
+      ins.forEach(function (el) { inIO.observe(el); });
+    } else ins.forEach(function (el) { el.classList.add('in'); });
+  }
+
+  // Lo que se cambia en el panel (izquierda) aparece en lo que ve el cliente (derecha)
+  [].slice.call(d.querySelectorAll('[data-live]')).forEach(function (live) {
+    var cfg;
+    try { cfg = JSON.parse(live.getAttribute('data-live')); } catch (e) { return; }
+    var rows = live.querySelectorAll('.lv-row'), cards = live.querySelectorAll('.lv-card');
+    var caps = [].slice.call(live.querySelectorAll('.live-steps li'));
+    var addBtn = live.querySelector('.lv-addbtn'), toast = live.querySelector('[data-toast]');
+    var DUR = 3600, timers = [], running = false, idx = -1;
+    caps.forEach(function (c) { c.style.setProperty('--dur', DUR + 'ms'); });
+    function later(fn, ms) { timers.push(setTimeout(fn, ms)); }
+    function redo(el, c) { el.classList.remove(c); void el.offsetWidth; el.classList.add(c); }
+    function price(el, v) { var t = el.querySelector('[data-p]'); t.textContent = v; redo(t, 'is-chg'); }
+    function saved() { toast.classList.add('is-on'); later(function () { toast.classList.remove('is-on'); }, 1100); }
+    function reset() {
+      [].forEach.call(rows, function (r, i) { r.classList.remove('is-off', 'is-in', 'is-tap'); r.classList.toggle('is-hidden', i === cfg.add); r.querySelector('[data-p]').textContent = cfg.orig[i]; });
+      [].forEach.call(cards, function (c, i) { c.classList.remove('is-off', 'is-in', 'is-new', 'is-flash'); c.classList.toggle('is-hidden', i === cfg.add); c.querySelector('[data-p]').textContent = cfg.orig[i]; });
+      caps.forEach(function (c) { c.classList.remove('is-on', 'is-done'); });
+    }
+    function apply(s, instant) {
+      var i = s.a === 'add' ? cfg.add : s.i;
+      var row = rows[i], card = cards[i];
+      var toRow = function () {
+        if (s.a === 'price') price(row, s.to);
+        else if (s.a === 'off') row.classList.add('is-off');
+        else { row.classList.remove('is-hidden'); redo(row, 'is-in'); }
+      };
+      var toCard = function () {
+        if (s.a === 'price') price(card, s.to);
+        else if (s.a === 'off') card.classList.add('is-off');
+        else { card.classList.remove('is-hidden'); card.classList.add('is-new'); redo(card, 'is-in'); }
+        redo(card, 'is-flash');
+      };
+      if (instant) { toRow(); toCard(); return; }
+      redo(s.a === 'add' ? addBtn : row, 'is-tap');
+      later(function () { toRow(); saved(); }, 550);
+      later(function () { redo(live, 'is-sync'); }, 900);
+      later(toCard, 1450);
+    }
+    function loop() {
+      idx++;
+      if (idx >= cfg.steps.length) { later(function () { reset(); idx = -1; later(loop, 700); }, 1200); return; }
+      caps.forEach(function (c, j) { c.classList.toggle('is-on', j === idx); c.classList.toggle('is-done', j < idx); });
+      apply(cfg.steps[idx]);
+      later(loop, DUR);
+    }
+    function start() { if (running) return; running = true; reset(); idx = -1; later(loop, 400); }
+    function stop() { running = false; timers.forEach(clearTimeout); timers = []; }
+    if (reduce || !('IntersectionObserver' in w)) {
+      cfg.steps.forEach(function (s) { apply(s, true); });
+      caps.forEach(function (c) { c.classList.add('is-done'); });
+      return;
+    }
+    new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) start(); else stop(); }); }, { threshold: 0.3 }).observe(live);
+  });
 })();

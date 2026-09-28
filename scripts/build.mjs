@@ -22,6 +22,8 @@ import portfolio from '../src/pages/portfolio.mjs';
 import projectPage from '../src/pages/project.mjs';
 import about from '../src/pages/about.mjs';
 import contact from '../src/pages/contact.mjs';
+import verticalPage, { verticalsIndex } from '../src/pages/vertical.mjs';
+import { verticals } from '../content/verticals.mjs';
 import { notFound, dashboard } from '../src/pages/misc.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -31,6 +33,8 @@ const OUT = path.join(ROOT, mode === 'preview' ? 'preview' : 'dist');
 // ── Rutas del sitio ────────────────────────────────────────────
 const routes = [
   (ctx) => home(ctx),
+  (ctx) => verticalsIndex(ctx),
+  ...verticals.map((v) => (ctx) => verticalPage(ctx, v)),
   (ctx) => servicesPage(ctx),
   ...services.map((s) => (ctx) => servicePage(ctx, s)),
   (ctx) => portfolio(ctx),

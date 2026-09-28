@@ -7,7 +7,7 @@ export const weHandle = [
   { t: 'Diseño con tu marca', d: 'Tu logo, tus colores y tu forma de hablar.' },
   { t: 'Hosting y seguridad', d: 'Tu página en línea, rápida y con conexión segura.' },
   { t: 'Dominio conectado', d: 'Tu link listo para compartir, o tunegocio.com si lo quieres.' },
-  { t: 'Soporte', d: 'Si algo falla, lo arreglamos. Nos escribes por WhatsApp.' },
+  { t: 'Soporte y mantenimiento', d: 'Si algo falla, lo arreglamos, y mantenemos todo al día.' },
 ];
 
 export const guide = {
@@ -17,10 +17,12 @@ export const guide = {
       'Botones a WhatsApp, llamada, Instagram y Google Maps',
       'Hecha para verse bien en el celular',
       'Lista para aparecer en Google cuando te buscan',
+      'Tu panel de administración para hacer tus cambios tú mismo',
     ],
     control: [
-      { i: 'photo', t: 'Tu contenido', d: 'Tú decides los textos, fotos y servicios que se muestran.' },
-      { i: 'clock', t: 'Horarios y datos', d: '¿Cambió algo? Nos escribes y lo actualizamos.' },
+      { i: 'photo', t: 'Textos y fotos', d: 'Cambias lo que dice tu página y sus fotos.' },
+      { i: 'clock', t: 'Horarios y datos', d: 'Horario, teléfono y dirección siempre al día.' },
+      { i: 'price', t: 'Servicios y precios', d: 'Agregas, quitas o cambias lo que ofreces.' },
       { i: 'share', t: 'Compartir', d: 'Tu link en la bio, en tus historias y en tus tarjetas.' },
     ],
     how: [
