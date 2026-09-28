@@ -1,6 +1,7 @@
 import { esc, icon } from '../core.mjs';
 import { btn, phone, sectionHead, faqList, ctaBand, crumbs } from '../components.mjs';
 import { services } from '../../content/services.mjs';
+import { guide } from '../../content/service-guide.mjs';
 import { projects } from '../../content/projects.mjs';
 import { faq } from '../../content/studio.mjs';
 import { breadcrumb, faqPage, service as serviceSchema } from '../seo.mjs';
@@ -11,6 +12,7 @@ export default function servicesPage(ctx) {
   const blocks = services
     .map((s) => {
       const ex = s.examples.map((k) => bySlug[k]).filter(Boolean);
+      const g = guide[s.key] || { gives: [], control: [] };
       const shot = ex[0] && ex[0].phones ? ex[0].phones[Math.min(1, ex[0].phones.length - 1)] : s.key === 'booking' ? { src: 'booking-demo', alt: 'Demostración de una página de reservas' } : null;
       return `<article class="svc-block${s.status === 'soon' ? ' is-soon' : ''}" id="${s.key}" aria-labelledby="t-${s.key}">
     <div class="svc-block-head">
@@ -20,8 +22,8 @@ export default function servicesPage(ctx) {
       ${shot ? `<div class="svc-shot">${phone(ctx, { src: shot.src, alt: shot.alt })}</div>` : ''}
     </div>
     <div class="svc-block-body">
-      <ul class="benefits" role="list">${s.benefits.map((b) => `<li><strong>${esc(b.t)}.</strong> ${esc(b.d)}</li>`).join('')}</ul>
-      <ul class="feat-inline" role="list" aria-label="Incluye">${s.features.slice(0, 5).map((f) => `<li>${esc(f.t)}</li>`).join('')}</ul>
+      ${g.gives.length ? `<h3 class="aside-label">Te damos</h3><ul class="gives" role="list">${g.gives.slice(0, 4).map((x) => `<li>${icon('check', 'ic ic-sm')}<span>${esc(x)}</span></li>`).join('')}</ul>` : ''}
+      ${g.control.length ? `<h3 class="aside-label">Tú controlas</h3><ul class="feat-inline" role="list">${g.control.map((c) => `<li>${esc(c.t)}</li>`).join('')}</ul>` : ''}
       ${ex.length ? `<p class="svc-ex">Ejemplos: ${ex.map((p) => `<a class="link" href="${ctx.url(`/projects/${p.slug}/`)}">${esc(p.name)}</a>${p.kind === 'concept' ? ' (concepto)' : ''}`).join(', ')}</p>` : ''}
       <div class="svc-foot">
         ${btn(ctx.url('/contact/#' + s.key), s.status === 'soon' ? 'Contarte mi idea' : 'Empezar un proyecto', { arrow: true })}

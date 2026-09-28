@@ -33,7 +33,7 @@ const scenes = [
   { k: 'Sitio web', who: 'Jircars', note: 'Concepto', src: 'jircars-desktop', w: 1440, h: 900, shape: 'web' },
   { k: 'Catálogo digital', who: 'Aureon', note: 'Concepto', src: 'aureon-catalogo', w: 540, h: 1169, shape: 'phone' },
   { k: 'Menú digital', who: 'S91 House Grill', note: 'En línea', src: 's91-menu-scroll', w: 540, h: 3600, shape: 'phone', scroll: true },
-  { k: 'Catálogo con carrito', who: 'Offsuite', note: 'Concepto', src: 'offsuite-catalogo', w: 540, h: 1169, shape: 'phone' },
+  { k: 'Catálogo con carrito', who: 'Offsuite', note: 'Concepto', src: 'offsuite-scroll', w: 540, h: 3600, shape: 'phone', scroll: true },
   { k: 'Reservas', who: 'Demostración', note: 'Ejemplo', src: 'booking-demo', w: 540, h: 1169, shape: 'phone' },
 ];
 

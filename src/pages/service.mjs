@@ -1,6 +1,7 @@
 import { esc, icon } from '../core.mjs';
 import { btn, sectionHead, workGrid, ctaBand, crumbs, faqList, serviceIndex } from '../components.mjs';
 import { services } from '../../content/services.mjs';
+import { guide, weHandle } from '../../content/service-guide.mjs';
 import { projects } from '../../content/projects.mjs';
 import { faq } from '../../content/studio.mjs';
 import { breadcrumb, service as serviceSchema, faqPage } from '../seo.mjs';
@@ -9,15 +10,17 @@ const bySlug = Object.fromEntries(projects.map((p) => [p.slug, p]));
 
 // Preguntas que aplican a cada servicio
 const faqFor = {
-  websites: [0, 3, 5, 6],
+  websites: [0, 1, 4, 6],
   menus: [1, 2, 3, 5],
   catalogs: [1, 2, 4, 5],
+  booking: [0, 1, 3, 5],
   systems: [0, 1, 2, 6],
   apps: [0, 6],
 };
 
 export default function servicePage(ctx, s) {
   const ex = s.examples.map((k) => bySlug[k]).filter(Boolean);
+  const g = guide[s.key] || { gives: [], control: [], how: [] };
   const others = services.filter((o) => o.key !== s.key);
   const qs = (faqFor[s.key] || []).map((i) => faq[i]);
   const items = [{ href: '/', label: 'Inicio' }, { href: '/services/', label: 'Servicios' }, { href: s.path, label: s.name }];
@@ -40,22 +43,41 @@ export default function servicePage(ctx, s) {
   </div>
 </section>
 
-<section class="section tight-top" aria-labelledby="ben-t">
-  <div class="wrap">
-    <h2 class="sr" id="ben-t">Beneficios</h2>
-    <ul class="benefit-cols" role="list">${s.benefits.map((b) => `<li><h3 class="h4">${esc(b.t)}</h3><p>${esc(b.d)}</p></li>`).join('')}</ul>
-  </div>
-</section>
-
-<section class="section" aria-labelledby="feat-t">
+${g.gives.length ? `<section class="section tight-top" aria-labelledby="give-t">
   <div class="wrap split">
     <div class="split-aside">
-      ${sectionHead('Qué incluye', 'Cada proyecto se ajusta a tu negocio. Esto es lo que normalmente construimos.', { id: 'feat-t' })}
+      ${sectionHead('Lo que te <em>damos</em>', null, { id: 'give-t' })}
       <h3 class="aside-label">Para quién es</h3>
       <ul class="chips-static" role="list">${s.forWho.map((w) => `<li>${esc(w)}</li>`).join('')}</ul>
     </div>
-    <ul class="feat-grid" role="list">${s.features.map((f) => `<li><h3 class="h5">${esc(f.t)}</h3><p>${esc(f.d)}</p></li>`).join('')}</ul>
+    <ul class="gives gives-lg" role="list">${g.gives.map((x) => `<li>${icon('check', 'ic')}<span>${esc(x)}</span></li>`).join('')}</ul>
   </div>
+</section>` : ''}
+
+${g.control.length ? `<section class="section ctl" aria-labelledby="ctl-t">
+  <div class="wrap">
+    ${sectionHead('Tú lo manejas, sin depender de <em>nadie.</em>', s.key === 'websites' ? 'Tu página dice lo que tú quieras. Los cambios nos los pides por WhatsApp.' : 'Desde tu panel, en el celular. No tienes que llamarnos para cada cambio.', { id: 'ctl-t' })}
+    <ul class="ctl-grid" role="list">${g.control.map((c) => `<li><span class="ctl-ic">${icon(c.i, 'ic')}</span><h3 class="h5">${esc(c.t)}</h3><p>${esc(c.d)}</p></li>`).join('')}</ul>
+  </div>
+</section>` : ''}
+
+${s.status !== 'soon' ? `<section class="section" aria-labelledby="we-t">
+  <div class="wrap split">
+    <div class="split-aside">${sectionHead('De esto nos encargamos <em>nosotros.</em>', null, { id: 'we-t' })}</div>
+    <ul class="feat-grid" role="list">${weHandle.map((f) => `<li><h3 class="h5">${esc(f.t)}</h3><p>${esc(f.d)}</p></li>`).join('')}</ul>
+  </div>
+</section>` : ''}
+
+${g.how.length ? `<section class="section" aria-labelledby="how-t">
+  <div class="wrap">
+    ${sectionHead('Cómo <em>funciona</em>', null, { id: 'how-t' })}
+    <ol class="how" role="list">${g.how.map((h, i) => `<li><span class="how-n">${String(i + 1).padStart(2, '0')}</span><h3 class="h5">${esc(h.t)}</h3><p>${esc(h.d)}</p></li>`).join('')}</ol>
+    ${g.not ? `<p class="how-note"><strong>Para que quede claro:</strong> ${esc(g.not)}</p>` : ''}
+  </div>
+</section>` : g.not ? `<section class="section tight-top"><div class="wrap"><p class="how-note">${esc(g.not)}</p></div></section>` : ''}
+
+<section class="section tagline" aria-label="Nuestra idea">
+  <div class="wrap"><p class="tagline-t">Nosotros te damos la herramienta. <em>Tú manejas tu negocio.</em></p></div>
 </section>
 
 ${
