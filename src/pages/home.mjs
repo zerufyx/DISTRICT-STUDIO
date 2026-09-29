@@ -20,18 +20,19 @@ const preview = {
 
 // Tarjetas del hero: interfaces reales que flotan detrás de la tipografía
 const heroCards = [
-  { src: 'jircars-desktop-800', w: 800, h: 500, cls: 'hc-1 is-web', depth: 0.35 },
+  { src: 'ibrows-desktop-800', w: 800, h: 500, cls: 'hc-1 is-web', depth: 0.35 },
   { src: 's91-bebidas', w: 540, h: 1169, cls: 'hc-2', depth: 0.8 },
   { src: 'aureon-catalogo', w: 540, h: 1169, cls: 'hc-3', depth: 0.55 },
-  { src: 'altapinta-desktop-800', w: 800, h: 500, cls: 'hc-4 is-web', depth: 0.45 },
+  { src: 'jircars-desktop-800', w: 800, h: 500, cls: 'hc-4 is-web', depth: 0.45 },
   { src: 's91-panel-edit', w: 540, h: 1169, cls: 'hc-5', depth: 1 },
-  { src: 'booking-demo', w: 540, h: 1169, cls: 'hc-6', depth: 0.7 },
+  { src: 'ibrows-servicios', w: 540, h: 1169, cls: 'hc-6', depth: 0.7 },
   { src: 'liz-catalogo', w: 540, h: 1169, cls: 'hc-7', depth: 0.6 },
 ];
 
 // La instalación: una misma pantalla que se transforma en cinco negocios
 const scenes = [
   // tour: captura larga del negocio real que baja sola; splash: su pantalla de logo; fixed: encabezado fijo
+  { k: 'Sitio con reservas', who: 'I Brows', note: 'Concepto', shape: 'phone', tour: 'ibrows', w: 900, h: 5843, splash: true, fixed: true },
   { k: 'Sitio web', who: 'Jircars', note: 'Concepto', shape: 'web', tour: 'jircars', w: 1440, h: 2700, splash: true, fixed: true },
   { k: 'Catálogo digital', who: 'Aureon', note: 'Concepto', shape: 'phone', tour: 'aureon', w: 900, h: 5843, splash: true, fixed: true },
   { k: 'Menú digital', who: 'S91 House Grill', note: 'En línea', shape: 'phone', tour: 's91', w: 900, h: 5843, splash: true, fixed: false },
@@ -84,7 +85,7 @@ function moreCard(ctx, p) {
 
 export default function home(ctx) {
   const list = services.filter((s) => preview[s.key]);
-  const [f1, f2, f3] = ['s91-house-grill', 'jircars', 'zerufy'].map((k) => bySlug[k]);
+  const [f1, f2, f3, f4, f5] = ['ibrows', 's91-house-grill', 'offsuite', 'jircars', 'zerufy'].map((k) => bySlug[k]);
   const more = ['aureon', 'amh-store', 'alta-pinta', 'liz-boutique', 'carpashop', 'panel-district'].map((k) => bySlug[k]);
   const thumbs = { fresa: 's91-thumb-fresa', mora: 's91-thumb-mora', pina: 's91-thumb-pina', nestea: 's91-thumb-nestea' };
   const th = (k) => `<img src="${ctx.asset(`/assets/img/work/${thumbs[k]}.webp`)}" alt="" width="160" height="160" loading="lazy" decoding="async">`;
@@ -202,9 +203,11 @@ export default function home(ctx) {
       <h2 class="h2" id="sel-t">${lines(['Trabajo', '<em>seleccionado.</em>'])}</h2>
       <p class="lead">Clientes y conceptos, diseñados y construidos por District.</p>
     </header>
-    ${featured(ctx, f1, 'full', 1)}
-    ${featured(ctx, f2, 'asym', 2)}
+    ${featured(ctx, f1, 'asym', 1)}
+    ${featured(ctx, f2, 'full', 2)}
     ${featured(ctx, f3, 'strip', 3)}
+    ${featured(ctx, f4, 'asym', 4)}
+    ${featured(ctx, f5, 'strip', 5)}
   </div>
   <div class="mw-sec">
     <div class="wrap mw-head">

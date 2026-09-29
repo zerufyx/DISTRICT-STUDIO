@@ -226,6 +226,20 @@ export const projects = [
 // No son clientes: en el sitio siempre dicen "Concepto".
 const concepts = [
   {
+    slug: 'ibrows',
+    kind: 'concept',
+    name: 'I Brows',
+    meta: 'Concepto / Cejas y pestañas',
+    sector: 'Estética: cejas, pestañas y lash lift',
+    type: 'Sitio web con reservas por servicio',
+    categories: ['websites', 'branding'],
+    summary: 'Sitio de estudio de cejas y pestañas con la identidad de la marca: intro animada, servicios por categoría, cita armada con total al instante y reserva en línea.',
+    tint: '#561920',
+    web: { src: 'ibrows-desktop', alt: 'Portada de I Brows en computadora: “Arte & Lujo”' },
+    phones: [{ src: 'ibrows-intro', alt: 'Intro animada de I Brows con el logo' }, { src: 'ibrows-hero', alt: 'Portada de I Brows en el celular con el retrato en arco' }, { src: 'ibrows-servicios', alt: 'Servicios de I Brows con una cita en armado y el total' }],
+    features: ['Intro animada con el logo de la marca', 'Servicios por categoría: cejas, pestañas, lash lift', 'Cita armada al instante: tiempo y total', 'Reserva de fecha y hora en línea', 'Clase 1:1, sobre la fundadora y reseñas', 'Horarios del estudio y contacto por Instagram', 'Español e inglés'],
+  },
+  {
     slug: 'offsuite',
     kind: 'concept',
     name: 'Offsuite',
@@ -314,6 +328,6 @@ const concepts = [
 ];
 
 // Orden del portafolio: lo más fuerte primero.
-const ORDER = ['s91-house-grill', 'offsuite', 'jircars', 'zerufy', 'aureon', 'amh-store', 'alta-pinta', 'liz-boutique', 'carpashop', 'panel-district'];
+const ORDER = ['ibrows', 's91-house-grill', 'offsuite', 'jircars', 'zerufy', 'aureon', 'amh-store', 'alta-pinta', 'liz-boutique', 'carpashop', 'panel-district'];
 projects.push(...concepts);
 projects.sort((a, b) => ORDER.indexOf(a.slug) - ORDER.indexOf(b.slug));

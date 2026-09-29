@@ -174,7 +174,7 @@ export const verticals = [
   },
   {
     slug: 'citas',
-    preview: 'booking-demo',
+    preview: 'ibrows-hero',
     need: 'booking',
     name: 'Negocios con citas',
     short: 'Citas y servicios',
@@ -219,7 +219,7 @@ export const verticals = [
       { t: 'Tú la confirmas', d: 'Y atiendes como siempre.' },
     ],
     control: ['Servicios y precios', 'Horarios', 'Días libres', 'Fotos de tu trabajo'],
-    examples: [],
+    examples: ['ibrows'],
     faq: [
       { q: '¿Mis clientes tienen que descargar algo?', a: 'No. Abren tu link y reservan desde el navegador del celular.' },
       { q: '¿Puedo cerrar un día o cambiar mis horarios?', a: 'Sí. Desde tu panel abres y cierras días y horas cuando quieras.' },

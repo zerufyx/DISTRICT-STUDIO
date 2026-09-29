@@ -26,7 +26,7 @@ export const services = [
       { t: 'Carga rápida', d: 'Funciona bien aunque el cliente tenga mala señal.' },
       { t: 'Analítica', d: 'Sabes cuánta gente entra y de dónde viene.' },
     ],
-    examples: ['jircars', 's91-house-grill'],
+    examples: ['ibrows', 'jircars', 's91-house-grill'],
     price: { label: 'Cotización según el proyecto' },
     seo: {
       title: 'Diseño de páginas web para negocios en Orlando | District Studio',
@@ -117,7 +117,7 @@ export const services = [
       { t: 'Tu marca', d: 'Colores, logo y fotos de tu trabajo.' },
       { t: 'Dominio propio', d: 'tunegocio.com o un link corto para tu bio.' },
     ],
-    examples: [],
+    examples: ['ibrows'],
     price: { label: 'Cotización según el proyecto' },
     seo: {
       title: 'Página de reservas y citas para barberías y salones | District Studio',
