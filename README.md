@@ -71,7 +71,7 @@ node scripts/build.mjs --preview   # versión con rutas relativas (para vista pr
 |---|---|---|
 | `Zerufy-Studio-` | Este sitio, el del estudio | zerufystudio.com |
 | `Zerufy` | Tienda Zerufy (reventa de lujo y streetwear) | zerufy.store |
-| `zerufy-v2` | Versión anterior o de prueba de la tienda Zerufy | No es la tienda en línea |
+| `zerufy-v2` | Copia vieja de la tienda Zerufy. Hay que apagarla y archivarla | Todavía en GitHub Pages |
 | `amhstore` | AMH Store, cliente | amhstore.store |
 | `S91-Grill-House-` | S91 House Grill, menú digital, cliente | s91housegrill.com |
 | `ibrows` | I Brows, concepto: sitio con reservas | GitHub Pages |
@@ -83,6 +83,10 @@ node scripts/build.mjs --preview   # versión con rutas relativas (para vista pr
 | `ByKate` | By Kate, concepto (todavía no está en el portafolio) | GitHub Pages |
 | `Placidlux` | Placid Lux Esthetic, concepto (todavía no está en el portafolio) | GitHub Pages |
 | — | **Offsuite**, concepto: catálogo con carrito. **Todavía no tiene repo.** | Falta subirlo |
+
+## Supabase
+
+Un solo proyecto de Supabase para todos los negocios, con cuatro sistemas separados: Tiendas (`stores`, `products`…), Menús (`tiendas`, `platos`…), Reservas (`bk_*`) y este sitio (`leads`). Cada tabla dice en su comentario a qué sistema y a qué repo pertenece. Cada negocio nuevo recibe su propio `store_id`, que nunca se reutiliza.
 
 ## Agregar un proyecto al portafolio
 
