@@ -139,11 +139,57 @@ function dock(ctx) {
 </div>`;
 }
 
+/* ---------- Entrada de la portada ----------
+   El punto rojo de la marca aparece, escribe ZERUFY STUDIO, crece hasta cubrir
+   la pantalla y sube como una cortina. Una vez por sesión; un toque la salta.
+   Los tiempos (ms) tienen que coincidir con las animaciones .intro en site.css. */
+const INTRO_HEAD = `(function(){try{if(location.hash||sessionStorage.getItem('zs-intro'))return;document.documentElement.classList.add('has-intro');}catch(e){}})();`;
+
+const INTRO_RUN = `(function(){
+var h=document.documentElement,el=document.querySelector('[data-intro]');if(!el)return;
+if(!h.classList.contains('has-intro')){el.parentNode.removeChild(el);return;}
+try{sessionStorage.setItem('zs-intro','1');}catch(e){}
+var w=window,reduce=w.matchMedia&&w.matchMedia('(prefers-reduced-motion: reduce)').matches;
+var T=reduce?{reveal:950,end:1350}:{reveal:2380,end:3150};
+var timers=[],done=false,dot=el.querySelector('.intro-dot');
+function reveal(){if(w.__introRevealed)return;w.__introRevealed=true;document.dispatchEvent(new Event('intro:reveal'));}
+function end(){if(done)return;done=true;timers.forEach(clearTimeout);off();reveal();h.classList.remove('has-intro');if(el.parentNode)el.parentNode.removeChild(el);}
+function skip(){if(done||el.classList.contains('is-skip'))return;el.classList.add('is-skip');reveal();timers.forEach(clearTimeout);timers=[setTimeout(end,340)];}
+var evs=['pointerdown','wheel','keydown','touchstart'];
+function on(){evs.forEach(function(e){w.addEventListener(e,skip,{passive:true});});}
+function off(){evs.forEach(function(e){w.removeEventListener(e,skip,{passive:true});});}
+function go(){if(done)return;
+var r=dot.getBoundingClientRect(),cx=r.left+r.width/2,cy=r.top+r.height/2,W=w.innerWidth,H=w.innerHeight;
+dot.style.setProperty('--sx',(W/2-cx).toFixed(1)+'px');dot.style.setProperty('--sy',(H/2-cy).toFixed(1)+'px');
+dot.style.setProperty('--fs',Math.ceil(2*Math.max(cx,W-cx,cy,H-cy)/Math.max(r.width,1)*1.05+2));
+el.classList.add('is-go');timers.push(setTimeout(reveal,T.reveal),setTimeout(end,T.end));}
+on();timers.push(setTimeout(end,6500));
+var f=document.fonts;
+if(f&&f.load){Promise.race([f.load('1em "Bebas Neue"'),new Promise(function(r){setTimeout(r,800);})]).then(function(){requestAnimationFrame(go);},go);}
+else go();
+})();`;
+
+function intro() {
+  let n = 0;
+  const word = (s, cls) => `<span class="iw ${cls}">${[...s].map((c) => `<span class="il" style="--i:${n++}">${c}</span>`).join('')}</span>`;
+  return `<div class="intro" aria-hidden="true" data-intro>
+  <div class="intro-panel">
+    <div class="intro-c">
+      <p class="intro-word"><span class="intro-mask">${word('Zerufy', 'iw-r')} ${word('Studio', '')}</span><i class="intro-dot"></i></p>
+      <div class="intro-rule"><i></i></div>
+      <div class="intro-meta"><span>Creamos experiencias digitales</span><span>Orlando, FL</span></div>
+    </div>
+  </div>
+</div>
+<script>${INTRO_RUN}</script>`;
+}
+
 /** Documento completo. En preview, la portada se publica sin <html>/<head>/<body>
  *  porque el Artifact le pone su propio esqueleto. */
 export function document(ctx, p) {
   const bare = ctx.mode === 'preview' && p.path === '/';
-  const body = `${header(ctx)}
+  const isHome = p.path === '/';
+  const body = `${isHome ? `<script>${INTRO_HEAD}</script>\n${intro()}\n` : ''}${header(ctx)}
 <main id="main" class="${esc(p.mainClass || '')}">
 ${p.main}
 </main>

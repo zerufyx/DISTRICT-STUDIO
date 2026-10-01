@@ -1331,3 +1331,55 @@ main { display: block; }
 @keyframes tour-scroll { from { transform: translate3d(0, 0, 0); } to { transform: translate3d(0, calc(-100% + var(--sh)), 0); } }
 @keyframes tour-splash { from { opacity: 1; transform: scale(1); } to { opacity: 0; transform: scale(1.04); } }
 @keyframes tour-fixed { from { opacity: 0; } to { opacity: 1; } }
+
+/* ---------- Entrada de la portada (una vez por sesión) ----------
+   Tiempos sincronizados con INTRO_RUN en src/layout.mjs:
+   punto 0–2380ms (aparece, se desliza, cubre), cortina 2380–3150ms. */
+.intro { display: none; }
+html.has-intro .intro { display: block; position: fixed; inset: 0; z-index: 1000; animation: intro-fail 1ms linear 7s forwards; }
+.intro-panel { position: absolute; inset: 0; display: grid; place-items: center; background: var(--bg); overflow: hidden; contain: strict; }
+.intro-c { display: grid; gap: clamp(14px, 2vw, 22px); width: max-content; max-width: calc(100vw - 32px); }
+.intro-word { font-family: var(--display); font-weight: 400; text-transform: uppercase; font-size: clamp(3.4rem, 17.5vw, 13rem); line-height: 0.84; letter-spacing: 0.01em; white-space: nowrap; color: var(--ink); }
+.intro-mask { display: inline-block; clip-path: inset(-0.3em -0.2em 0 -0.2em); }
+.iw-r { color: var(--red); }
+.il { display: inline-block; }
+.intro-dot { display: inline-block; width: 0.16em; height: 0.16em; margin-left: 0.035em; vertical-align: baseline; background: var(--red); }
+.intro-rule { height: 2px; overflow: hidden; }
+.intro-rule i { display: block; height: 100%; background: var(--red); transform-origin: left center; }
+.intro-meta { display: flex; justify-content: space-between; gap: 24px; font-size: clamp(0.66rem, 0.9vw, 0.78rem); font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); }
+@media (max-width: 599px) { .intro-meta span + span { display: none; } }
+
+/* Antes de arrancar (esperando la fuente) todo está quieto y oculto */
+.intro:not(.is-go) .intro-c { visibility: hidden; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .intro.is-go .intro-dot { animation: intro-dot 2380ms both; }
+  .intro.is-go .il { animation: intro-letter 700ms var(--ease-out) both; animation-delay: calc(480ms + var(--i) * 42ms); }
+  .intro.is-go .intro-rule i { animation: intro-rule 1000ms var(--ease-io) 700ms both; }
+  .intro.is-go .intro-meta span { animation: intro-meta 600ms var(--ease-out) 1000ms both; }
+  .intro.is-go .intro-meta span + span { animation-delay: 1080ms; }
+  .intro.is-go .intro-mask, .intro.is-go .intro-rule, .intro.is-go .intro-meta { animation: intro-out 260ms var(--ease-out) 1820ms forwards; }
+  .intro.is-go .intro-panel { animation: intro-lift 770ms var(--ease-io) 2380ms forwards; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .intro.is-go .intro-c { animation: intro-fade-in 300ms ease-out both; }
+  .intro.is-go .intro-panel { animation: intro-fade-out 400ms ease-out 950ms forwards; }
+}
+.intro.is-skip { animation: intro-fade-out 320ms var(--ease-out) forwards; }
+
+@keyframes intro-dot {
+  0% { opacity: 0; transform: translate3d(var(--sx, 0px), var(--sy, 0px), 0) scale(0.4); animation-timing-function: cubic-bezier(0.23, 1, 0.32, 1); }
+  12.6% { opacity: 1; transform: translate3d(var(--sx, 0px), var(--sy, 0px), 0) scale(1); }
+  17.6% { opacity: 1; transform: translate3d(var(--sx, 0px), var(--sy, 0px), 0) scale(1); animation-timing-function: cubic-bezier(0.77, 0, 0.175, 1); }
+  48.3% { transform: translate3d(0, 0, 0) scale(1); }
+  75.6% { transform: translate3d(0, 0, 0) scale(1); animation-timing-function: cubic-bezier(0.77, 0, 0.175, 1); }
+  100% { opacity: 1; transform: translate3d(0, 0, 0) scale(var(--fs, 200)); }
+}
+@keyframes intro-letter { from { transform: translateY(110%); } to { transform: none; } }
+@keyframes intro-rule { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes intro-meta { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+@keyframes intro-out { to { opacity: 0; } }
+@keyframes intro-lift { from { background: var(--red); transform: translateY(0); } to { background: var(--red); transform: translateY(-100%); } }
+@keyframes intro-fade-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes intro-fade-out { to { opacity: 0; } }
+@keyframes intro-fail { to { visibility: hidden; pointer-events: none; } }

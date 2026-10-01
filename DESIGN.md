@@ -33,6 +33,8 @@ No purple, blue, green or gradients in Zerufy Studio's own UI. Client screenshot
 `--ease-out: cubic-bezier(0.23, 1, 0.32, 1)`, `--ease-io: cubic-bezier(0.77, 0, 0.175, 1)`.
 Line reveals, clip-path image reveals, device morph (browser ↔ phone), subtle hero parallax with pointer depth, services preview that follows the cursor (desktop) or opens in place (mobile), "Abrir" cursor over projects, magnetic main buttons, word-by-word manifesto. All off under `prefers-reduced-motion`.
 
+Home intro (once per session, tap to skip): the red brand dot appears, glides and writes ZERUFY STUDIO, a red rule fills, the dot floods the screen and the red curtain lifts into the hero (~3.1s). Reduced motion gets a plain fade. Timings live in `src/layout.mjs` (INTRO_RUN) and the `.intro` block in `site.css`.
+
 ## Honesty rules
 
 No prices. Concept projects always say "Concepto". Demo UI (booking page, admin panel) is labeled as a demonstration. Example data (Zerufy cash/inventory) is labeled.

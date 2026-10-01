@@ -84,6 +84,9 @@
   var heads = [].slice.call(d.querySelectorAll('.line')).map(function (l) { return l.closest('h1, h2, h3, .fin-t') || l.parentNode; })
     .filter(function (el, i, arr) { return arr.indexOf(el) === i; });
   var hero = d.querySelector('[data-hero]');
+  // Con la entrada en pantalla, el titular del hero espera a que suba la cortina
+  var introOn = root.classList.contains('has-intro') && !w.__introRevealed;
+  if (introOn && hero) heads = heads.filter(function (el) { return !hero.contains(el); });
   var clips = [].slice.call(d.querySelectorAll('[data-clip]'));
   if ('IntersectionObserver' in w && !reduce) {
     var io = new IntersectionObserver(function (entries) {
@@ -96,7 +99,8 @@
   } else {
     heads.concat(clips).forEach(function (el) { el.classList.add('in'); });
   }
-  if (hero) requestAnimationFrame(function () { hero.classList.add('in'); var h1 = hero.querySelector('h1'); if (h1) h1.classList.add('in'); });
+  var heroIn = function () { requestAnimationFrame(function () { hero.classList.add('in'); var h1 = hero.querySelector('h1'); if (h1) h1.classList.add('in'); }); };
+  if (hero) { if (introOn) d.addEventListener('intro:reveal', heroIn, { once: true }); else heroIn(); }
 
   /* ---------- Secciones fijadas: la instalación y el panel ---------- */
   var scrollies = [].slice.call(d.querySelectorAll('[data-scrolly]')).map(function (el) {
