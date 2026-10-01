@@ -9,12 +9,12 @@ export default {
   legalName: 'Zerufy Studio',
 
   // Dominio final, sin barra al final. Se usa en canonical, sitemap y Open Graph.
-  // CAMBIAR cuando tengas el dominio (ej. https://zerufystudio.com)
-  siteUrl: 'https://zerufyx.github.io',
+  // Dominio propio conectado a GitHub Pages
+  siteUrl: 'https://zerufystudio.com',
 
   // "" si el sitio vive en la raíz del dominio (lo normal con dominio propio).
   // "/nombre-del-repo" si lo publicas en usuario.github.io/nombre-del-repo
-  basePath: '/DISTRICT-STUDIO',
+  basePath: '',
 
   lang: 'es',
   locale: 'es_US',
