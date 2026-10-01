@@ -14,7 +14,7 @@ const preview = {
   websites: { src: 'jircars-desktop-800', w: 800, h: 500, wide: true },
   catalogs: { src: 'aureon-catalogo', w: 540, h: 1169 },
   menus: { src: 's91-menu', w: 540, h: 1169 },
-  booking: { src: 'booking-demo', w: 540, h: 1169 },
+  booking: { src: 'ibrows-servicios', w: 540, h: 1169 },
   systems: { src: 's91-panel-edit', w: 540, h: 1169 },
 };
 
@@ -37,7 +37,6 @@ const scenes = [
   { k: 'Catálogo digital', who: 'Aureon', note: 'Concepto', shape: 'phone', tour: 'aureon', w: 900, h: 5843, splash: true, fixed: true },
   { k: 'Menú digital', who: 'S91 House Grill', note: 'En línea', shape: 'phone', tour: 's91', w: 900, h: 5843, splash: true, fixed: false },
   { k: 'Catálogo con carrito', who: 'Offsuite', note: 'Concepto', shape: 'phone', tour: 'offsuite', w: 900, h: 5843, splash: false, fixed: true },
-  { k: 'Reservas', who: 'Demostración', note: 'Ejemplo', shape: 'phone', src: 'booking-demo', w: 540, h: 1169 },
 ];
 // Tiempos del recorrido (ms): logo, bajada y pausa al final
 const tourTime = (s) => { const start = s.splash ? 2300 : 1100; const run = s.shape === 'web' ? 6500 : 7500; return { start, run, total: start + run + 1700 }; };

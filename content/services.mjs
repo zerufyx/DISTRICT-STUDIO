@@ -13,7 +13,7 @@ export const services = [
     forWho: ['Restaurantes', 'Barberías', 'Salones de belleza', 'Tiendas', 'Profesionales', 'Marcas personales', 'Negocios locales'],
     benefits: [
       { t: 'Te toman en serio', d: 'Un sitio propio con tu dominio da más confianza que un perfil de redes o un link genérico.' },
-      { t: 'Te encuentran en Google', d: 'Textos, estructura y datos preparados para búsquedas como “barbería en Orlando” o “restaurante cerca de mí”.' },
+      { t: 'Te encuentran en Google', d: 'Textos, estructura y datos preparados para búsquedas como “cejas en Orlando” o “restaurante cerca de mí”.' },
       { t: 'Te escriben listos', d: 'Botones directos a WhatsApp, llamada, mapa e Instagram. Menos preguntas repetidas, más citas y ventas.' },
     ],
     features: [
@@ -102,15 +102,15 @@ export const services = [
     icon: 'calendar',
     status: 'available',
     outcome: 'Tus clientes reservan solos, a cualquier hora.',
-    lead: 'Una página donde el cliente elige el servicio, el día y la hora, y la cita te llega lista por WhatsApp. Para barberías, salones, estudios y profesionales que hoy agendan por mensaje.',
-    forWho: ['Barberías', 'Salones de belleza', 'Uñas y pestañas', 'Tatuajes', 'Estudios de entrenamiento', 'Consultorios', 'Profesionales independientes'],
+    lead: 'Una página donde el cliente elige el servicio, el día y la hora, y la cita te llega lista por WhatsApp. Para estudios de cejas y pestañas, salones, uñas y profesionales que hoy agendan por mensaje.',
+    forWho: ['Cejas y pestañas', 'Salones de belleza', 'Uñas', 'Barberías', 'Tatuajes', 'Estudios de entrenamiento', 'Consultorios', 'Profesionales independientes'],
     benefits: [
       { t: 'Menos mensajes', d: 'El cliente ve tus servicios, duración y horarios sin tener que preguntarte.' },
       { t: 'Agenda ordenada', d: 'Cada cita llega con el servicio, el día y la hora ya elegidos.' },
       { t: 'Reservas de noche', d: 'Mientras duermes, tu página sigue agendando.' },
     ],
     features: [
-      { t: 'Servicios con duración', d: 'Corte, barba, color o consulta, cada uno con su tiempo.' },
+      { t: 'Servicios con duración', d: 'Cejas, pestañas, lash lift o consulta, cada uno con su tiempo.' },
       { t: 'Días y horarios', d: 'El cliente elige entre los horarios que tú abres.' },
       { t: 'Confirmación por WhatsApp', d: 'La cita te llega escrita y lista para confirmar.' },
       { t: 'Panel', d: 'Cambias servicios, horarios y días libres desde el celular.' },
@@ -120,8 +120,8 @@ export const services = [
     examples: ['ibrows'],
     price: { label: 'Cotización según el proyecto' },
     seo: {
-      title: 'Página de reservas y citas para barberías y salones | Zerufy Studio',
-      description: 'Páginas de reservas para barberías, salones y profesionales: el cliente elige servicio, día y hora, y la cita te llega por WhatsApp.',
+      title: 'Página de reservas y citas para estudios de belleza y salones | Zerufy Studio',
+      description: 'Páginas de reservas para estudios de cejas y pestañas, salones y profesionales: el cliente elige servicio, día y hora, y la cita te llega por WhatsApp.',
     },
   },
   {

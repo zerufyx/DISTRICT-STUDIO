@@ -13,7 +13,7 @@ export default function servicesPage(ctx) {
     .map((s) => {
       const ex = s.examples.map((k) => bySlug[k]).filter(Boolean);
       const g = guide[s.key] || { gives: [], control: [] };
-      const shot = ex[0] && ex[0].phones ? ex[0].phones[Math.min(1, ex[0].phones.length - 1)] : s.key === 'booking' ? { src: 'booking-demo', alt: 'Demostración de una página de reservas' } : null;
+      const shot = ex[0] && ex[0].phones ? ex[0].phones[Math.min(1, ex[0].phones.length - 1)] : s.key === 'booking' ? { src: 'ibrows-servicios', alt: 'Servicios de I Brows con una cita en armado y el total' } : null;
       return `<article class="svc-block${s.status === 'soon' ? ' is-soon' : ''}" id="${s.key}" aria-labelledby="t-${s.key}">
     <div class="svc-block-head">
       <h2 class="h2" id="t-${s.key}">${esc(s.name)}${s.status === 'soon' ? ' <span class="tag">Próximamente</span>' : ''}</h2>

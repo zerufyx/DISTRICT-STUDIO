@@ -86,7 +86,7 @@ export const guide = {
       'Tu panel para cambiar servicios, horarios y días libres',
     ],
     control: [
-      { i: 'plus', t: 'Tus servicios', d: 'Corte, barba, uñas… cada uno con su tiempo.' },
+      { i: 'plus', t: 'Tus servicios', d: 'Cejas, pestañas, lash lift… cada uno con su tiempo.' },
       { i: 'calendar', t: 'Tus horarios', d: 'Abres y cierras los días y horas que quieras.' },
       { i: 'soldout', t: 'Días libres', d: 'Bloqueas un día y nadie reserva.' },
     ],
