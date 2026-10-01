@@ -1,94 +1,110 @@
 # Zerufy Studio — sitio web
 
-Sitio del estudio: portafolio, servicios, casos de estudio y formulario para captar clientes.
-HTML estático generado con Node, sin frameworks ni dependencias. Rápido, bueno para SEO y fácil de mantener.
+El sitio del estudio: **zerufystudio.com**. Tiene el portafolio, los servicios, las páginas por tipo de negocio y el formulario para captar clientes.
+Es HTML estático generado con Node, sin frameworks ni dependencias.
+
+- Repositorio: `zerufyx/Zerufy-Studio-`
+- Se publica solo: cada cambio que sube a `main` se publica en GitHub Pages (`.github/workflows/deploy.yml`).
+- Dominio: Namecheap → GitHub Pages. El archivo `CNAME` lo crea el build a partir de `siteUrl`.
+
+## Regla de orden
+
+Este repo es **solo el sitio de Zerufy Studio**. El código de cada cliente o concepto vive en su propio repo (ver el mapa de abajo). Aquí solo entran **capturas** de esos proyectos (`assets/img/`), nunca su código.
 
 ## Estructura
 
 ```
-site.config.mjs        ← dominio, WhatsApp, redes, Supabase, Analytics, Meta Pixel
-content/
-  services.mjs         ← los 6 servicios y los planes (precios)
-  projects.mjs         ← el portafolio: cada proyecto = un caso de estudio
-  studio.mjs           ← proceso, ruta de crecimiento, preguntas frecuentes, opciones del formulario
-src/
-  layout.mjs           ← <head> con SEO, encabezado, pie
-  components.mjs       ← botones, tarjetas, teléfonos, preguntas, etc.
-  seo.mjs              ← datos estructurados para Google (schema.org)
-  pages/               ← una plantilla por tipo de página
+site.config.mjs          ← nombre, dominio, WhatsApp, redes, Supabase, Analytics, Meta Pixel
+content/                 ← TODO el texto del sitio (se edita aquí, no en src/)
+  projects.mjs           ←   portafolio: clientes y conceptos, y su orden
+  services.mjs           ←   los 6 servicios: textos, para quién, ejemplos, SEO
+  service-guide.mjs      ←   cómo funciona cada servicio (lo que damos, lo que controlas)
+  verticals.mjs          ←   páginas por tipo de negocio (/negocios/...)
+  studio.mjs             ←   proceso, principios, crecimiento, preguntas, opciones del formulario
+src/                     ← plantillas (cómo se ve, no qué dice)
+  core.mjs               ←   utilidades: rutas, íconos, link de WhatsApp
+  layout.mjs             ←   <head> con SEO, encabezado, pie, entrada animada de la portada
+  components.mjs         ←   piezas reutilizables: botones, teléfonos, tarjetas, preguntas
+  seo.mjs                ←   datos estructurados para Google (schema.org)
+  pages/                 ←   una plantilla por tipo de página
 assets/
-  css/site.css         ← todo el diseño (modo claro y oscuro)
-  js/site.js           ← menú, filtros, animaciones, Analytics
-  js/lead.js           ← formulario "Crear mi proyecto"
-  img/work/            ← capturas y portadas de los proyectos
-  fonts/               ← tipografía Archivo (variable)
-supabase/leads.sql     ← tabla para guardar las solicitudes del formulario
-scripts/build.mjs      ← genera el sitio en dist/
-dist/                  ← el sitio listo para publicar
+  css/site.css           ← todo el diseño
+  js/site.js             ← menú, animaciones, recorridos, Analytics
+  js/lead.js             ← formulario "Empezar un proyecto" → Supabase + WhatsApp
+  fonts/                 ← Bebas Neue y Montserrat (propias, sin Google Fonts)
+  img/work/              ← capturas de proyectos (.webp, teléfono 540×1169, web 1440×900)
+  img/tour/              ← capturas largas para los recorridos de la portada
+  img/                   ← favicon, íconos e imágenes para redes (og-*.jpg)
+supabase/leads.sql       ← tabla donde se guardan las solicitudes del formulario
+scripts/build.mjs        ← genera el sitio
+scripts/serve.mjs        ← servidor local para revisarlo
+DESIGN.md                ← colores, tipografía y movimiento
+PRODUCT.md               ← a quién le habla el sitio y cómo
+```
+
+`dist/` y `preview/` se generan con el build y **no se suben** al repo.
+
+## Comandos
+
+Node 18 o más nuevo.
+
+```bash
+node scripts/build.mjs             # genera dist/ (lo que se publica)
+node scripts/serve.mjs             # abre dist/ en http://localhost:4321
+node scripts/build.mjs --preview   # versión con rutas relativas (para vista previa)
 ```
 
 ## Páginas
 
 | Ruta | Qué es |
 |---|---|
-| `/` | Inicio |
-| `/services/` | Todos los servicios, planes y preguntas |
-| `/websites/` `/menus/` `/catalogs/` `/ecommerce/` `/systems/` `/apps/` | Una página por servicio (cada una apunta a una búsqueda en Google) |
-| `/portfolio/` | Trabajos con filtros (`/portfolio/#menus` abre filtrado) |
-| `/projects/<proyecto>/` | Caso de estudio: problema, solución, resultado, funciones |
-| `/about/` | Nosotros |
-| `/contact/` | Formulario. `/contact/#menus` o `/contact/#plan-base` lo abre ya marcado |
-| `/dashboard/` | Reservado para el panel interno (no aparece en Google) |
-| `/blog/` | Reservado (se activa en `site.config.mjs`) |
+| `/` | Inicio, con la entrada animada (una vez por visita) |
+| `/negocios/` y `/negocios/<tipo>/` | Restaurantes, tiendas, concesionarios, citas |
+| `/services/` y `/websites/` `/menus/` `/catalogs/` `/booking/` `/systems/` `/apps/` | Servicios |
+| `/portfolio/` y `/projects/<proyecto>/` | Trabajos y caso de cada uno |
+| `/about/` · `/contact/` | Nosotros · formulario |
+| `/dashboard/` | Panel interno (no aparece en Google) |
 
-## Comandos
+## Mapa de repos de Zerufy (GitHub: zerufyx)
 
-Necesitas Node 18 o más nuevo.
-
-```bash
-node scripts/build.mjs        # genera dist/
-node scripts/serve.mjs        # abre dist/ en http://localhost:4321
-node scripts/build.mjs --preview   # versión con rutas relativas (se abre sin servidor)
-```
-
-## Publicar en GitHub Pages
-
-1. Crea un repo (por ejemplo `district-studio`) y sube **todo** este folder.
-2. En el repo: **Settings → Pages → Source: GitHub Actions**. El archivo `.github/workflows/deploy.yml` construye y publica solo cada vez que subes cambios.
-3. Con dominio propio: pon el dominio en `siteUrl` dentro de `site.config.mjs` (el build crea el archivo `CNAME`), y en Namecheap apunta el dominio a GitHub Pages igual que con zerufy.store.
-4. Sin dominio todavía: pon `siteUrl: 'https://zerufyx.github.io'` y `basePath: '/district-studio'`.
-
-**Opción sin GitHub Actions:** corre `node scripts/build.mjs` y sube solo el contenido de `dist/` al repo.
-
-## Antes de publicar
-
-- [ ] `siteUrl` con el dominio real (hoy dice `zerufystudio.com`)
-- [ ] `contact.instagram` y `contact.email` si quieres que aparezcan
-- [x] Formulario conectado a Supabase: tablas `leads` y `studio_admins` creadas (migración `district_studio_leads`), anon key puesta y zerufyx@gmail.com como administrador. Las solicitudes se ven en Supabase → Table Editor → `leads`.
-- [ ] Reemplazar las portadas de Zerufy y AMH Store con capturas que muestren productos (hoy muestran la portada de cada tienda)
-
-## Cómo agregar un proyecto al portafolio
-
-1. Pon las capturas en `assets/img/work/` en formato `.webp` (teléfono: 540×1169).
-2. Pon una portada de 1600×1000 (`<nombre>-cover.webp`) y una de 800×500 (`<nombre>-cover-800.webp`).
-3. Copia un bloque en `content/projects.mjs` y cambia los datos.
-4. `node scripts/build.mjs`. Se crea la página del caso, aparece en el portafolio, en el filtro y en el sitemap.
-
-## Integraciones (todas se activan desde `site.config.mjs`)
-
-| Integración | Estado | Cómo |
+| Repo | Qué es | En línea |
 |---|---|---|
-| WhatsApp | Activo | `contact.whatsapp` |
-| Formulario → Supabase | Listo para activar | `supabase/leads.sql` + anon key |
-| Formulario → Notion, Airtable, CRM, email, Google Sheets | Listo para activar | Crea un webhook en Make o Zapier y pégalo en `integrations.webhook` |
-| Google Analytics 4 | Listo para activar | `integrations.ga4` |
-| Meta Pixel | Listo para activar | `integrations.metaPixel` (mide `Lead` y `Contact`) |
-| Stripe, PayPal, calendarios, Google Maps | Para proyectos de clientes | Se agregan en cada proyecto que los necesite |
+| `Zerufy-Studio-` | Este sitio, el del estudio | zerufystudio.com |
+| `Zerufy` | Tienda Zerufy (reventa de lujo y streetwear) | zerufy.store |
+| `zerufy-v2` | Versión anterior o de prueba de la tienda Zerufy | No es la tienda en línea |
+| `amhstore` | AMH Store, cliente | amhstore.store |
+| `S91-Grill-House-` | S91 House Grill, menú digital, cliente | s91housegrill.com |
+| `ibrows` | I Brows, concepto: sitio con reservas | GitHub Pages |
+| `Jircars` | Jircars, concepto: concesionario | GitHub Pages |
+| `AUREON` | Aureon, concepto: catálogo | GitHub Pages |
+| `ALTAPINTA` | Alta Pinta, concepto: catálogo | GitHub Pages |
+| `LIZ-BOUTIQUE` | Liz Boutique, concepto: catálogo | GitHub Pages |
+| `CarpaShop` | CarpaShop, concepto: catálogo | GitHub Pages |
+| `ByKate` | By Kate, concepto (todavía no está en el portafolio) | GitHub Pages |
+| `Placidlux` | Placid Lux Esthetic, concepto (todavía no está en el portafolio) | GitHub Pages |
+| — | **Offsuite**, concepto: catálogo con carrito. **Todavía no tiene repo.** | Falta subirlo |
+
+## Agregar un proyecto al portafolio
+
+1. Su código va en **su propio repo**, no aquí.
+2. Las capturas van en `assets/img/work/<proyecto>-<pantalla>.webp` (teléfono 540×1169, web 1440×900 y 800×500).
+3. Copia un bloque en `content/projects.mjs`, cambia los datos y ponlo en `ORDER`. Los conceptos llevan `kind: 'concept'` y en el sitio siempre dicen "Concepto".
+4. `node scripts/build.mjs`. Se crea la página del caso y aparece en el portafolio y en el sitemap.
+
+## Integraciones (se activan desde `site.config.mjs`)
+
+| Integración | Estado |
+|---|---|
+| WhatsApp | Activo (`contact.whatsapp`) |
+| Formulario → Supabase | Activo. Tablas `leads` y `studio_admins`. Las solicitudes se ven en Supabase → Table Editor → `leads` |
+| Webhook (Make, Zapier, n8n) | Apagado (`integrations.webhook`) |
+| Google Analytics 4 | Apagado (`integrations.ga4`) |
+| Meta Pixel | Apagado (`integrations.metaPixel`) |
 
 Eventos que se miden: `lead_submit` (formulario enviado) y `whatsapp_click` (clic en cualquier botón de WhatsApp).
 
-## SEO incluido
+## Pendientes
 
-Título y descripción por página, Open Graph e imagen para redes, URLs limpias, `sitemap.xml`, `robots.txt`, datos estructurados (negocio local, servicios, preguntas frecuentes, migas, casos de estudio), imágenes WebP con tamaño fijo y carga diferida, fuente propia precargada y cero JavaScript bloqueante.
-
-El sitio está en español. Para posicionar búsquedas en inglés ("web design", "restaurant website", "digital menu") hace falta una versión en inglés: la estructura permite agregarla como `/en/` con el mismo contenido traducido.
+- [ ] `contact.instagram` y `contact.email` en `site.config.mjs`, si quieres que aparezcan
+- [ ] Capturas de Zerufy y AMH Store que muestren productos (hoy muestran la portada)
+- [ ] Repo para Offsuite

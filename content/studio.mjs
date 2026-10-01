@@ -17,27 +17,6 @@ export const growth = [
   { t: 'Software a medida', d: 'Sistemas hechos solo para tu operación.', now: false },
 ];
 
-export const beforeAfter = {
-  before: {
-    quote: 'Solo tengo Instagram.',
-    items: [
-      'Mandas fotos y precios uno por uno por mensaje.',
-      'Los precios viejos siguen circulando en capturas.',
-      'Los pedidos se pierden entre conversaciones.',
-      'Si te buscan en Google, no apareces.',
-    ],
-  },
-  after: {
-    quote: 'Tengo mi propia plataforma.',
-    items: [
-      'Un link con todo tu menú o catálogo, con fotos y precios al día.',
-      'Los pedidos llegan por WhatsApp ya armados.',
-      'Cambias precios, fotos y agotados desde tu celular.',
-      'Tu negocio aparece en Google con su propio dominio.',
-    ],
-  },
-};
-
 export const faq = [
   { q: '¿Cuánto cuesta?', a: 'Depende de lo que tu negocio necesite: no cuesta lo mismo un menú con QR que un sistema a medida. Escríbenos por WhatsApp, cuéntanos qué vendes y te damos el precio exacto, sin compromiso.' },
   { q: '¿Cuánto tarda un proyecto?', a: 'Depende de lo que construyamos y de qué tan rápido tengamos tus fotos, textos y precios. Antes de empezar te decimos la fecha de entrega.' },

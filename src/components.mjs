@@ -15,11 +15,6 @@ export function lines(list) {
   return list.map((l, i) => `<span class="line"><span style="--i:${i}">${l}</span></span>`).join('');
 }
 
-/** Botón de WhatsApp. Siempre con el mismo texto en todo el sitio. */
-export function waBtn(ctx, { variant = 'ghost', size = '', label = 'WhatsApp', text } = {}) {
-  return btn(wa(ctx.config, text), label, { variant, size, ic: 'whatsapp', external: true, track: 'whatsapp_click' });
-}
-
 export function img(ctx, name, { alt = '', w, h, eager = false, cls = '', sizes, srcset } = {}) {
   const src = ctx.asset(`/assets/img/work/${name}.webp`);
   const ss = srcset ? ` srcset="${srcset.map(([n, sw]) => `${ctx.asset(`/assets/img/work/${n}.webp`)} ${sw}w`).join(', ')}"` : '';
@@ -73,11 +68,6 @@ export function isBig(i, n) {
 
 export function workGrid(ctx, list, { level = 3, eagerFirst = false } = {}) {
   return `<div class="work-grid" data-grid>${list.map((p, i) => workCard(ctx, p, { level, eager: eagerFirst && i === 0, big: isBig(i, list.length) })).join('')}</div>`;
-}
-
-/** Lista grande de la portada: un proyecto por fila, a todo lo ancho. */
-export function workList(ctx, list) {
-  return `<div class="work-list">${list.map((p) => workCard(ctx, p, { level: 3 })).join('')}</div>`;
 }
 
 export function workCard(ctx, p, { level = 3, eager = false, big = false } = {}) {

@@ -1,6 +1,7 @@
 node_modules/
-preview/
 dist/
+preview/
 .DS_Store
-.impeccable/review/
-.impeccable/mocks/
+.impeccable/
+.claude/
+*.zip

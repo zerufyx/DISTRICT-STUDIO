@@ -85,7 +85,7 @@ function moreCard(ctx, p) {
 export default function home(ctx) {
   const list = services.filter((s) => preview[s.key]);
   const [f1, f2, f3, f4, f5] = ['ibrows', 's91-house-grill', 'offsuite', 'jircars', 'zerufy'].map((k) => bySlug[k]);
-  const more = ['aureon', 'amh-store', 'alta-pinta', 'liz-boutique', 'carpashop', 'panel-district'].map((k) => bySlug[k]);
+  const more = ['aureon', 'amh-store', 'alta-pinta', 'liz-boutique', 'carpashop', 'panel-zerufy'].map((k) => bySlug[k]);
   const thumbs = { fresa: 's91-thumb-fresa', mora: 's91-thumb-mora', pina: 's91-thumb-pina', nestea: 's91-thumb-nestea' };
   const th = (k) => `<img src="${ctx.asset(`/assets/img/work/${thumbs[k]}.webp`)}" alt="" width="160" height="160" loading="lazy" decoding="async">`;
 

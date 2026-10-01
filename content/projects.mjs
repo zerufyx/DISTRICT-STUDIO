@@ -176,7 +176,7 @@ export const projects = [
     ],
   },
   {
-    slug: 'panel-district',
+    slug: 'panel-zerufy',
     kind: 'system',
     meta: 'Plataforma propia / Sistemas',
     tint: '#2a2a2a',
@@ -328,6 +328,6 @@ const concepts = [
 ];
 
 // Orden del portafolio: lo más fuerte primero.
-const ORDER = ['ibrows', 's91-house-grill', 'offsuite', 'jircars', 'zerufy', 'aureon', 'amh-store', 'alta-pinta', 'liz-boutique', 'carpashop', 'panel-district'];
+const ORDER = ['ibrows', 's91-house-grill', 'offsuite', 'jircars', 'zerufy', 'aureon', 'amh-store', 'alta-pinta', 'liz-boutique', 'carpashop', 'panel-zerufy'];
 projects.push(...concepts);
 projects.sort((a, b) => ORDER.indexOf(a.slug) - ORDER.indexOf(b.slug));

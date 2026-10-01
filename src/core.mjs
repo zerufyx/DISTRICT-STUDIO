@@ -3,8 +3,6 @@
 export const esc = (s = '') =>
   String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 
-export const money = (n) => '$' + Number(n).toLocaleString('en-US');
-
 /**
  * Contexto de cada página. Resuelve enlaces según el modo de build:
  *  - production: URLs limpias y absolutas (/services/), con basePath

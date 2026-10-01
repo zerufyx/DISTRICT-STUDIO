@@ -93,7 +93,7 @@
       entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
     }, { rootMargin: '0px 0px -12% 0px' });
     heads.concat(clips).forEach(function (el) { io.observe(el); });
-    d.querySelectorAll('.sec-head, .work-card, .prop, .svc-block, .story-row, .benefit-cols, .principles li, .growth, .grow, .live-list li, .next-case, .chap, .mw').forEach(function (el) {
+    d.querySelectorAll('.sec-head, .work-card, .svc-block, .story-row, .principles li, .grow, .live-list li, .next-case, .chap, .mw').forEach(function (el) {
       if (el.getBoundingClientRect().top > w.innerHeight) { el.classList.add('reveal'); io.observe(el); }
     });
   } else {
