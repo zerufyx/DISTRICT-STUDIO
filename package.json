@@ -1,8 +1,8 @@
 {
-  "name": "district-studio",
+  "name": "zerufy-studio",
   "version": "1.0.0",
   "private": true,
-  "description": "Sitio web de District Studio: páginas web, menús digitales, catálogos, tiendas online y sistemas para negocios.",
+  "description": "Sitio web de Zerufy Studio: páginas web, menús digitales, catálogos, tiendas online y sistemas para negocios.",
   "type": "module",
   "scripts": {
     "build": "node scripts/build.mjs",

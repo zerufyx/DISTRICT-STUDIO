@@ -77,7 +77,7 @@ function header(ctx) {
   return `<a class="skip" href="#main">Saltar al contenido</a>
 <header class="site-head" data-head>
   <div class="wrap head-row">
-    <a class="brand" href="${ctx.url('/')}" aria-label="District Studio, inicio">${wordmark()}</a>
+    <a class="brand" href="${ctx.url('/')}" aria-label="Zerufy Studio, inicio">${wordmark()}</a>
     <nav class="nav" aria-label="Principal"><ul>${links}</ul></nav>
     <a class="head-cta" href="${ctx.url('/contact/')}"><span>Empezar un proyecto</span>${icon('arrow', 'ic ic-go')}</a>
     <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu-sheet" data-menu-btn>
@@ -107,7 +107,7 @@ function footer(ctx) {
   <div class="wrap">
     <div class="foot-grid">
       <div class="foot-brand">
-        <a class="brand" href="${ctx.url('/')}" aria-label="District Studio, inicio">${wordmark()}</a>
+        <a class="brand" href="${ctx.url('/')}" aria-label="Zerufy Studio, inicio">${wordmark()}</a>
         <p>Páginas web, menús digitales, catálogos, citas y sistemas, con tu panel para manejarlos tú mismo.</p>
       </div>
       <nav aria-label="Servicios"><h2 class="foot-h">Servicios</h2><ul>${svc}</ul></nav>
@@ -126,7 +126,7 @@ function footer(ctx) {
         <li>Orlando, Florida</li>
       </ul></div>
     </div>
-    <p class="foot-word" aria-hidden="true">District Studio<span class="dot">.</span></p>
+    <p class="foot-word" aria-hidden="true">Zerufy Studio<span class="dot">.</span></p>
     <div class="foot-base"><span>© ${year} ${esc(ctx.config.legalName)}</span><span>Atendemos en español e inglés</span></div>
   </div>
 </footer>`;

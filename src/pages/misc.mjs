@@ -15,7 +15,7 @@ export function notFound(ctx) {
     </div>
   </div>
 </section>`;
-  return { path: '/404.html', title: 'Página no encontrada | District Studio', description: 'Esta página no existe.', noindex: true, main, sitemap: false };
+  return { path: '/404.html', title: 'Página no encontrada | Zerufy Studio', description: 'Esta página no existe.', noindex: true, main, sitemap: false };
 }
 
 // Espacio reservado para el panel interno (leads, clientes, proyectos, pedidos).
@@ -34,7 +34,7 @@ export function dashboard(ctx) {
 <section class="page-hero">
   <div class="wrap">
     <h1 class="display-2">Panel del estudio</h1>
-    <p class="hero-lead">Esta ruta está reservada para el panel interno de District Studio. Se conectará a Supabase con acceso por correo y contraseña. Esta página no aparece en Google.</p>
+    <p class="hero-lead">Esta ruta está reservada para el panel interno de Zerufy Studio. Se conectará a Supabase con acceso por correo y contraseña. Esta página no aparece en Google.</p>
   </div>
 </section>
 <section class="section tight-top">
@@ -44,5 +44,5 @@ export function dashboard(ctx) {
       .join('')}</ul>
   </div>
 </section>`;
-  return { path: '/dashboard/', title: 'Panel del estudio | District Studio', description: 'Panel interno de District Studio.', noindex: true, main, sitemap: false, hideDock: true };
+  return { path: '/dashboard/', title: 'Panel del estudio | Zerufy Studio', description: 'Panel interno de Zerufy Studio.', noindex: true, main, sitemap: false, hideDock: true };
 }

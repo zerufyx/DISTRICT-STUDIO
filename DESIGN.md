@@ -1,6 +1,6 @@
-# District Studio 2.0 · Design
+# Zerufy Studio 2.0 · Design
 
-A small creative digital studio, not a service agency: the site proves the craft by being the craft. Premium, editorial, controlled motion. Source of truth for values: `assets/css/site.css` (`:root` and the "District Studio 2.0" block).
+A small creative digital studio, not a service agency: the site proves the craft by being the craft. Premium, editorial, controlled motion. Source of truth for values: `assets/css/site.css` (`:root` and the "Zerufy Studio 2.0" block).
 
 ## Color (Restrained, with one red field)
 
@@ -13,7 +13,7 @@ A small creative digital studio, not a service agency: the site proves the craft
 | `--ink` / `--ink-2` / `--muted` | `#f4f4f4` / `#c8c8c8` / `#9b9b9b` | Text levels |
 | `--red` | `#e8352a` | One word per headline, primary buttons, progress lines, and the manifesto section as the single full red field |
 
-No purple, blue, green or gradients in District's own UI. Client screenshots keep their own colors.
+No purple, blue, green or gradients in Zerufy Studio's own UI. Client screenshots keep their own colors.
 
 ## Type
 

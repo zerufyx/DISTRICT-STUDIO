@@ -130,10 +130,10 @@ ${ctaBand(ctx, { q: '¿Quieres algo así?', title: 'Hagamos el de tu <em>negocio
 
   return {
     path: `/projects/${p.slug}/`,
-    title: `${p.name}: ${p.type} | District Studio`,
+    title: `${p.name}: ${p.type} | Zerufy Studio`,
     description: concept
-      ? `${p.summary} Concepto diseñado por District Studio.`
-      : `${p.summary} Caso de estudio de District Studio: problema, solución, resultado y funciones.`,
+      ? `${p.summary} Concepto diseñado por Zerufy Studio.`
+      : `${p.summary} Caso de estudio de Zerufy Studio: problema, solución, resultado y funciones.`,
     ogImage: p.og || 'og-default.jpg',
     ogType: 'article',
     schema: [breadcrumb(ctx, items), caseStudy(ctx, p)],

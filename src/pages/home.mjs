@@ -201,7 +201,7 @@ export default function home(ctx) {
   <div class="wrap">
     <header class="sel-head">
       <h2 class="h2" id="sel-t">${lines(['Trabajo', '<em>seleccionado.</em>'])}</h2>
-      <p class="lead">Clientes y conceptos, diseñados y construidos por District.</p>
+      <p class="lead">Clientes y conceptos, diseñados y construidos por Zerufy Studio.</p>
     </header>
     ${featured(ctx, f1, 'asym', 1)}
     ${featured(ctx, f2, 'full', 2)}
@@ -286,9 +286,9 @@ export default function home(ctx) {
 
 <section class="section idn" aria-labelledby="idn-t">
   <div class="wrap">
-    <h2 class="sr" id="idn-t">La identidad de District Studio</h2>
+    <h2 class="sr" id="idn-t">La identidad de Zerufy Studio</h2>
     <div class="idn-grid">
-      <p class="idn-word" aria-hidden="true"><span>District<br>Studio<span class="idn-dot">.</span></span></p>
+      <p class="idn-word" aria-hidden="true"><span>Zerufy<br>Studio<span class="idn-dot">.</span></span></p>
       <div class="idn-cell idn-bebas">
         <span class="idn-aa">Aa</span>
         <p class="idn-name">Bebas Neue</p>
@@ -303,7 +303,7 @@ export default function home(ctx) {
       </div>
       <div class="idn-sw sw-k"><span>Negro</span><code>#0A0A0A</code></div>
       <div class="idn-sw sw-w"><span>Blanco</span><code>#F4F4F4</code></div>
-      <div class="idn-sw sw-r"><span>Rojo District</span><code>#E8352A</code></div>
+      <div class="idn-sw sw-r"><span>Rojo Zerufy</span><code>#E8352A</code></div>
     </div>
     <p class="idn-note">La marca también es un proyecto. Le ponemos a la tuya el mismo cuidado.</p>
   </div>
@@ -314,8 +314,8 @@ ${ctaBand(ctx)}
 
   return {
     path: '/',
-    title: 'District Studio | Experiencias digitales para negocios',
-    ogTitle: 'District Studio: creamos experiencias digitales',
+    title: 'Zerufy Studio | Experiencias digitales para negocios',
+    ogTitle: 'Zerufy Studio: creamos experiencias digitales',
     description: 'Estudio digital en Orlando: sitios web, catálogos, menús digitales, reservas y sistemas hechos a la medida de cómo funciona tu negocio.',
     schema: [organization(ctx), website(ctx)],
     mainClass: 'home',

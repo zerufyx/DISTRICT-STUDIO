@@ -14,7 +14,7 @@ export default function portfolio(ctx) {
   <div class="wrap">
     ${crumbs(ctx, [{ href: '/', label: 'Inicio' }, { href: '/portfolio/', label: 'Trabajos' }])}
     <h1 class="display-2">${lines(['Lo que', 'hemos <em>hecho.</em>'])}</h1>
-    <p class="hero-lead">Proyectos diseñados y construidos por District. Los que dicen <strong>Concepto</strong> son prototipos funcionales que preparamos para un negocio; S91 House Grill, Zerufy y AMH Store están en línea hoy.</p>
+    <p class="hero-lead">Proyectos diseñados y construidos por Zerufy Studio. Los que dicen <strong>Concepto</strong> son prototipos funcionales que preparamos para un negocio; S91 House Grill, Zerufy y AMH Store están en línea hoy.</p>
   </div>
 </section>
 
@@ -38,8 +38,8 @@ ${ctaBand(ctx, { q: '¿Te gustó lo que viste?', title: 'El siguiente puede ser 
 
   return {
     path: '/portfolio/',
-    title: 'Trabajos: menús digitales, catálogos y sistemas | District Studio',
-    description: 'Trabajos de District Studio: el menú digital de S91 House Grill, los catálogos de Zerufy y AMH Store, el panel que los administra y conceptos para autos, perfumes, ropa y accesorios.',
+    title: 'Trabajos: menús digitales, catálogos y sistemas | Zerufy Studio',
+    description: 'Trabajos de Zerufy Studio: el menú digital de S91 House Grill, los catálogos de Zerufy y AMH Store, el panel que los administra y conceptos para autos, perfumes, ropa y accesorios.',
     schema: [breadcrumb(ctx, [{ href: '/', label: 'Inicio' }, { href: '/portfolio/', label: 'Trabajos' }])],
     main,
     priority: '0.9',

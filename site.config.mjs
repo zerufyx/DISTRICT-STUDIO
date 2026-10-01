@@ -1,15 +1,15 @@
 // ─────────────────────────────────────────────────────────────
-//  District Studio — configuración del sitio
+//  Zerufy Studio — configuración del sitio
 //  Todo lo que cambia de un despliegue a otro vive aquí.
 //  Después de editar, corre:  node scripts/build.mjs
 // ─────────────────────────────────────────────────────────────
 
 export default {
-  name: 'District Studio',
-  legalName: 'District Studio',
+  name: 'Zerufy Studio',
+  legalName: 'Zerufy Studio',
 
   // Dominio final, sin barra al final. Se usa en canonical, sitemap y Open Graph.
-  // CAMBIAR cuando tengas el dominio (ej. https://districtstudio.co)
+  // CAMBIAR cuando tengas el dominio (ej. https://zerufystudio.com)
   siteUrl: 'https://zerufyx.github.io',
 
   // "" si el sitio vive en la raíz del dominio (lo normal con dominio propio).
@@ -25,9 +25,9 @@ export default {
   contact: {
     whatsapp: '14072833785', // solo números, con código de país
     whatsappDisplay: '+1 (407) 283-3785',
-    whatsappMessage: 'Hola District Studio, quiero información para mi negocio.',
+    whatsappMessage: 'Hola Zerufy Studio, quiero información para mi negocio.',
     email: '',     // ej. hola@tudominio.com — vacío = no se muestra
-    instagram: '', // ej. districtstudio — vacío = no se muestra
+    instagram: '', // ej. zerufystudio — vacío = no se muestra
     tiktok: '',
   },
 

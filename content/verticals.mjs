@@ -1,5 +1,5 @@
 // Páginas por tipo de negocio: /negocios/<slug>/
-// Formato del pitch de District Studio: el problema de hoy, lo que te damos,
+// Formato del pitch de Zerufy Studio: el problema de hoy, lo que te damos,
 // tu panel (demostración animada), cómo se vende, tú vs nosotros. Sin precios.
 // Regla: todos los proyectos se entregan con panel de administración.
 
@@ -13,7 +13,7 @@ export const verticals = [
     for: 'Para restaurantes, food trucks y cafeterías',
     title: ['Tu menú,', 'siempre con el <em>precio correcto.</em>'],
     lead: 'Un menú con fotos y precios que tu cliente abre con un QR o un link. Se acabó un plato o subió un precio: lo cambias tú desde el celular y listo.',
-    wa: 'Hola District Studio, tengo un restaurante y quiero mi menú digital.',
+    wa: 'Hola Zerufy Studio, tengo un restaurante y quiero mi menú digital.',
     hero: { phone: 's91-menu-scroll', tall: 3600, scroll: true, label: 'S91 House Grill · En línea' },
     pains: [
       ['Reimprimir el menú cada vez que sube un precio', 'Cambias el precio en tu panel y el QR sigue siendo el mismo.'],
@@ -69,7 +69,7 @@ export const verticals = [
     for: 'Para tiendas de ropa, reventa, perfumes y accesorios',
     title: ['Tu tienda', 'en un solo <em>link.</em>'],
     lead: 'Un catálogo tipo app con todos tus productos, tallas y precios. Tu cliente arma su pedido y te llega por WhatsApp. Tú subes y cambias todo desde tu panel.',
-    wa: 'Hola District Studio, tengo una tienda y quiero mi catálogo.',
+    wa: 'Hola Zerufy Studio, tengo una tienda y quiero mi catálogo.',
     hero: { phone: 'offsuite-scroll', tall: 3600, scroll: true, label: 'Offsuite · Concepto' },
     pains: [
       ['Mandar fotos una por una cada vez que preguntan', 'Un link con todo tu catálogo para tu bio y tus historias.'],
@@ -125,7 +125,7 @@ export const verticals = [
     for: 'Para concesionarios y lotes de vehículos',
     title: ['Tu lote,', 'siempre al <em>día.</em>'],
     lead: 'Todos tus vehículos con fotos, precio y ficha en un solo link. Tu cliente los ve desde el celular antes de pisar el lote, y te escribe por el carro que le interesa.',
-    wa: 'Hola District Studio, tengo un concesionario y quiero el catálogo de mi inventario.',
+    wa: 'Hola Zerufy Studio, tengo un concesionario y quiero el catálogo de mi inventario.',
     hero: { web: 'jircars-desktop', phone: 'jircars-catalogo', tall: 1169, label: 'Jircars · Concepto' },
     pains: [
       ['Mandar fotos de carros sueltas por WhatsApp', 'Todo tu inventario en un link, con fotos y ficha.'],
@@ -181,7 +181,7 @@ export const verticals = [
     for: 'Para barberías, salones, uñas, pestañas y profesionales',
     title: ['Tus clientes', 'reservan <em>solos.</em>'],
     lead: 'Una página con tus servicios y tus horarios. El cliente elige servicio, día y hora, y la cita te llega por WhatsApp. Tú abres y cierras tu agenda desde tu panel.',
-    wa: 'Hola District Studio, tengo un negocio de servicios y quiero mi página de citas.',
+    wa: 'Hola Zerufy Studio, tengo un negocio de servicios y quiero mi página de citas.',
     hero: { phone: 'booking-demo', tall: 1169, label: 'Demostración' },
     pains: [
       ['Contestar “¿tienes hora hoy?” todo el día', 'El cliente ve tus horarios libres y elige.'],

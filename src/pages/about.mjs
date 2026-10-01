@@ -13,7 +13,7 @@ export default function about(ctx) {
   <div class="wrap">
     ${crumbs(ctx, items)}
     <h1 class="display-2">${lines(['Un estudio', 'para negocios', 'que <em>venden.</em>'])}</h1>
-    <p class="hero-lead">District Studio diseña y construye la parte digital de negocios locales: la página, el menú, el catálogo, la tienda y el sistema que los mantiene al día. Estamos en Orlando, Florida, y trabajamos con negocios de Estados Unidos y Latinoamérica, en español e inglés.</p>
+    <p class="hero-lead">Zerufy Studio diseña y construye la parte digital de negocios locales: la página, el menú, el catálogo, la tienda y el sistema que los mantiene al día. Estamos en Orlando, Florida, y trabajamos con negocios de Estados Unidos y Latinoamérica, en español e inglés.</p>
   </div>
 </section>
 
@@ -61,8 +61,8 @@ ${ctaBand(ctx)}
 
   return {
     path: '/about/',
-    title: 'Nosotros: estudio digital en Orlando, Florida | District Studio',
-    description: 'District Studio es un estudio digital en Orlando que construye páginas web, menús, catálogos, tiendas y sistemas para negocios locales, en español e inglés.',
+    title: 'Nosotros: estudio digital en Orlando, Florida | Zerufy Studio',
+    description: 'Zerufy Studio es un estudio digital en Orlando que construye páginas web, menús, catálogos, tiendas y sistemas para negocios locales, en español e inglés.',
     schema: [breadcrumb(ctx, items), organization(ctx)],
     main,
     priority: '0.6',

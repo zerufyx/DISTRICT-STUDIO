@@ -163,7 +163,7 @@ ${
 
   return {
     path: `/negocios/${v.slug}/`,
-    title: `${v.name}: catálogo, menú o página con tu panel | District Studio`,
+    title: `${v.name}: catálogo, menú o página con tu panel | Zerufy Studio`,
     description: v.lead,
     schema: [breadcrumb(ctx, items), faqPage(v.faq)],
     main,
@@ -201,7 +201,7 @@ ${ctaBand(ctx, { q: '¿Tu negocio no está en la lista?', title: 'Cuéntanos y l
 `;
   return {
     path: '/negocios/',
-    title: 'Soluciones por tipo de negocio: restaurantes, tiendas, concesionarios y citas | District Studio',
+    title: 'Soluciones por tipo de negocio: restaurantes, tiendas, concesionarios y citas | Zerufy Studio',
     description: 'Menús digitales para restaurantes, catálogos para tiendas y concesionarios, y páginas de citas para barberías y salones. Todos con tu panel de administración.',
     schema: [breadcrumb(ctx, items)],
     main,

@@ -94,7 +94,7 @@ fs.writeFileSync(
   JSON.stringify(
     {
       name: config.name,
-      short_name: 'District',
+      short_name: 'Zerufy',
       lang: config.lang,
       start_url: config.basePath + '/',
       display: 'standalone',

@@ -79,5 +79,5 @@ export function icon(name, cls = 'ic') {
   return `<svg class="${cls}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">${paths[name] || ''}</svg>`;
 }
 
-// Marca: "District Studio." con District y el punto en rojo.
-export const wordmark = () => `<span class="d">District</span>&nbsp;Studio<span class="dot">.</span>`;
+// Marca: "Zerufy Studio." con Zerufy y el punto en rojo.
+export const wordmark = () => `<span class="d">Zerufy</span>&nbsp;Studio<span class="dot">.</span>`;

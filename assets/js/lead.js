@@ -1,4 +1,4 @@
-/* District Studio: formulario "Empezar un proyecto".
+/* Zerufy Studio: formulario "Empezar un proyecto".
    Envía cada solicitud a los destinos configurados en site.config.mjs:
      1. Supabase (tabla leads)            → integrations.supabase
      2. Webhook (Make / Zapier / n8n)     → integrations.webhook  (Notion, Airtable, CRM, email…)
@@ -65,7 +65,7 @@
 
   /* ---------- Mensaje para WhatsApp ---------- */
   function waText(lead) {
-    var lines = ['Hola District Studio, quiero empezar un proyecto.', ''];
+    var lines = ['Hola Zerufy Studio, quiero empezar un proyecto.', ''];
     lines.push('Nombre: ' + lead.name);
     lines.push('Negocio: ' + lead.business + (lead.business_type ? ' (' + lead.business_type + ')' : ''));
     lines.push('Necesito: ' + lead.needs.map(function (k) { return NEED_LABELS[k] || k; }).join(', '));

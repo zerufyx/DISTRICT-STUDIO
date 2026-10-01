@@ -181,7 +181,7 @@ export const projects = [
     meta: 'Plataforma propia / Sistemas',
     tint: '#2a2a2a',
     phones: [{ src: 's91-panel', alt: 'Panel de administración con categorías y platos' }, { src: 's91-panel-edit', alt: 'Edición de un plato desde el celular' }, { src: 'zerufy-inventario', alt: 'Módulo de inventario con datos de ejemplo' }],
-    name: 'Panel District',
+    name: 'Panel Zerufy Studio',
     sector: 'Plataforma propia',
     location: 'Orlando, FL',
     year: 2026,

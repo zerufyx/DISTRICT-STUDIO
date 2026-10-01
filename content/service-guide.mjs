@@ -1,4 +1,4 @@
-// Cómo funciona cada servicio, en el formato del pitch de District Studio:
+// Cómo funciona cada servicio, en el formato del pitch de Zerufy Studio:
 // lo que te damos, lo que tú controlas, de qué nos encargamos, cómo funciona
 // y lo que no hace (para que nadie compre algo que no es). Sin precios.
 

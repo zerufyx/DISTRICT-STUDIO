@@ -1,4 +1,4 @@
-# District Studio — sitio web
+# Zerufy Studio — sitio web
 
 Sitio del estudio: portafolio, servicios, casos de estudio y formulario para captar clientes.
 HTML estático generado con Node, sin frameworks ni dependencias. Rápido, bueno para SEO y fácil de mantener.
@@ -62,7 +62,7 @@ node scripts/build.mjs --preview   # versión con rutas relativas (se abre sin s
 
 ## Antes de publicar
 
-- [ ] `siteUrl` con el dominio real (hoy dice `districtstudio.example`)
+- [ ] `siteUrl` con el dominio real (hoy dice `zerufystudio.com`)
 - [ ] `contact.instagram` y `contact.email` si quieres que aparezcan
 - [x] Formulario conectado a Supabase: tablas `leads` y `studio_admins` creadas (migración `district_studio_leads`), anon key puesta y zerufyx@gmail.com como administrador. Las solicitudes se ven en Supabase → Table Editor → `leads`.
 - [ ] Reemplazar las portadas de Zerufy y AMH Store con capturas que muestren productos (hoy muestran la portada de cada tienda)

@@ -1,4 +1,4 @@
-/* District Studio — interacciones del sitio. Sin dependencias. */
+/* Zerufy Studio — interacciones del sitio. Sin dependencias. */
 (function () {
   'use strict';
   var d = document, w = window, root = d.documentElement;

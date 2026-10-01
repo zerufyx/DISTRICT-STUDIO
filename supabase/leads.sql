@@ -1,5 +1,5 @@
 -- ─────────────────────────────────────────────────────────────
---  District Studio — solicitudes del formulario "Crear mi proyecto"
+--  Zerufy Studio — solicitudes del formulario "Crear mi proyecto"
 --  Pégalo en Supabase → SQL Editor → New query → Run.
 --  Es seguro correrlo en el mismo proyecto de los catálogos: no toca
 --  ninguna tabla existente.

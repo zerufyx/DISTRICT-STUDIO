@@ -60,7 +60,7 @@ ${ctaBand(ctx)}
 
   return {
     path: '/services/',
-    title: 'Servicios: páginas web, menús digitales, catálogos y reservas | District Studio',
+    title: 'Servicios: páginas web, menús digitales, catálogos y reservas | Zerufy Studio',
     description: 'Páginas web, menús digitales con QR, catálogos, reservas, sistemas a medida y apps. Con panel de administración para que cambies precios y productos tú mismo.',
     schema: [breadcrumb(ctx, [{ href: '/', label: 'Inicio' }, { href: '/services/', label: 'Servicios' }]), faqPage(faq), ...services.map((s) => serviceSchema(ctx, s))],
     main,

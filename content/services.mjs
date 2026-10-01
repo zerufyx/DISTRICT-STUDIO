@@ -29,7 +29,7 @@ export const services = [
     examples: ['ibrows', 'jircars', 's91-house-grill'],
     price: { label: 'Cotización según el proyecto' },
     seo: {
-      title: 'Diseño de páginas web para negocios en Orlando | District Studio',
+      title: 'Diseño de páginas web para negocios en Orlando | Zerufy Studio',
       description: 'Páginas web a medida para restaurantes, barberías, salones, tiendas y negocios locales. Rápidas en el celular, con dominio propio y listas para Google.',
     },
   },
@@ -60,7 +60,7 @@ export const services = [
     examples: ['s91-house-grill'],
     price: { from: 250, monthly: 30 },
     seo: {
-      title: 'Menú digital con QR para restaurantes y food trucks | District Studio',
+      title: 'Menú digital con QR para restaurantes y food trucks | Zerufy Studio',
       description: 'Menú digital con fotos, precios, código QR y pedidos por WhatsApp. Cambias precios y platos agotados desde tu celular. Para restaurantes y food trucks.',
     },
   },
@@ -91,7 +91,7 @@ export const services = [
     examples: ['aureon', 'zerufy', 'amh-store'],
     price: { from: 250, monthly: 30 },
     seo: {
-      title: 'Catálogo digital para tiendas: un link con todos tus productos | District Studio',
+      title: 'Catálogo digital para tiendas: un link con todos tus productos | Zerufy Studio',
       description: 'Catálogo online con fotos, variantes, precios, búsqueda y pedidos por WhatsApp. Un solo link para tu bio, tus chats y tus clientes.',
     },
   },
@@ -120,7 +120,7 @@ export const services = [
     examples: ['ibrows'],
     price: { label: 'Cotización según el proyecto' },
     seo: {
-      title: 'Página de reservas y citas para barberías y salones | District Studio',
+      title: 'Página de reservas y citas para barberías y salones | Zerufy Studio',
       description: 'Páginas de reservas para barberías, salones y profesionales: el cliente elige servicio, día y hora, y la cita te llega por WhatsApp.',
     },
   },
@@ -151,7 +151,7 @@ export const services = [
     examples: ['panel-district', 'zerufy'],
     price: { label: 'Cotización según el proyecto' },
     seo: {
-      title: 'Sistemas a medida y paneles de administración para negocios | District Studio',
+      title: 'Sistemas a medida y paneles de administración para negocios | Zerufy Studio',
       description: 'Paneles de administración, control de inventario y caja, pedidos, reservaciones y automatizaciones hechos a la medida de tu negocio.',
     },
   },
@@ -181,7 +181,7 @@ export const services = [
     examples: [],
     price: { label: 'Próximamente' },
     seo: {
-      title: 'Apps móviles para restaurantes y tiendas (iPhone y Android) | District Studio',
+      title: 'Apps móviles para restaurantes y tiendas (iPhone y Android) | Zerufy Studio',
       description: 'Apps para iPhone y Android con pedidos, membresías, puntos y notificaciones, conectadas al mismo panel de tu negocio.',
     },
   },

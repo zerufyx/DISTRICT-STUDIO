@@ -29,4 +29,4 @@ http
     res.writeHead(200, { 'Content-Type': TYPES[path.extname(file)] || 'application/octet-stream' });
     fs.createReadStream(file).pipe(res);
   })
-  .listen(PORT, () => console.log(`District Studio en http://localhost:${PORT}${config.basePath}/`));
+  .listen(PORT, () => console.log(`Zerufy Studio en http://localhost:${PORT}${config.basePath}/`));

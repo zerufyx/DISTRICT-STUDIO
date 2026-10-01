@@ -1,4 +1,4 @@
-/* District Studio. Sistema visual: negro, un rojo, Bebas Neue + Montserrat.
+/* Zerufy Studio. Sistema visual: negro, un rojo, Bebas Neue + Montserrat.
    Botones en píldora, medios con 16px, campos con 12px. */
 
 /* font:start */
@@ -537,7 +537,7 @@ main { display: block; }
 @media (prefers-reduced-motion: reduce) { ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*) { animation: none !important; } }
 
 /* =====================================================================
-   District Studio 2.0
+   Zerufy Studio 2.0
    ===================================================================== */
 
 /* ---------- Encabezado mínimo ---------- */
